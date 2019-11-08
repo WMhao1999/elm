@@ -51,6 +51,36 @@ const routes = [{
 		name:'spcart',
 		component: () => import('../views/spcart.vue')
 	},
+	{
+		path:"/anorder",//确认订单
+		name:'anorder',
+		component: () => import('../views/anorder.vue')
+	},
+	{
+		path:"/point",//积分商城
+		name:'point',
+		component: () => import('../views/point.vue')
+	},
+	{
+		path:"/vip",//会员中心
+		name:'vip',
+		component: () => import('../views/vip.vue')
+	},
+	{
+		path:"/serve",//服务中心
+		name:'serve',
+		component: () => import('../views/serve.vue')
+	},
+	{
+		path:"/download",//下载中心
+		name:'download',
+		component: () => import('../views/download.vue')
+	},
+	{
+		path:"/download",//下载中心
+		name:'download',
+		component: () => import('../views/download.vue')
+	},
 ]
 
 const router = new VueRouter({

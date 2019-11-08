@@ -1,22 +1,24 @@
 <template>
 	<div id="myself">
-		<lh_header :title="'我的'" > </lh_header>
+		<lh_header :title="'我的'"> </lh_header>
 		<div class="ood">
 			<div class="Myself_head">
-				<div class="Myself_img">
-					<img src alt class="iconfont icon-wode" style="font-size:1.72rem;" />
-				</div>
-
-				<div class="Myself_dl">
-					<p>登陆/注册</p>
-
-					<p class="iconfont icon-shouji">
-						<span>暂无绑定手机号</span>
-					</p>
-				</div>
-				<div class="Myself_right">
-					<span class="iconfont icon-arrowRight"></span>
-				</div>
+				<router-link to="/login_in">
+					<div class="Myself_img">
+						<img src alt class="iconfont icon-wode" style="font-size:1.72rem;" />
+					</div>
+					
+					<div class="Myself_dl">
+						<p>登陆/注册</p>
+					
+						<p class="iconfont icon-shouji">
+							<span>暂无绑定手机号</span>
+						</p>
+					</div>
+					<div class="Myself_right">
+						<span class="iconfont icon-arrowRight"></span>
+					</div>
+				</router-link>
 			</div>
 
 			<div class="Myself_wode">
@@ -43,10 +45,10 @@
 				</div>
 			</div>
 			<div class="list">
-				<wh_list v-for="i in w_list" :name='i.name' :icon='i.icon' :key="i.name"></wh_list>
+				<wh_list v-for="i in w_list" :name='i.name' :icon='i.icon' :path="i.path" :key="i.name"></wh_list>
 			</div>
 			<div class="list">
-				<wh_list v-for="i in h_list" :name='i.name' :icon='i.icon' :key="i.name"></wh_list>
+				<wh_list v-for="i in h_list" :name='i.name' :icon='i.icon' :path="i.path" :key="i.name"></wh_list>
 			</div>
 		</div>
 	</div>
@@ -66,33 +68,38 @@
 						name: '我的订单',
 						icon: `<svg class="icon" aria-hidden="true">
   <use xlink:href="#icon-weibiaoti-"></use>
-</svg>`
+</svg>`,
+						path: '/order/form'
 					},
 					{
 						name: '积分商城',
 						icon: `<svg class="icon" aria-hidden="true">
   <use xlink:href="#icon-jifenshangcheng"></use>
-</svg>`
+</svg>`,
+path: '/point'
 					},
 					{
 						name: '饿了吗会员卡',
 						icon: `<svg class="icon" aria-hidden="true">
   <use xlink:href="#icon-huangguan-VIP"></use>
-</svg>`
+</svg>`,
+path: '/vip'
 					},
 				],
 				h_list: [{
 						name: ' 服务中心',
 						icon: `<svg class="icon" aria-hidden="true">
   <use xlink:href="#icon-fuwuzhongxin"></use>
-</svg>`
+</svg>`,
+path: '/serve'
 					},
 					{
 						name: '下载饿了吗APP',
 						icon: `<svg class="icon" aria-hidden="true">
   <use xlink:href="#icon-Safari
 "></use>
-</svg>`
+</svg>`,
+path: '/download'
 					}
 				]
 			}
@@ -101,10 +108,11 @@
 </script>
 
 <style>
-	.list{
+	.list {
 		background: #FFFFFF;
 		margin-bottom: 0.3rem;
 	}
+
 	.Myself_head {
 		background: #3690e8;
 		overflow: hidden;
