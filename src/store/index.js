@@ -5,8 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+	  CityName:''
   },
   mutations: {
+	  GetCityName(state,name){
+		  state.CityName = name
+	  }
   },
   actions: {
   },

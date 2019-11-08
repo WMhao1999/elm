@@ -9,7 +9,7 @@ const routes = [{
 		component: () => import('../views/Home.vue')
 	},
 	{
-		path: '/city/:cityid',
+		path: '/city/:cityid/:cityname',
 		name: 'city',
 		component: () => import('../views/City.vue')
 	},
@@ -36,7 +36,21 @@ const routes = [{
 				component: () => import('../views/children/Myself.vue'),
 			}
 		]
-	}
+	},
+	{
+		path:"/login_in",
+		name:'login_in',
+		component: () => import('../views/login_in.vue')
+	},
+	{
+		path:"/login_pass",
+		name:'login_pass',
+		component: () => import('../views/login_pass.vue')
+	},{
+		path:"/spcart",//购物车
+		name:'spcart',
+		component: () => import('../views/spcart.vue')
+	},
 ]
 
 const router = new VueRouter({

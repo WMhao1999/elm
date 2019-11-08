@@ -1,43 +1,58 @@
 <template>
-  <div id="app">
-    <router-view />
-    <p class="h2">16px</p>
-    <p class="h3">24px</p>
-    <p class="h4">甜品36px</p>
-  </div>
+	<div id="app">
+		<transition name="fade">
+			<router-view />
+		</transition>
+	</div>
 </template>
 
 <script>
-import vue1 from "./components/vue1";
-export default {
-  components: {
-    vue1
-  },
-  created() {
-    window.onload = function() {
-      document.documentElement.style.fontSize =
-        (document.documentElement.clientWidth / 1080) * 100 + "px";
-      window.onresize = function() {
-        document.documentElement.style.fontSize =
-          (document.documentElement.clientWidth / 1080) * 100 + "px";
-      };
-    };
-  }
-};
+	export default {
+		created() {
+			window.onload = function() {
+				document.documentElement.style.fontSize =
+					(document.documentElement.clientWidth / 1080) * 100 + "px";
+				window.onresize = function() {
+					document.documentElement.style.fontSize =
+						(document.documentElement.clientWidth / 1080) * 100 + "px";
+				};
+			};
+		}
+	};
 </script>
 
 <style>
-	*{
+	* {
+		font-size: 0.36rem;
+		margin: 0;
+		padding: 0;
+		color: #000;
+		text-decoration: none;
+		list-style: none;
+	}
+	body,
+	html{
+		background: #f5f5f5;
+	}
+	.fade-enter-active,
+	.fade-leave-avtive {
+		transition: opacity 1.2s
+	}
+
+	.fade-enter,
+	.fade-leave-to {
+		opacity: 0
+	}
+
+	.h2 {
+		font-size: 0.16rem;
+	}
+
+	.h3 {
+		font-size: 0.24rem;
+	}
+
+	.h4 {
 		font-size: 0.36rem;
 	}
-.h2 {
-  font-size: 0.16rem;
-}
-.h3 {
-  font-size: 0.24rem;
-}
-.h4 {
-  font-size: 0.36rem;
-}
 </style>
-

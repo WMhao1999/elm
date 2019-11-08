@@ -1,0 +1,191 @@
+{
+  "id": "1497392",
+  "name": "no name",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "759669",
+      "name": "订单状态",
+      "font_class": "dingdanzhuangtai",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "1005795",
+      "name": "饿了么",
+      "font_class": "changyonglogo40",
+      "unicode": "e722",
+      "unicode_decimal": 59170
+    },
+    {
+      "icon_id": "1321305",
+      "name": "经典案例_五角星_收藏后",
+      "font_class": "jingdiananli_wujiaoxing_shoucanghou",
+      "unicode": "e64a",
+      "unicode_decimal": 58954
+    },
+    {
+      "icon_id": "1321306",
+      "name": "经典案例_空五角星_收藏",
+      "font_class": "jingdiananli_kongwujiaoxing_shoucang",
+      "unicode": "e64b",
+      "unicode_decimal": 58955
+    },
+    {
+      "icon_id": "1397945",
+      "name": "热销",
+      "font_class": "rexiao",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "1404387",
+      "name": "汉堡",
+      "font_class": "hanbao",
+      "unicode": "e6b6",
+      "unicode_decimal": 59062
+    },
+    {
+      "icon_id": "3095097",
+      "name": "评分",
+      "font_class": "pingfen",
+      "unicode": "e640",
+      "unicode_decimal": 58944
+    },
+    {
+      "icon_id": "3670129",
+      "name": "商家",
+      "font_class": "tubiaolunkuo-",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "3764285",
+      "name": "订单 ",
+      "font_class": "weibiaoti-",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "3865271",
+      "name": "手机",
+      "font_class": "shouji",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "4770758",
+      "name": "左箭头",
+      "font_class": "zuojiantou",
+      "unicode": "e642",
+      "unicode_decimal": 58946
+    },
+    {
+      "icon_id": "4925549",
+      "name": "皇冠-VIP",
+      "font_class": "huangguan-VIP",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "5180001",
+      "name": "薯条",
+      "font_class": "shutiao",
+      "unicode": "e635",
+      "unicode_decimal": 58933
+    },
+    {
+      "icon_id": "5184713",
+      "name": "面条",
+      "font_class": "miantiao",
+      "unicode": "e6a1",
+      "unicode_decimal": 59041
+    },
+    {
+      "icon_id": "5427779",
+      "name": "电话",
+      "font_class": "dianhua",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "7015508",
+      "name": "服务中心",
+      "font_class": "fuwuzhongxin",
+      "unicode": "e650",
+      "unicode_decimal": 58960
+    },
+    {
+      "icon_id": "8078207",
+      "name": "优惠",
+      "font_class": "youhui",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "8332370",
+      "name": "Safari",
+      "font_class": "Safari",
+      "unicode": "e69c",
+      "unicode_decimal": 59036
+    },
+    {
+      "icon_id": "9472091",
+      "name": "我的",
+      "font_class": "wode",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    },
+    {
+      "icon_id": "9495636",
+      "name": "关  闭",
+      "font_class": "guanbi",
+      "unicode": "e71d",
+      "unicode_decimal": 59165
+    },
+    {
+      "icon_id": "9512489",
+      "name": "右箭头",
+      "font_class": "arrowRight",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "9559039",
+      "name": "购物车",
+      "font_class": "ziyuan",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "9851615",
+      "name": "积分商城",
+      "font_class": "jifenshangcheng",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "10150387",
+      "name": "说明",
+      "font_class": "shuoming",
+      "unicode": "e61b",
+      "unicode_decimal": 58907
+    },
+    {
+      "icon_id": "10151998",
+      "name": "客服",
+      "font_class": "kefu",
+      "unicode": "e6ac",
+      "unicode_decimal": 59052
+    },
+    {
+      "icon_id": "10502046",
+      "name": "添加",
+      "font_class": "ziyuan1",
+      "unicode": "e6a6",
+      "unicode_decimal": 59046
+    }
+  ]
+}
