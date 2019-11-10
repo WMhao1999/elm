@@ -2,6 +2,7 @@
 	<div id="city">
 		<lh_header :title="$route.params.cityname" :path_r="'/'">
 			<div slot="right">切换城市</div>
+			
 		</lh_header>
 		<div class="find">
 			<input type="text" placeholder="输入学校、商务楼、地址" v-model="value" ref="fou">
