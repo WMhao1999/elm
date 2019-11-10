@@ -37,28 +37,28 @@
 </script>
 
 <style scoped>
-	html,
-	body {
-		width: 100%;
-		height: 100%;
-		background: red;
-		position: relative;
-	}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background: red;
+  position: relative;
+}
 
-	.foot {
-		position: fixed;
-		bottom: 0;
-		width: 100%;
-		padding: 0.3rem 0;
-		display: flex;
-		background: #fff;
-	}
+.foot {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 0.3rem 0;
+  display: flex;
+  background: #fff;
+}
 
-	.foot>div {
-		flex: 1;
-		float: left;
-		text-align: center;
-	}
+.foot > div {
+  flex: 1;
+  float: left;
+  text-align: center;
+}
 
 	.foot>div div {
 		width: 0.8rem;
