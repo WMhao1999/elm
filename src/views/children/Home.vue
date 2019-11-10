@@ -13,7 +13,10 @@
         <span>附近商家</span>
       </div>
       <div v-for="(i,$index) in home_list" :key="$index">
-        <z_businesses :item="i"></z_businesses>
+        <router-link :to="'/spcart/'+i.id">
+          <!--动态传参 店铺id -->
+          <z_businesses :item="i"></z_businesses>
+        </router-link>
       </div>
     </div>
   </div>
