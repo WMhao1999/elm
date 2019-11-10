@@ -13,6 +13,10 @@ import VueAxios from 'vue-axios'
 Vue.use(VueAxios, axios)
 // Vue.use(resource)
 Vue.use(ElementUI)
+import '../font/iconfont.css'
+import '../font/iconfont.js'
+import Swiper from "swiper";
+import "swiper/css/swiper.min.css";
 
 Vue.config.productionTip = false
 // Vue.http.options.xhr = { withCredentials: true }
