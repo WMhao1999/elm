@@ -5,6 +5,7 @@ import store from './store'
 import resource from 'vue-resource'
 import '../font/iconfont.css'
 import '../font/iconfont.js'
+
 Vue.use(resource)
 
 
