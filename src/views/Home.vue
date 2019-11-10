@@ -62,20 +62,20 @@
 		methods: {
 			dang() {
 				//当前位置
-				this.$http.get("http://elm.cangdu.org/v1/cities?type=guess").then(res => {
+				this.axios.get("http://elm.cangdu.org/v1/cities?type=guess").then(res => {
 					// console.log(res);
 					this.ding = res.data;
 				});
 			},
 			rem() {
 				//热门城市
-				this.$http.get("http://elm.cangdu.org/v1/cities?type=hot").then(res => {
+				this.axios.get("http://elm.cangdu.org/v1/cities?type=hot").then(res => {
 					this.re = res.data;
 				});
 			},
 			quan() {
 				//全部城市
-				this.$http.get("http://elm.cangdu.org/v1/cities?type=group").then(res => {
+				this.axios.get("http://elm.cangdu.org/v1/cities?type=group").then(res => {
 					this.cheng = res.data;
 					var obj = res.data;
 					var sorts = obj => {

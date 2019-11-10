@@ -1,6 +1,6 @@
 <template>
 	<div id="order">
-		<lh_header :title="$store.state.CityName" :path_r="'/'">
+		<lh_header :title="$store.state.City.name" :path_r="'/'">
 			
 			<div slot="right">
 				<span>登录</span><span>注册</span>
@@ -15,9 +15,6 @@
 		components: {
 			lh_header
 		},
-		created(){
-			console.log(this.$store.state)
-		}
 	}
 </script>
 
