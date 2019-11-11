@@ -47,7 +47,7 @@ const routes = [{
 	name: 'login_pass',
 	component: () => import('../views/login_pass.vue')
 }, {
-	path: "/spcart",//购物车
+	path: "/spcart/:g_id",//购物车
 	name: 'spcart',
 	component: () => import('../views/spcart.vue')
 },
@@ -77,11 +77,6 @@ const routes = [{
 	component: () => import('../views/download.vue')
 },
 {
-	path: "/download",//下载中心
-	name: 'download',
-	component: () => import('../views/download.vue')
-},
-{
 	path: "/user",//账户信息
 	name: 'user',
 	component: () => import('../views/user.vue')
@@ -104,7 +99,11 @@ const routes = [{
 	path: "/Address/add/addDetail",//搜索地址
 	name: 'Address/add/addDetail',
 	component: () => import('../views/addDetail.vue')
-}
+}, {
+	path: "/sort",//排序 筛选
+	name: 'sort',
+	component: () => import('../views/sort.vue')
+},
 ]
 
 const router = new VueRouter({

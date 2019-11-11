@@ -1,12 +1,10 @@
 <template>
   <div id="home">
-    <lh_header :title="'首页'">
-      <div slot="left" style="color:#fff;font-size:0.4rem">elm</div>
+    <lh_header :title="'首页'" :path_r="'/'">
+      <div slot="left">elm</div>
       <div slot="right">
-        <router-link to="/login_in">
-          <span style="color:#fff;font-size:0.4rem">登录|</span>
-          <span style="color:#fff;font-size:0.4rem">注册</span>
-        </router-link>
+        <span>登录</span>
+        <span>注册</span>
       </div>
     </lh_header>
     <div class="h_ding">
@@ -25,7 +23,7 @@
           :to="{ name: 'city', params: { cityid: ding.id ,cityname:ding.name}}"
           style="display: block;"
         >
-          <i class="iconfont icon-jiantou" style="width: .3rem;height: .6rem;fill: #999;"></i>
+          <i class="iconfont icon-arrowRight" style="width: .3rem;height: .6rem;fill: #999;"></i>
         </router-link>
       </div>
     </div>

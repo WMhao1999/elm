@@ -4,28 +4,10 @@
 			<router-view />
 		</transition>
 		<div class="foot">
-			<div>
-				<router-link to="/order/">
-					<div></div>
-					<p>外卖</p>
-				</router-link>
-			</div>
-			<div>
-				<router-link to="/order/search">
-					<div></div>
-					<p>搜索</p>
-				</router-link>
-			</div>
-			<div>
-				<router-link to="/order/form">
-					<div></div>
-					<p>订单</p>
-				</router-link>
-			</div>
-			<div>
-				<router-link to="/order/myself">
-					<div></div>
-					<p>我的</p>
+			<div v-for="i in itemData" class="foot_item">
+				<router-link :to="i.path" style="display: block; text-align: center;">
+					<div :class="i.icon" :style="{color:$route.path==i.path?'#0a97ff':'#656565'}"></div>
+					<p style="color:#656565;">{{i.name}}</p>
 				</router-link>
 			</div>
 		</div>
@@ -33,6 +15,34 @@
 </template>
 
 <script>
+	export default {
+		data(){
+			return{
+				itemData:[
+					{
+						name:'外卖',
+						path:'/order/',
+						icon:'iconfont icon-changyonglogo40'
+					},
+					{
+						name:'搜索',
+						path:'/order/search',
+						icon:'iconfont icon-Safari'
+					},
+					{
+						name:'订单',
+						path:'/order/form',
+						icon:'iconfont icon-weibiaoti-'
+					},
+					{
+						name:'我的',
+						path:'/order/myself',
+						icon:'iconfont icon-wode'
+					}
+				]
+			}
+		}
+	}
 </script>
 
 <style scoped>
@@ -62,8 +72,13 @@
 	.foot>div div {
 		width: 0.8rem;
 		height: 0.8rem;
-		background: yellow;
+		/* background: yellow; */
 		display: inline-block;
 		margin-bottom: 0.2rem;
+		line-height: 0.8rem;
+	}
+	.iconfont{
+		display: inline-block;
+		font-size: 0.8rem;
 	}
 </style>
