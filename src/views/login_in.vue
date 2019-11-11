@@ -1,12 +1,12 @@
 <template>
   <div id="login_in">
     <lh_header :title="'密码登录'"></lh_header>
-    <div>
+    <div style="margin-top:0.4rem">
       <div class="inpu">
         <input type="text" placeholder="账号" maxlength="11" v-model="user" />
       </div>
       <div class="inpu">
-        <input :type="type" placeholder="密码" v-model="pass" />
+        <input :type="typepass" placeholder="密码" v-model="pass" />
         <el-switch v-model="value2" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
       </div>
       <div class="inpu">
@@ -28,31 +28,38 @@
         <span>重置密码?</span>
       </router-link>
     </div>
+    <tc v-if="type" @type="btn">
+      <p slot="cz">{{message}}</p>
+    </tc>
   </div>
 </template>
 
 <script>
+import tc from "../components/alert";
 import lh_header from "./../components/lh-header.vue";
 export default {
   components: {
-    lh_header
+    lh_header,
+    tc
   },
   data() {
     return {
       value2: false,
-      type: "password",
+      typepass: "password",
       img: "",
       pass: "",
       user: "",
-      captcha_code: ""
+      captcha_code: "",
+      message: "",
+      type: false
     };
   },
   watch: {
     value2() {
       if (this.value2) {
-        this.type = "text";
+        this.typepass = "text";
       } else {
-        this.type = "password";
+        this.typepass = "password";
       }
     }
   },
@@ -75,7 +82,18 @@ export default {
         })
         .then(res => {
           console.log(res);
+          if (res.data.message) {
+            this.message = res.data.message;
+            this.type = true;
+          } else {
+            this.$store.commit("user_id", res.data.id);
+            console.log(this.$store.state.userid);
+            this.$router.push({ path: "/order" });
+          }
         });
+    },
+    btn(a) {
+      this.type = a;
     }
   }
 };

@@ -11,7 +11,7 @@
         <slot name="right"></slot>
       </div>
     </div>
-    <div style="min-height:1.68rem"></div>
+    <div style="min-height:1.28rem"></div>
   </div>
 </template>
 

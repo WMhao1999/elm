@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
 		City: '',
-		stroyList:[]
+		stroyList: [],
+		userid: ''
 	},
 	mutations: {
 		GetCity(state, all) {
@@ -24,6 +25,9 @@ export default new Vuex.Store({
 			if (type) {
 				state.stroyList.unshift(items)
 			}
+		},
+		user_id(state, userid) {
+			state.userid = userid
 		}
 	},
 	actions: {},

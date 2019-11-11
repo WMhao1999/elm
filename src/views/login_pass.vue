@@ -1,12 +1,12 @@
 <template>
   <div id="login_pass">
     <lh_header :title="'重置密码'"></lh_header>
-    <div>
+    <div style="margin-top:0.4rem">
       <div class="inpu">
         <input type="text" placeholder="账号" maxlength="11" v-model="username" />
       </div>
       <div class="inpu">
-        <input type="text" placeholder="旧密码" v-model="username" />
+        <input type="text" placeholder="旧密码" v-model="oldpassWord" />
       </div>
       <div class="inpu">
         <input type="text" placeholder="请输入新密码" v-model="newpassword" />
@@ -26,14 +26,19 @@
       </div>
     </div>
     <div class="btn" @click="que">确认修改</div>
+    <tc v-if="type" @type="btn">
+      <p slot="cz">{{success}}</p>
+    </tc>
   </div>
 </template>
 
 <script>
+import tc from "../components/alert";
 import lh_header from "./../components/lh-header.vue";
 export default {
   components: {
-    lh_header
+    lh_header,
+    tc
   },
   data() {
     return {
@@ -47,7 +52,9 @@ export default {
       //验证码
       captcha_code: "",
       //新密码
-      newpassword: ""
+      newpassword: "",
+      type: false,
+      success: ""
     };
   },
   methods: {
@@ -58,16 +65,23 @@ export default {
     },
     que() {
       this.axios
-        .get("https://elm.cangdu.org/v2/changepassword", {
-          username: "",
-          oldpassWord: "",
-          newpassword: "",
-          confirmpassword: "",
-          captcha_code: ""
+        .post("https://elm.cangdu.org/v2/changepassword", {
+          username: this.username,
+          oldpassWord: this.oldpassWord,
+          newpassword: this.newpassword,
+          confirmpassword: this.confirmpassword,
+          captcha_code: this.captcha_code
         })
         .then(res => {
           console.log(res);
+          if (res.data.success) {
+            this.success = res.data.success;
+            this.type = true;
+          }
         });
+    },
+    btn(a) {
+      this.type = a;
     }
   },
   mounted() {
