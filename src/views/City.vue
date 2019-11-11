@@ -79,7 +79,7 @@
 			}
 		},
 		created() {
-			this.$store.state.stroyList = JSON.parse(localStorage.stroyList)
+			if(localStorage.stroyList) this.$store.state.stroyList = JSON.parse(localStorage.stroyList)
 		}
 	};
 </script>

@@ -38,12 +38,10 @@ export default {
         "https://elm.cangdu.org/v2/index_entry?geohash=39.98119,116.307175&group_type=1&flags[]=F"
       )
       .then(date => {
-        console.log(date.data);
         for (var i = 0; i < date.data.length; i++) {
           if (i <= 7) this.slide_one.push(date.data[i]);
           else if (i > 7) this.slide_two.push(date.data[i]);
         }
-        console.log(this.slide_one);
       });
   },
   mounted() {

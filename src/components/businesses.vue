@@ -1,57 +1,4 @@
 <template>
-<<<<<<< HEAD
-	<div>
-		<router-link to="/spcart">
-			<div class="sp_item">
-				<div class="sp_it_l">
-					<img src="//elm.cangdu.org/img/164ad0b6a3917599.jpg" alt="">
-				</div>
-				<div class="sp_it_r">
-					<div class="it_r_t">
-						<div class="it_r_t_pp">
-							<i>品牌</i>
-							<p>效果演示</p>
-						</div>
-						<div class="it_r_t_piao">
-							<span>保</span>
-							<span>准</span>
-							<span>票</span>
-						</div>
-					</div>
-					<div class="it_r_c">
-						<div class="it_r_c_l">
-							<span>4.7</span>
-							<p>
-								<slot name="i5"></slot>
-							</p>
-						</div>
-						<div class="it_r_c_r">
-							<span>蜂鸟专送</span>
-							<em>准时达</em>
-						</div>
-					</div>
-					<div class="it_r_b">
-						<div class="it_r_b_l">
-							<p>
-								<slot name='i3'></slot>
-								<slot name='i4'></slot>
-							</p>
-						</div>
-						<div class="it_r_b_r">
-							<span>
-								<slot name='i2'></slot>
-							</span>
-							<i>/</i>
-							<em>
-								<slot name='i1'></slot>
-							</em>
-						</div>
-					</div>
-				</div>
-			</div>
-		</router-link>
-	</div>
-=======
   <div>
     <div class="sp_item">
       <div class="sp_it_l">
@@ -91,7 +38,6 @@
       </div>
     </div>
   </div>
->>>>>>> a6fc84059435cb465ef87a133e47c08bba2c6e93
 </template>
 
 <script>

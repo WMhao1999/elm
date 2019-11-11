@@ -52,24 +52,24 @@
 			this.get_home();
 			this.$store.state.City = JSON.parse(localStorage.City)
 		}
-	};
+	}
 </script>
 
 <style>
-	.sp_fj {
-		background: #ffffff;
-		padding-left: 0.25rem;
-		padding-top: 0.3rem;
-	}
+.sp_fj {
+  background: #ffffff;
+  padding-left: 0.25rem;
+  padding-top: 0.3rem;
+}
 
-	.sp_fj i {
-		fill: #999;
-		font-size: 0.6rem;
-		padding-top: 0.2rem;
-	}
+.sp_fj i {
+  fill: #999;
+  font-size: 0.6rem;
+  padding-top: 0.2rem;
+}
 
-	.sp_fj span {
-		color: #999;
-		font: 0.4rem/0.4rem Microsoft YaHei;
-	}
+.sp_fj span {
+  color: #999;
+  font: 0.4rem/0.4rem Microsoft YaHei;
+}
 </style>
