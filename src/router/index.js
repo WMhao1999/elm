@@ -77,9 +77,9 @@ const routes = [{
 	component: () => import('../views/download.vue')
 },
 {
-	path: "/download",//下载中心
-	name: 'download',
-	component: () => import('../views/download.vue')
+	path: "/sort",//排序 筛选
+	name: 'sort',
+	component: () => import('../views/sort.vue')
 },
 ]
 
