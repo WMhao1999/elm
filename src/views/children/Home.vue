@@ -2,22 +2,22 @@
 	<div id="order">
 		<lh_header :title="$store.state.City.name" :path_r="'/'">
 			<div slot="right">
-				<span>登录</span><span>注册</span>
+				<span>登录</span>
+				<span>注册</span>
 			</div>
 		</lh_header>
 		<div style="background: #f5f5f5;">
 			<z_carousel></z_carousel>
 			<div class="sp_fj">
-				<i>i</i>
+				<i class="iconfont icon-tubiaolunkuo-" style="font-size:.4rem"></i>
 				<span>附近商家</span>
 			</div>
-			<z_businesses>
-				<em slot="i1">14小时43分钟</em>
-				<span slot="i2">1380.5公里</span>
-				<span slot="i3">¥20起送配</span>
-				<span slot="i4">/送费约¥5</span>
-				<span slot="i5">月售106单</span>
-			</z_businesses>
+			<div v-for="(i,$index) in home_list" :key="$index">
+				<router-link :to="'/spcart/'+i.id">
+					<!--动态传参 店铺id -->
+					<z_businesses :item="i"></z_businesses>
+				</router-link>
+			</div>
 		</div>
 	</div>
 </template>
@@ -32,26 +32,44 @@
 			z_businesses,
 			z_carousel
 		},
+		data() {
+			return {
+				home_list: []
+			};
+		},
+		methods: {
+			get_home() {
+				this.axios
+					.get(
+						"https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762"
+					)
+					.then(date => {
+						this.home_list = date.data;
+					});
+			}
+		},
 		created() {
+			this.get_home();
 			this.$store.state.City = JSON.parse(localStorage.City)
 		}
-	}
+	};
 </script>
 
 <style>
 	.sp_fj {
-		background: #FFFFFF;
-		padding-left: .25rem;
+		background: #ffffff;
+		padding-left: 0.25rem;
+		padding-top: 0.3rem;
 	}
 
 	.sp_fj i {
 		fill: #999;
-		font-size: .6rem;
-		padding-top: .2rem;
+		font-size: 0.6rem;
+		padding-top: 0.2rem;
 	}
 
 	.sp_fj span {
 		color: #999;
-		font: .4rem/.4rem Microsoft YaHei;
+		font: 0.4rem/0.4rem Microsoft YaHei;
 	}
 </style>
