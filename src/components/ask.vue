@@ -2,24 +2,43 @@
 	<div>
 		<div class="ask">
 			<div class="ask_l">
-				<img src="//elm.cangdu.org/img/1675455928722796.jpg">
+				<slot name="m1"></slot>
 			</div>
 			<div class="ask_r">
-				<h4>腿aa</h4>
-				<p>买一什么都不送</p>
+				<h4>
+					<slot name="m2"></slot>
+				</h4>
 				<p>
-					<span>月售29份</span>
-					<em>好评率66%</em>
+					<slot name="m3"></slot>
 				</p>
-				<p class="i_t">买一什么都不送！！！！</p>
-				<!-- <i>买一什么都不送！！！！</i> -->
+
+				<p>
+					<span>
+						<slot name="m4"></slot>
+					</span>
+					<em>
+						<slot name="m5"></slot>
+					</em>
+				</p>
+				<p class="i_t">
+					<slot name="m6"></slot>
+				</p>
 			</div>
-			<p class="text">新品</p>
+			<z_amount></z_amount>
+			<p class="text">
+				<slot name="m7"></slot>
+			</p>
 		</div>
 	</div>
 </template>
 
 <script>
+	import z_amount from "./amount.vue";
+	export default {
+		components: {
+			z_amount,
+		},
+	}
 </script>
 
 <style>
@@ -56,8 +75,8 @@
 
 	.ask .text {
 		position: absolute;
-		left:-0.6rem;
-		top: -0.1rem;
+		left: -0.6rem;
+		top: -0.3rem;
 		background: rgb(94, 196, 82);
 		color: #FFFFFF;
 		border-color: rgb(94, 196, 82);
@@ -82,7 +101,7 @@
 	}
 
 	.ask_r h4 {
-		margin-bottom: .24rem;
+		margin-bottom: .05rem;
 		font-size: .45rem;
 		color: #333;
 	}
@@ -91,7 +110,6 @@
 		font-size: .35rem;
 		color: #999;
 		line-height: .6rem;
-		padding-bottom: 0.15rem;
 	}
 
 	.ask_r p em {
@@ -106,16 +124,21 @@
 		font-weight: 500;
 	}
 
-	.ask_r .i_t {
+	.ask_r .i_t span {
 		line-height: .4rem;
 		color: rgb(241, 136, 79);
 		border-color: rgb(240, 115, 115);
 		border: 1px solid currentColor;
 		border-radius: .3rem;
-		font-size: .1rem;
-		float: left;
 		margin-left: .1rem;
 		margin-top: .06rem;
 		padding: 0 .1rem;
+		display: inline-block;
+		/* color: currentColor; */
+	}
+
+	.ask_r .i_t span {
+		color: rgb(241, 136, 79);
+		font-size: .1rem;
 	}
 </style>

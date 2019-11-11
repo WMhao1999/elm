@@ -21,6 +21,8 @@
 <style>
 	.amountz {
 		overflow: hidden;
+		padding-left: 1.65rem;
+		padding-top: .3rem;
 	}
 
 	.amountz_l {
@@ -47,7 +49,6 @@
 
 	.amountz_r {
 		float: right;
-		padding-right: .4rem;
 	}
 
 	.amountz_r .amountz_r_j {
@@ -60,6 +61,7 @@
 		line-height: .6rem;
 		text-align: center;
 		color: #FFFFFF;
+		margin-right: .3rem;
 	}
 
 	.amountz_r .amountz_r_n {
@@ -81,5 +83,6 @@
 		line-height: .6rem;
 		text-align: center;
 		color: #FFFFFF;
+		margin-left: .3rem;
 	}
 </style>

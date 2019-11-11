@@ -7,8 +7,16 @@ import '../font/iconfont.css'
 import '../font/iconfont.js'
 import Swiper from "swiper";
 import "swiper/css/swiper.min.css";
-Vue.use(resource)
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
+import Mint from 'mint-ui';
+Vue.use(Mint);
+
+
+
+Vue.use(resource)
+Vue.use(ElementUI);
 
 Vue.config.productionTip = false
 
