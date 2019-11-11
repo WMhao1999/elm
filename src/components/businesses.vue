@@ -16,7 +16,15 @@
         </div>
         <div class="it_r_c">
           <div class="it_r_c_l">
-            <span>{{item.rating}}</span>
+            <p>
+              <el-rate
+                v-model="item.rating"
+                disabled
+                show-score
+                text-color="#ff9900"
+                score-template="{value}"
+              ></el-rate>
+            </p>
             <p>月售{{item.recent_order_num}}单</p>
           </div>
           <div class="it_r_c_r">
@@ -49,6 +57,17 @@ export default {
 <style>
 * {
   margin: 0;
+  padding: 0;
+}
+
+.el-rate__icon {
+  font-size: 0.18rem;
+  margin: 0;
+}
+.el-rate__decimal {
+  font-size: 0.18rem;
+}
+.sp_it_r .it_r_c_l span {
   padding: 0;
 }
 
@@ -142,13 +161,13 @@ i {
 .sp_it_r .it_r_c_l span {
   font-size: 0.22rem;
   color: #ff6000;
-  padding: 0 0.2rem;
 }
 
 .sp_it_r .it_r_c_l p {
   display: inline-block;
   font-size: 0.2rem;
   color: #666;
+  padding: 0 0.1rem;
 }
 
 .sp_it_r .it_r_c_r {
