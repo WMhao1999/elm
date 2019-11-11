@@ -14,6 +14,11 @@
 			upCityName() {
 				this.$store.commit('GetCity', this.data)
 			}
+		},
+		watch:{
+			'$store.state.City'(a){
+				localStorage.City = JSON.stringify(this.$store.state.City)
+			}
 		}
 	}
 </script>

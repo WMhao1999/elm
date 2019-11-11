@@ -2,7 +2,7 @@
 	<div id="city">
 		<lh_header :title="$route.params.cityname" :path_r="'/'">
 			<div slot="right">切换城市</div>
-			
+
 		</lh_header>
 		<div class="find">
 			<input type="text" placeholder="输入学校、商务楼、地址" v-model="value" ref="fou">
@@ -75,13 +75,11 @@
 		},
 		watch: {
 			'$store.state.stroyList'(a) {
-				sessionStorage.stroyList = JSON.stringify(a)
+				localStorage.stroyList = JSON.stringify(a)
 			}
 		},
 		created() {
-			if(sessionStorage.stroyList!=''){
-				this.$store.state.stroyList = JSON.parse(sessionStorage.stroyList)
-			}
+			this.$store.state.stroyList = JSON.parse(localStorage.stroyList)
 		}
 	};
 </script>
@@ -125,7 +123,8 @@
 		font-size: 0.3rem;
 		padding: 0 0.4rem;
 	}
-	.remove{
+
+	.remove {
 		display: block;
 		line-height: 0.8rem;
 		font-size: 0.4rem;

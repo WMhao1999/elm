@@ -1,7 +1,6 @@
 <template>
 	<div id="order">
 		<lh_header :title="$store.state.City.name" :path_r="'/'">
-			
 			<div slot="right">
 				<span>登录</span><span>注册</span>
 			</div>
@@ -33,6 +32,9 @@
 			z_businesses,
 			z_carousel
 		},
+		created() {
+			this.$store.state.City = JSON.parse(localStorage.City)
+		}
 	}
 </script>
 
