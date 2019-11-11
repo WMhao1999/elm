@@ -27,7 +27,7 @@
 					<div class="loginTrue" @click="confrim">再等等</div>
 					<div class="loginFalse" @click="login_out">退出登录</div>
 				</div>
-				<div class="pushCar">
+				<div class="pushCar" v-if="type=='shopcar'">
 					<div class="pushCar_price"><span style="font-size: 0.24rem; color:#dd5c09;">￥</span>{{price}}
 						<div class="pushCar_r">加入购物车</div>
 					</div>
@@ -55,7 +55,6 @@
 			},
 			login_out() {
 				console.log('退出登录')
-				
 				this.isshow = false
 			},
 			getPrice(a, b) {
@@ -64,7 +63,6 @@
 			},
 			pushCar() {
 				this.isshow = false
-				console.log(this.price)
 			}
 		}
 	}

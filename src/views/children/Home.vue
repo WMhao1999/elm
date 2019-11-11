@@ -10,7 +10,7 @@
 			<z_carousel></z_carousel>
 			<div class="sp_fj">
 				<i class="iconfont icon-tubiaolunkuo-" style="font-size:.4rem"></i>
-				<span @click="$alter('shopcar',{tit:'绝味藕片',kind:[{specs_name :'武明浩',price:16},{specs_name :'哈哈哈',price:20}]})">附近商家</span>
+				<span>附近商家</span>
 			</div>
 			<div v-for="(i,$index) in home_list" :key="$index">
 				<router-link :to="'/spcart/'+i.id">
@@ -39,12 +39,14 @@
 		},
 		methods: {
 			get_home() {
+				this.$loading(true)
 				this.axios
 					.get(
 						"https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762"
 					)
 					.then(date => {
 						this.home_list = date.data;
+						this.$loading(false)
 					});
 			}
 		},

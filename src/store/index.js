@@ -7,7 +7,7 @@ export default new Vuex.Store({
 	state: {
 		City: [],
 		stroyList:[],
-		StroyShopArr:[]
+		StroyShopArr:[],
 	},
 	mutations: {
 		GetCity(state, all) {

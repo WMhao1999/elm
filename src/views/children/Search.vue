@@ -7,10 +7,13 @@
 		</div>
 		<div class="sp_smain" v-if="type">
 			<div class="sp_smain_tit">商家</div>
-			<div>
+			<div v-if="isshow">
 				<div v-for="i in shopList">
 					<seaList :seaData="i"></seaList>
 				</div>
+			</div>
+			<div v-if="!isshow" style="text-align: center; line-height: 3rem;">
+				搜索餐馆数据失败
 			</div>
 		</div>
 		<div class="stroy" v-if="!type">
@@ -39,7 +42,8 @@
 			return {
 				msg: '',
 				shopList: '',
-				type: false
+				type: false,
+				isshow:true
 			}
 		},
 		methods: {
@@ -50,11 +54,19 @@
 				this.$store.state.StroyShopArr = []
 			},
 			upsearch() {
+				this.$loading(true)
 				this.type = true
 				this.$store.commit('GetStroyShop', this.msg)
 				this.axios.get(
 					`https://elm.cangdu.org/v4/restaurants?geohash=${this.$store.state.City.geohash}&keyword=${this.msg}`).then((res) => {
-					this.shopList = res.data
+					if(res.data.message=='搜索餐馆数据失败'){
+						this.isshow = false
+						this.$loading(false)
+					}else{
+						this.isshow = true
+						this.shopList = res.data
+						this.$loading(false)
+					}
 				})
 			}
 		},
@@ -65,7 +77,7 @@
 		},
 		created() {
 			if(localStorage.City) this.$store.state.City = JSON.parse(localStorage.City)
-			if(localStorage.shopNameArr) JSON.parse(localStorage.shopNameArr)
+			if(localStorage.shopNameArr) this.$store.state.StroyShopArr = JSON.parse(localStorage.shopNameArr)
 		}
 	}
 </script>

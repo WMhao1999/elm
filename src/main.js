@@ -22,8 +22,11 @@ Vue.config.productionTip = false
 // Vue.http.options.xhr = { withCredentials: true }
 axios.defaults.withCredentials = true
 
-import Alter from './components/alter/alter'
-Vue.prototype.$alter = Alter
+import Alert from './components/alert/alert'
+Vue.prototype.$alert = Alert
+
+import Loading from './components/loading/loading'
+Vue.prototype.$loading = Loading
 
 
 new Vue({
