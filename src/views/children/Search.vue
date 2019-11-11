@@ -65,7 +65,9 @@
 		},
 		created() {
 			this.$store.state.City = JSON.parse(localStorage.City)
+			
 			this.$store.state.StroyShopArr = JSON.parse(localStorage.shopNameArr)
+			
 		}
 	}
 </script>
