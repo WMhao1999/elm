@@ -5,12 +5,26 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
-		City: '',
-		stroyList:[]
+		City: [],
+		stroyList:[],
+		StroyShopArr:[]
 	},
 	mutations: {
 		GetCity(state, all) {
 			state.City = all
+		},
+		GetStroyShop(state,items){
+			var type = true
+			state.StroyShopArr.map((item) => {
+				if (items == item) {
+					type = false
+				} else {
+					type = true
+				}
+			})
+			if (type) {
+				state.StroyShopArr.unshift(items)
+			}
 		},
 		GetStroy(state, items) {
 			var type = true

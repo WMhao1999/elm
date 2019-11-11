@@ -2,13 +2,26 @@
 	<div id="search">
 		<lh_header :title="'搜索'"></lh_header>
 		<div class="sp_search">
-			<input type="text" placeholder="请输入商家或者美食名称">
-			<div>提交</div>
+			<input type="text" placeholder="请输入商家或者美食名称" v-model="msg">
+			<div @click="upsearch">提交</div>
 		</div>
-		<div class="sp_smain">
+		<div class="sp_smain" v-if="type">
 			<div class="sp_smain_tit">商家</div>
 			<div>
-				<seaList v-for="i in 6"></seaList>
+				<div v-for="i in shopList">
+					<seaList :seaData="i"></seaList>
+				</div>
+			</div>
+		</div>
+		<div class="stroy" v-if="!type">
+			<p>历史记录</p>
+			<div class="main">
+				<div v-for="i in $store.state.StroyShopArr" @click="stroyClick(i)">
+					{{i}}
+				</div>
+			</div>
+			<div class="remove" @click="deall">
+				清空所有历史记录
 			</div>
 		</div>
 	</div>
@@ -18,20 +31,72 @@
 	import seaList from '../../components/seaList.vue'
 	import lh_header from "../../components/lh-header.vue";
 	export default {
-		components:{
+		components: {
 			seaList,
 			lh_header
+		},
+		data() {
+			return {
+				msg: '',
+				shopList: '',
+				type: false
+			}
+		},
+		methods: {
+			stroyClick(a) {
+				this.msg = a
+			},
+			deall() {
+				this.$store.state.StroyShopArr = []
+			},
+			upsearch() {
+				this.type = true
+				this.$store.commit('GetStroyShop', this.msg)
+				this.axios.get(
+					`https://elm.cangdu.org/v4/restaurants?geohash=${this.$store.state.City.geohash}&keyword=${this.msg}`).then((res) => {
+					this.shopList = res.data
+				})
+			}
+		},
+		watch: {
+			'$store.state.StroyShopArr'(a) {
+				localStorage.shopNameArr = JSON.stringify(a)
+			}
+		},
+		created() {
+			this.$store.state.City = JSON.parse(localStorage.City)
+			
+			this.$store.state.StroyShopArr = JSON.parse(localStorage.shopNameArr)
+			
 		}
 	}
 </script>
 
-<style>
-	.sp_search{
+<style scoped>
+	.stroy p {
+		display: block;
+		line-height: 0.6rem;
+		border-top: 6px solid #CCCCCC;
+		border-bottom: 6px solid #CCCCCC;
+		font-size: 0.3rem;
+		padding: 0 0.4rem;
+	}
+
+	.remove {
+		display: block;
+		line-height: 0.8rem;
+		font-size: 0.4rem;
+		padding: 0 0.4rem;
+		text-align: center;
+	}
+
+	.sp_search {
 		padding: 0.3rem;
 		background: #fff;
 		overflow: hidden;
 	}
-	.sp_search>input{
+
+	.sp_search>input {
 		width: 74%;
 		margin-right: 2%;
 		float: left;
@@ -44,7 +109,8 @@
 		box-sizing: border-box;
 		padding: 0 0.2rem;
 	}
-	.sp_search>div{
+
+	.sp_search>div {
 		float: left;
 		width: 22%;
 		height: 1rem;
@@ -57,12 +123,21 @@
 		font-weight: bold;
 		text-align: center;
 	}
-	.sp_smain_tit{
+
+	.sp_smain_tit {
 		line-height: 1.3rem;
 		height: 1.3rem;
 		padding: 0 0.37rem;
 		font-size: 0.4rem;
 		font-weight: bold;
 		color: #686868;
+	}
+
+	.main>div {
+		padding: 0 0.4rem;
+		height: 1.3rem;
+		line-height: 1.3rem;
+		border-bottom: 1px #ccc solid;
+		background: #FFFFFF;
 	}
 </style>

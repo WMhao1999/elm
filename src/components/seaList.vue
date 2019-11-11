@@ -1,15 +1,20 @@
 <template>
 	<div id="seaList">
-		<div class="icon"></div>
+		<div class="icon">
+			<img :src="'//elm.cangdu.org/img/'+seaData.image_path">
+		</div>
 		<div class="mian">
-			<p>送外卖吗？</p>
-			<p>月售752单</p>
-			<p>20元起送</p>
+			<p>{{seaData.name}}</p>
+			<p>月售{{seaData.recent_order_num}}单</p>
+			<p>{{seaData.float_minimum_order_amount}}元起送</p>
 		</div>
 	</div>
 </template>
 
 <script>
+	export default{
+		props:['seaData'],
+	}
 </script>
 
 <style scoped>
@@ -25,6 +30,10 @@
 		float: left;
 		background: pink;
 		margin-right: 0.3rem;
+	}
+	.icon img{
+		width: 1.2rem;
+		height: 1.2rem;
 	}
 	.mian{
 		border-bottom: 1px #ccc solid;
