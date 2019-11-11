@@ -11,11 +11,7 @@
         <slot name="right"></slot>
       </div>
     </div>
-<<<<<<< HEAD
-    <div style="min-height:1.28rem"></div>
-=======
     <div style="min-height:1.38rem"></div>
->>>>>>> 2b33cc97952e044c5de44fb1150f6a9842d79b0e
   </div>
 </template>
 
