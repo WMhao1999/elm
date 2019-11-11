@@ -21,6 +21,11 @@ import "swiper/css/swiper.min.css";
 Vue.config.productionTip = false
 // Vue.http.options.xhr = { withCredentials: true }
 axios.defaults.withCredentials = true
+
+import Alter from './components/alter/alter'
+Vue.prototype.$alter = Alter
+
+
 new Vue({
   router,
   store,

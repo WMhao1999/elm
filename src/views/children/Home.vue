@@ -10,7 +10,7 @@
 			<z_carousel></z_carousel>
 			<div class="sp_fj">
 				<i class="iconfont icon-tubiaolunkuo-" style="font-size:.4rem"></i>
-				<span>附近商家</span>
+				<span @click="$alter('shopcar',{tit:'绝味藕片',kind:[{specs_name :'武明浩',price:16},{specs_name :'哈哈哈',price:20}]})">附近商家</span>
 			</div>
 			<div v-for="(i,$index) in home_list" :key="$index">
 				<router-link :to="'/spcart/'+i.id">
@@ -56,20 +56,20 @@
 </script>
 
 <style>
-.sp_fj {
-  background: #ffffff;
-  padding-left: 0.25rem;
-  padding-top: 0.3rem;
-}
+	.sp_fj {
+		background: #ffffff;
+		padding-left: 0.25rem;
+		padding-top: 0.3rem;
+	}
 
-.sp_fj i {
-  fill: #999;
-  font-size: 0.6rem;
-  padding-top: 0.2rem;
-}
+	.sp_fj i {
+		fill: #999;
+		font-size: 0.6rem;
+		padding-top: 0.2rem;
+	}
 
-.sp_fj span {
-  color: #999;
-  font: 0.4rem/0.4rem Microsoft YaHei;
-}
+	.sp_fj span {
+		color: #999;
+		font: 0.4rem/0.4rem Microsoft YaHei;
+	}
 </style>
