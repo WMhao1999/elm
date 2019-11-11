@@ -28,19 +28,19 @@
         <span>重置密码?</span>
       </router-link>
     </div>
-    <tc v-if="type" @type="btn">
+    <!-- <tc v-if="type" @type="btn">
       <p slot="cz">{{message}}</p>
-    </tc>
+    </tc>-->
   </div>
 </template>
 
 <script>
-import tc from "../components/alert";
+// import tc from "../components/alert";
 import lh_header from "./../components/lh-header.vue";
 export default {
   components: {
-    lh_header,
-    tc
+    lh_header
+    // tc
   },
   data() {
     return {
@@ -83,6 +83,7 @@ export default {
         .then(res => {
           console.log(res);
           if (res.data.message) {
+            this.$alert("warn", res.data.message);
             this.message = res.data.message;
             this.type = true;
           } else {

@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import tc from "../components/alert";
+import tc from "../components/alert1.vue";
 import lh_header from "./../components/lh-header.vue";
 export default {
   components: {
