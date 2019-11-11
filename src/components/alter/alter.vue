@@ -55,6 +55,7 @@
 			},
 			login_out() {
 				console.log('退出登录')
+				
 				this.isshow = false
 			},
 			getPrice(a, b) {
