@@ -9,8 +9,17 @@ export default new Vuex.Store({
 		City: [],
 		stroyList: [],
 		StroyShopArr: [],
+		sort_data: {
+			offset: 0,
+			limit: 20,
+			order_by: 4,
+			delivery_mode: 1,
+			restaurant_category_ids: '',
+			num: 0,
+			a: 0
+		},
 		Shopitem: [],
-		NowItem:{}
+		NowItem: {}
 	},
 	mutations: {
 		GetCity(state, all) {

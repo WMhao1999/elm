@@ -8,9 +8,11 @@ export default function (types, options, callback) {
 			return {
 				msg: options,
 				type: types,
-				optCallback: callback
+				confrimCallback: callback
 			}
 		}
+	},function(res){
+		console.log(1)
 	})
 	var el = instance.$mount().$el
 	document.body.appendChild(el)

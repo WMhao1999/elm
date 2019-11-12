@@ -39,11 +39,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #l_header {
   font-size: 0.52rem;
   position: relative;
   z-index: 999999;
+  line-height: 1.52rem;
 }
 
 #l_header a div {
@@ -59,12 +60,13 @@ export default {
 #l_header .l_bd {
   display: flex;
   width: 100%;
-  padding: 0.34rem;
+  padding: 0 0.34rem;
   box-sizing: border-box;
   background: #358fe7;
   position: fixed;
   top: 0;
   overflow: hidden;
+  height: 1.38rem;
 }
 
 #l_header .l_l {
@@ -82,12 +84,14 @@ export default {
   overflow: hidden;
   white-space: nowrap;
   width: 60%;
+  font-weight: bold;
 }
 
 #l_header .l_r {
   width: 20%;
   padding-left: 0.4rem;
   float: right;
+  text-align: right;
 }
 #l_header .l_r a div {
   font-size: 0.45rem;
