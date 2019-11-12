@@ -8,7 +8,9 @@ export default new Vuex.Store({
 		City: '',
 		userid: '',
 		stroyList: [],
-		StroyShopArr: []
+		StroyShopArr: [],
+		serveTit:'',
+		serveCon:''
 	},
 	mutations: {
 		GetCity(state, all) {
@@ -42,6 +44,12 @@ export default new Vuex.Store({
 		},
 		user_id(state, userid) {
 			state.userid = userid
+		},
+		serve(state,i){
+			state.serveTit = i
+		},
+		serves(state,i){
+			state.serveCon = i
 		}
 	},
 	actions: {},

@@ -9,7 +9,8 @@
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-wenhao" />
             </svg>
-            <span>积分说明</span>
+            <router-link to="/pdd"> <span>积分说明</span></router-link>
+           
           </div>
         </div>
 
@@ -17,7 +18,7 @@
             <p class="tit_price">0</p>
            
         </div>
-        <div class="btn">
+        <div class="btn" @click="$alert('warn','快去下单赚取大量积分吧')">
             <span>积分兑换商品</span>
         </div>
       </div>

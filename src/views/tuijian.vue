@@ -6,19 +6,19 @@
     </div>
     <div class="t_logo">
       <div class="logo">
-        <svg class="icon" aria-hidden="true">
+        <svg class="icon" aria-hidden="true" @click="$alert('warn','请在饿了么APP中打开')">
           <use xlink:href="#icon-weixin" />
         </svg>
         <p>邀请微信好友</p>
       </div>
         <div class="logo">
-        <svg class="icon" aria-hidden="true">
+        <svg class="icon" aria-hidden="true" @click="$alert('warn','请在饿了么APP中打开')">
           <use xlink:href="#icon-QQ" />
         </svg>
         <p>邀请QQ好友</p>
       </div>
         <div class="logo">
-        <svg class="icon" aria-hidden="true">
+        <svg class="icon" aria-hidden="true" @click="$alert('warn','请在饿了么APP中打开')">
           <use xlink:href="#icon-mianduimianyaoqing" />
         </svg>
         <p>面对面邀请</p>

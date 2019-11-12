@@ -10,7 +10,8 @@
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-wenhao" />
             </svg>
-            <span>余额说明</span>
+            <router-link to="/balance"> <span>余额说明</span></router-link>
+           
           </div>
         </div>
 
