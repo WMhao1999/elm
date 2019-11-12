@@ -41,30 +41,32 @@
 					<div class="commCt_l">
 						<div>
 							<p v-for="(i,$index) in i_arr" @click="type_i=$index" :key='$index' :class="type_i==$index?'cl':''">
-								<span>{{i.name}}</span>
+								<a href='javascript:;' @click.prevent="custormAnchor($index)"><span>{{i.name}}</span></a>
 							</p>
 						</div>
 					</div>
 					<div class="commCt_r" id="commCt_r" ref='it'>
 						<div v-for="(i,$index) in i_arr">
-							<div class="tt_tit">
-								<p>{{i.name}}</p>
-								<span>{{i.description}}</span>
-								<i @click="tit_type=!tit_type" style="position: relative;">...
-									<span v-show="tit_type" style="position: absolute;z-index: 99999999999;top: .5rem;left: -3.5rem;width: 5rem;display: inline-block;">
-										<span>{{i.name}}</span>
-										<span>{{i.description}}</span>
-									</span>
-								</i>
+							<div :id='$index'>
+								<div class="tt_tit">
+									<p>{{i.name}}</p>
+									<span>{{i.description}}</span>
+									<i @click="tit_type=!tit_type" style="position: relative;">...
+										<span v-show="tit_type" style="position: absolute;z-index: 99999999999;top: .5rem;left: -3.5rem;width: 5rem;display: inline-block;">
+											<span>{{i.name}}</span>
+											<span>{{i.description}}</span>
+										</span>
+									</i>
+								</div>
+								<z_ask v-for="(b,$index) in i.foods" :num='b' :key='$index'>
+									<img slot='m1' :src="'//elm.cangdu.org/img/'+b.image_path">
+									<h4 slot='m2'>{{b.name}}</h4>
+									<p slot="m3">{{b.description}}</p>
+									<em slot="m5">{{b.tips}}</em>
+									<span slot="m6" v-if="b.activity">{{b.activity.image_text}}</span>
+									<p slot="m7">新品</p>
+								</z_ask>
 							</div>
-							<z_ask v-for="(b,$index) in i.foods" :num='b' :key='$index'>
-								<img slot='m1' :src="'//elm.cangdu.org/img/'+b.image_path">
-								<h4 slot='m2'>{{b.name}}</h4>
-								<p slot="m3">{{b.description}}</p>
-								<em slot="m5">{{b.tips}}</em>
-								<span slot="m6" v-if="b.activity">{{b.activity.image_text}}</span>
-								<p slot="m7">新品</p>
-							</z_ask>
 						</div>
 					</div>
 				</div>
@@ -91,7 +93,7 @@
 							<p>({{i.count}})</p>
 						</div>
 					</div>
-					<div v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
+					<div v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="100">
 						<z_evaluate v-for='(i,$index) in arr_in' :key='$index'>
 							<img slot="p1" :src="'https://fuss10.elemecdn.com/'+i.avatar">
 							<i slot="p2">{{i.username}}</i>
@@ -184,7 +186,7 @@
 				tit_type: false,
 				i_num: 0,
 				offset: 10,
-				listarr:[],
+				listarr: [],
 				v_type: false,
 				loading: false,
 				allLoaded: false,
@@ -209,8 +211,17 @@
 			})
 		},
 		methods: {
+			custormAnchor(anchorName) {
+				// 找到锚点
+				let anchorElement = document.getElementById(anchorName);
+				// 如果对应id的锚点存在，就跳转到锚点
+				if (anchorElement) {
+					anchorElement.scrollIntoView();
+				}
+			},
 			loadMore() {
-				// console.log(1)
+				console.log(1)
+				alert(1)
 				this.v_type = true
 				this.loading = true;
 				this.axios.get(
