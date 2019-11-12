@@ -1,28 +1,31 @@
 <template>
-  <div id="serve">
-    <lh_header title="订单备注"></lh_header>
-    <div class="remark_option">
-      <p>快速备注</p>
-      <span style="margin:0;" @click="ones($index)" :class="[one == $index?'bg':'']" v-for="(item,$index) in list" :key="item.id" >{{item.name}}</span>
-      <span @click="twos" :class="ok?'bg':''" style="margin-left:.4rem;">不要香菜</span>
-      <span @click="three" :class="isok?'bg':''">{{listt.name}}</span>
-	  <span @click="fore" :class="sok?'bg':''">{{lists.name}}</span>
-	  <span @click="five" :class="iok?'bg':''">{{listre.name}}</span>
-      <div>
-        <span style="margin:0" @click="sixs($index)" :class="[six == $index?'bg':'']" v-for="(it,$index) in listf" :key="it.id">{{it.name}}</span>
+	<div id="serve">
+		  <lh_header :title="'服务中心'"></lh_header>
+       <div class="nav_top">
+      <div class="nav_top_tw">
+        <div class="nav-top-a">
+        <svg class="icon" aria-hidden="true">
+    <use xlink:href="#icon-kefu"></use>
+</svg>
+        <p class="font-sty">在线客服</p>
+        </div>
+
       </div>
-	  
+      <div class="nav_top_tw">
+        <i class="ictwo iconfont icon-dianhua"></i>
+        <p class="font-sty">在线客服</p>
+      </div>
     </div>
-	<div class="other">
-         <p>其他备注</p>
-		 <textarea class="text_sty" placeholder="请输入备注内容（可不填）" ></textarea>
-	  </div>
-	  <div class="pad">
-		  <div class="btn_get">
-            确定
-		  </div>
-	  </div> 
-  </div>
+    <div>
+      <p class="pone">热门问题</p>
+      <div class="ptwo-box">
+        <div class="ptwo-item" v-for="(i,$index) in list" :key="$index">
+			<span>{{i}}</span>
+			<span class="ptwo-navTo iconfont icon-arrowRight"></span>
+		</div>
+      </div>
+    </div>
+	</div>
 </template>
 <script>
 import lh_header from "./../components/lh-header.vue";
@@ -30,149 +33,66 @@ export default {
   components: {
     lh_header
   },
-  data() {
-    return {
-	  one: "",
-	  six:'',
-	  ok:false,
-	  isok:false,
-	  sok:false,
-	  iok:false,
-      list: [
-        {
-          name: "不要辣"
-        },
-        {
-          name: "少点辣"
-        },
-        {
-          name: "多点辣"
-        }
-      ],
-      listt: 
-        {
-          name: "不要洋葱"
-        },
-      lists: 
-        {
-          name: "多点醋"
-        },
-      listre:
-        {
-          name: "多点葱"
-        },
-      listf: [
-        {
-          name: "去冰"
-        },
-        {
-          name: "少冰"
-        }
-      ],
-      result: []
-    };
-  },
-  methods: {
-    ones(i) {
-      this.one = i;
-	},
-	twos(){
-      this.ok = !this.ok
-	},
-	three(){
-      this.isok = !this.isok
-	},
-	fore(){
-      this.sok = !this.sok
-	},
-	five(){
-      this.iok = !this.iok
-	},
-	sixs(i){
-		this.six = i
-	}
-  }
+   data(){
+		 return{
+			 list:['超级会员权益说明','签到规则','用户等级说明','积分问题','叫我拍大片','支付问题','其他问题','准答大问题','会员说明','会员问题','红包问题','活动细则','补签规则','优惠说明','免责说明','代金券说明','商务合作','余额问题','超赞商家','匿名购买','活动问题']
+		 }
+	 }
 };
 </script>
+
 <style scoped>
-.pad{
-	padding:0 .5rem;
-}
-.btn_get{
-	text-align: center;
-	line-height:1.2rem;
-	background:#4cd966;
-	border-radius: .2rem;
-	color:white;
-	padding:0 .5rem;
-}
-.other{
-	margin-top:.2rem;
-  padding:0 .5rem .8rem .5rem;;
-  background: white;
-}
-.other p{
-  font-size: 0.45rem;
-  line-height:1.3rem;
-  color: #3a3a3a;
-}
-.text_sty{
-	width:100%;
-	min-height:3rem;
-	background:#f8f8f8;
-	border-radius: .2rem;
-	outline: none;
-	border:none;
-	padding:.4rem .3rem;
-	box-sizing: border-box;
-}
-.remark_list {
-  margin-top: 0.7rem;
-  background: white;
-  min-height: 2rem;
-}
-.remark_list b {
-  font-weight: 500;
+.nav-top-a{
+  padding:0.52rem  0;
   line-height: 0.8rem;
-  padding: 0 0.2rem;
+}
+.icon{
+  font-size: 0.7rem;
+}
+.nav_top {
+  display: flex;
+  height: 2.7rem;
+}
+.nav_top_tw {
+  flex: 1;
+  text-align: center;
+  border: 1px solid #f5f5f5;
+}
+
+.ictwo {
+  color: #74c42f;
+}
+.iconfont {
+  font-size: 0.65rem;
+  line-height: 1.5rem;
+}
+.font-sty {
   font-size: 0.4rem;
+  color: #7a7a7a;
 }
-.nav_tit {
-  padding: 0.4rem;
-  box-shadow: 0 0 0.2rem #f5f5f5;
-  background: white;
-  margin-top: 0.2rem;
-}
-.nav_tit p {
-  font-size: 0.45rem;
-  color: #3a3a3a;
-}
-.remark_option {
-  background: white;
-  /* margin-top: 0.5rem; */
-  padding: 0 0.5rem 1rem .5rem;
-}
-.remark_option p {
-  color: #262626;
+.pone {
+  line-height: 2rem;
+  border-bottom: 1px solid #f5f5f5;
   font-size: 0.5rem;
-  line-height: 1.4rem;
+  padding-left: 0.5rem;
+  font-weight: bold;
 }
-.remark_option span {
-  padding: 0.2rem 0.4rem;
-  border: 0.03rem solid #3291e5;
-  display: inline-block;
-  border-radius: 0.12rem;
-  margin-right: 0.5rem;
-  margin-bottom: 0.3rem;
-  /* position: relative;
-  z-index: 2; */
+.ptwo {
+  line-height: 1.3rem;
+  padding-left: 0.5rem;
 }
-.bg {
-  background: #3291e5;
-  color: white;
+.ptwo-item{
+	height:1.36rem;
+	line-height: 1.36rem;
+	font-size:.4rem;
+	color:#848484;
+	box-sizing: border-box;
+	border-bottom:0.01rem #f0f0f0 solid;
+	padding:0 0.46rem;
+	overflow: hidden;
 }
-/* .option_item {
-  display: inline-block;
-  margin: 0.1rem 0.2rem;
-} */
+.ptwo-navTo{
+	float:right;
+	font-size:0.4rem;
+}
 </style>

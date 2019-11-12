@@ -91,7 +91,7 @@ export default {
       handler(newVal) {
         this.num(newVal);
       }
-    }
+    },
   },
   computed: {
     second: function() {
@@ -103,7 +103,6 @@ export default {
   }
 };
 </script>
-
 <style>
 .settime {
   height: 4.22rem;
