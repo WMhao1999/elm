@@ -164,7 +164,7 @@ const routes = [{
 {
 	path: "/Exchange",//兑换会员
 	name: 'Exchange',
-	component: () => import('../views/Exchange.vue')
+	component: () => import('../views/exchange.vue')
 },
 {
 	path: "/invoice",//购买记录
@@ -172,6 +172,16 @@ const routes = [{
 	component: () => import('../views/invoice.vue')
 },
 
+{
+	path: "/online",//线上支付
+	name: 'online',
+	component: () => import('../views/onlinepay.vue')
+},
+{
+	path: "/details",//订单详情
+	name: 'details',
+	component: () => import('../views/details.vue')
+}
 ]
 
 const router = new VueRouter({

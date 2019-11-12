@@ -113,6 +113,7 @@ export default {
 .font-st {
   font-size: 0.45rem;
   color: #b7b9b8;
+  padding: 0.4rem;
 }
 .jz {
   text-align: center;

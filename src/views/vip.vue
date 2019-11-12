@@ -59,7 +59,9 @@
           <span>￥20</span>
         </div>
         <div class="con-8-b">
-          <span>购买</span>
+          <router-link to="/online">
+            <span>购买</span>
+          </router-link>
         </div>
       </div>
     </div>
