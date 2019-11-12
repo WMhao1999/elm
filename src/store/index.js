@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
+		n: 0,
 		City: [],
 		stroyList: [],
 		StroyShopArr: [],
@@ -17,20 +18,37 @@ export default new Vuex.Store({
 			num: 0,
 			a: 0
 		},
-
-
-		// data: [
-		// 	{
-		// 		name: '店铺名',
-		// 		id: 1,
-		// 		foods: [{ name: "食物名", pic: '价格' }],
-		// 		zpic: 1
-		// 	}
-		// ]
+		Shopitem: [],
+		NowItem: {}
 	},
 	mutations: {
 		GetCity(state, all) {
 			state.City = all
+		},
+		GetShopitem(state, items) {
+			state.NowItem = items
+			state.n++
+			var type = true
+			state.Shopitem.map((item) => {
+				if (items == item) {
+					item.count++
+					type = false
+				} else {
+					type = true
+				}
+			})
+			if (type) {
+				items.count = 1
+				state.Shopitem.push(items)
+			}
+		},
+		GetShopitemdown(state, items) {
+			state.n++
+			state.Shopitem.map((item, index) => {
+				if (items == item) {
+					item.count--
+				}
+			})
 		},
 		GetStroyShop(state, items) {
 			var type = true
@@ -57,8 +75,22 @@ export default new Vuex.Store({
 			if (type) {
 				state.stroyList.unshift(items)
 			}
+		},
+		user_id(state, userid) {
+			state.userid = userid
 		}
 	},
 	actions: {},
-	modules: {}
+	modules: {},
+	getters: {
+		returnPrice(state) {
+			var price = 0
+			if (state.n != 0) {
+				state.Shopitem.map((item) => {
+					price += item.count * item.specfoods[0].price
+				})
+			}
+			return price
+		}
+	}
 })

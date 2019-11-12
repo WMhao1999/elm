@@ -3,8 +3,12 @@
     <lh_header :title="'服务中心'"></lh_header>
     <div class="nav_top">
       <div class="nav_top_tw">
-        <i class="icone iconfont icon-kefu"></i>
-        <p class="font-sty">在线客服</p>
+        <div class="nav-top-a">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-kefu" />
+          </svg>
+          <p class="font-sty">在线客服</p>
+        </div>
       </div>
       <div class="nav_top_tw">
         <i class="ictwo iconfont icon-dianhua"></i>
@@ -22,7 +26,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import lh_header from "./../components/lh-header.vue";
 export default {
@@ -59,11 +62,13 @@ export default {
 };
 </script>
 
-
-<style>
-* {
-  margin: 0;
-  padding: 0;
+<style scoped>
+.nav-top-a {
+  padding: 0.52rem 0;
+  line-height: 0.8rem;
+}
+.icon {
+  font-size: 0.7rem;
 }
 .nav_top {
   display: flex;
@@ -73,9 +78,6 @@ export default {
   flex: 1;
   text-align: center;
   border: 1px solid #f5f5f5;
-}
-.icone {
-  color: #ff7a4f;
 }
 .ictwo {
   color: #74c42f;

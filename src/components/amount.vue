@@ -2,14 +2,26 @@
 	<div>
 		<div class="amountz">
 			<div class="amountz_l">
-				<span class="amountz_l_i">¥</span>
-				<span class="amountz_l_num">11</span>
-				<span class="amountz_l_t">起</span>
+				<span class="amountz_l_i">
+					<slot name="js1"></slot>
+				</span>
+				<span class="amountz_l_num">
+					<slot name="js2"></slot>
+				</span>
+				<span class="amountz_l_t">
+					<slot name="js3"></slot>
+				</span>
 			</div>
 			<div class="amountz_r">
-				<span class="amountz_r_j">-</span>
-				<span class="amountz_r_n">1</span>
-				<span class="amountz_r_jj">+</span>
+				<span>
+					<slot name="js4"></slot>
+				</span>
+				<span>
+					<slot name="js5"></slot>
+				</span>
+				<span class="amountz_r_jj">
+					<slot name="js6"></slot>
+				</span>
 			</div>
 		</div>
 	</div>
@@ -21,6 +33,8 @@
 <style>
 	.amountz {
 		overflow: hidden;
+		padding-left: 1.65rem;
+		padding-top: .3rem;
 	}
 
 	.amountz_l {
@@ -47,7 +61,6 @@
 
 	.amountz_r {
 		float: right;
-		padding-right: .4rem;
 	}
 
 	.amountz_r .amountz_r_j {
@@ -60,6 +73,7 @@
 		line-height: .6rem;
 		text-align: center;
 		color: #FFFFFF;
+		margin-right: .3rem;
 	}
 
 	.amountz_r .amountz_r_n {
@@ -67,12 +81,13 @@
 		font-size: .5rem;
 		text-align: center;
 		font-family: Helvetica Neue, Tahoma;
+		margin-right: .3rem;
 	}
 
 	.amountz_r .amountz_r_jj {
 		position: relative;
 		z-index: 999;
-		background: #3190e8;
+		/* background: #3190e8; */
 		font-size: .5rem;
 		border-radius: 50%;
 		display: inline-block;
