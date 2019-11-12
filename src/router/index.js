@@ -80,7 +80,14 @@ const routes = [{
 		path:"/download",//下载中心
 		name:'download',
 		component: () => import('../views/download.vue')
-	},
+	},{
+		path:"/exchange",//兑换会员
+		name:'exchange',
+		component: () => import('../views/exchange.vue')
+	},{
+		path:'/time',
+		component: () => import('../views/onlinepay.vue'),
+	}
 ]
 
 const router = new VueRouter({
