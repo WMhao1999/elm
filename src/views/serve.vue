@@ -27,7 +27,6 @@
     </div>
 	</div>
 </template>
-
 <script>
 import lh_header from "./../components/lh-header.vue";
 export default {

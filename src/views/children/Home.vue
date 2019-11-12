@@ -23,6 +23,10 @@
 </template>
 
 <script>
+	import z_evaluate from "../../components/evaluate.vue";
+	import z_xingxing from "../../components/xingxing.vue";
+	import z_ask from "../../components/ask.vue";
+	import z_introduce from "../../components/introduce.vue";
 	import z_carousel from "../../components/carousel.vue";
 	import z_businesses from "../../components/businesses.vue";
 	import lh_header from "../../components/lh-header.vue";
@@ -30,7 +34,20 @@
 		components: {
 			lh_header,
 			z_businesses,
-			z_carousel
+			z_carousel,
+			z_introduce,
+			z_ask,
+			z_xingxing,
+			z_evaluate,
+		},
+		data() {
+			return {
+				in_dex: 1,
+				type_i: 0,
+				i_arr: '',
+				arr_in: '',
+				arr_type: '',
+			}
 		},
 		data() {
 			return {

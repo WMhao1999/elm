@@ -129,6 +129,16 @@ const routes = [{
 	name: 'tuijian',
 	component: () => import('../views/tuijian.vue')
 },
+{
+	path: "/online",//线上支付
+	name: 'online',
+	component: () => import('../views/onlinepay.vue')
+},
+{
+	path: "/details",//订单详情
+	name: 'details',
+	component: () => import('../views/details.vue')
+}
 ]
 
 const router = new VueRouter({

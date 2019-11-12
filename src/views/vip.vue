@@ -57,7 +57,9 @@
           <span>￥20</span>
         </div>
         <div class="con-8-b">
-          <span>购买</span>
+          <router-link to="/online">
+            <span>购买</span>
+          </router-link>
         </div>
       </div>
     </div>
@@ -73,8 +75,8 @@
         </div>
       </div>
     </div>
-	<div class="con-5"></div>
-	  <div class="con-9">
+    <div class="con-5"></div>
+    <div class="con-9">
       <div class="con-1">
         <p>购买记录</p>
         <div class="con-2">
@@ -200,7 +202,7 @@ export default {
   padding: 0.15rem 0.47rem;
   color: #ec764e;
 }
-.con-9{
-	padding: 0.45rem 0.448rem;
+.con-9 {
+  padding: 0.45rem 0.448rem;
 }
 </style>

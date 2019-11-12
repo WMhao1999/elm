@@ -1,72 +1,83 @@
 <template>
-	<div id="alter" v-if="isshow">
-		<div class="alter_main">
-			<div class="main_up">
-				<!-- warn loginout-->
-				<div v-if="type=='warn'||type=='loginout'">
-					<div class="alter_icon">!</div>
-					<p>{{msg}}</p>
-				</div>
-				<!-- shopcar -->
-				<div v-if="type=='shopcar'">
-					<div class="shoptit">
-						{{msg.tit}}
-						<span class="close" @click="confrim"></span>
-					</div>
-					<div class="shopmain">
-						<p>规格</p>
-						<div class="shopitem" v-for="(i,$index) in msg.kind" :class="index==$index?'active':''" @click="getPrice(i,$index)">{{i.specs_name}}</div>
-					</div>
-				</div>
-			</div>
-			<div class="main_down">
-				<!-- warn -->
-				<div @click="confrim" v-if="type=='warn'" class="warn">确定</div>
-				<!-- loginout -->
-				<div class="loginout" v-if="type=='loginout'">
-					<div class="loginTrue" @click="confrim">再等等</div>
-					<div class="loginFalse" @click="login_out">退出登录</div>
-				</div>
-				<div class="pushCar" v-if="type=='shopcar'">
-					<div class="pushCar_price"><span style="font-size: 0.24rem; color:#dd5c09;">￥</span>{{price}}
-						<div class="pushCar_r">加入购物车</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div id="alter" v-if="isshow">
+    <div class="alter_main">
+      <div class="main_up">
+        <!-- warn loginout-->
+        <div v-if="type=='warn'||type=='loginout'">
+          <div class="alter_icon">!</div>
+          <p style="padding:0 0.4rem">{{msg}}</p>
+        </div>
+        <!-- shopcar -->
+        <div v-if="type=='shopcar'">
+          <div class="shoptit">
+            {{msg.tit}}
+            <span class="close" @click="confrim"></span>
+          </div>
+          <div class="shopmain">
+            <p>规格</p>
+            <div
+              class="shopitem"
+              v-for="(i,$index) in msg.kind"
+              :class="index==$index?'active':''"
+              @click="getPrice(i,$index)"
+            >{{i.specs_name}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="main_down">
+        <!-- warn -->
+        <div @click="confrim" v-if="type=='warn'" class="warn">确定</div>
+        <!-- loginout -->
+        <div class="loginout" v-if="type=='loginout'">
+          <div class="loginTrue" @click="confrim">再等等</div>
+          <div class="loginFalse" @click="login_out">退出登录</div>
+        </div>
+        <div class="pushCar" v-if="type=='shopcar'">
+          <div class="pushCar_price">
+            <span style="font-size: 0.24rem; color:#dd5c09;">￥</span>
+            {{price}}
+            <div class="pushCar_r">加入购物车</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				msg: '',
-				type: '',
-				isshow: true,
-				confrimCallback: null,
-				index: -1,
-				price: 0
-			}
-		},
-		methods: {
-			confrim() {
-				this.isshow = false
-			},
-			login_out() {
-				var a = '嘿嘿嘿'
-				this.isshow = false
-				this.confrimCallback(a)
-			},
-			getPrice(a, b) {
-				this.index = b
-				this.price = a.price
-			},
-			pushCar() {
-				this.isshow = false
-			}
-		}
-	}
+export default {
+  data() {
+    return {
+      msg: "",
+      type: "",
+      isshow: true,
+      confrimCallback: null,
+      index: -1,
+      price: 0
+    };
+  },
+  methods: {
+    confrim() {
+      this.isshow = false;
+      if (this.msg == "当前环境无法支付，请打开官方APP进行付款") {
+        var lohref = location.href.split('/')
+        lohref.splice(lohref.length-1,1,'order/form')
+        location.href = lohref.join('/')
+      }
+    },
+    login_out() {
+      console.log("退出登录");
+      this.isshow = false;
+    },
+    getPrice(a, b) {
+      this.index = b;
+      this.price = a.price;
+    },
+    pushCar() {
+      this.isshow = false;
+    }
+  }
+};
 </script>
 
 <style>
