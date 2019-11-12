@@ -24,25 +24,36 @@
         </div>
         <div class="Myself_wode">
           <div class="Myself_wode1">
-            <p>
+            <router-link to="/mymoney">
+                 <p>
               0.00
               <span>元</span>
             </p>
             <p>我的余额</p>
+            </router-link>
+           
           </div>
           <div class="Myself_wode2">
-            <p>
+            <router-link to="/mypre">
+               <p>
               0
               <span>个</span>
             </p>
             <p>我的优惠</p>
+
+            </router-link>
+           
           </div>
           <div class="Myself_wode3">
-            <p>
+            <router-link to="/myjifen">
+                  <p>
               0
               <span>分</span>
             </p>
             <p>我的积分</p>
+
+            </router-link>
+          
           </div>
         </div>
         <div class="list">

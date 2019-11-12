@@ -104,6 +104,31 @@ const routes = [{
 	name: 'sort',
 	component: () => import('../views/sort.vue')
 },
+{
+	path: "/mymoney",//我的余额
+	name: 'mymoney',
+	component: () => import('../views/mymoney.vue')
+},
+{
+	path: "/myjifen",//我的积分
+	name: 'myjifen',
+	component: () => import('../views/myjifen.vue')
+},
+{
+	path: "/mypre",//我的优惠
+	name: 'mypre',
+	component: () => import('../views/mypre.vue')
+},
+{
+	path: "/duihuan",//兑换红包
+	name: 'duihuan',
+	component: () => import('../views/duihuan.vue')
+},
+{
+	path: "/tuijian",//推荐有奖
+	name: 'tuijian',
+	component: () => import('../views/tuijian.vue')
+},
 ]
 
 const router = new VueRouter({
