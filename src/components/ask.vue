@@ -24,7 +24,14 @@
 					<slot name="m6"></slot>
 				</p>
 			</div>
-			<z_amount></z_amount>
+			<z_amount>
+				<span class="amountz_l_i" slot="js1">¥</span>
+				<span class="amountz_l_num" slot="js2">{{num.specfoods[0].price}}</span>
+				<span class="amountz_l_t" slot="js3">起</span>
+				<span class="amountz_r_j" @click="btm()" v-show="i_num>0" slot="js4">-</span>
+				<span class="amountz_r_n" v-show="i_num>0" slot="js5">{{i_num}}</span>
+				<span class="amountz_r_jj" @click="btn()" slot="js6">+</span>
+			</z_amount>
 			<p class="text">
 				<slot name="m7"></slot>
 			</p>
@@ -38,6 +45,45 @@
 		components: {
 			z_amount,
 		},
+		data() {
+			return {
+				i_num: 0,
+				z_num: 0,
+				z_arr: [],
+				i_obj: {},
+			}
+		},
+		props: ["num"],
+		methods: {
+			btn() {
+				this.i_num++
+				console.log(this.num)
+				this.$store.commit('GetShopitem', this.num)
+			},
+			btm() {
+				if (this.i_num > 0) {
+					this.i_num--
+				} else {
+					this.i_num = 0
+				}
+				this.$store.commit('GetShopitemdown', this.num)
+			}
+		},
+		updated() {
+			this.z_num = this.i_num * this.num.specfoods[0].price
+			// console.log(this.z_num)
+		},
+		mounted() {
+			this.i_obj = {
+				sl: this.i_num, //数量
+				dj: this.num.specfoods[0].price, //单价
+				name: this.num.name, //商品名
+				ch: 0, //餐具费
+				yf: this.num.float_delivery_fee, //配送费
+				item_zjg: this.z_num, //单个总价格
+				z_jg: 0, //总价格
+			}
+		}
 	}
 </script>
 
@@ -63,6 +109,59 @@
 	em,
 	i {
 		font-style: normal;
+	}
+
+	.amountz_l_i {
+		font-size: .3rem;
+		color: #f60;
+		margin-right: .05rem;
+	}
+
+	.amountz_l_num {
+		font-size: .5rem;
+		color: #f60;
+		font-weight: 900;
+		margin-right: .2rem;
+	}
+
+	.amountz_l_t {
+		font-size: .3rem;
+		color: #666;
+	}
+
+	.amountz_r_j {
+		background: #3190e8;
+		font-size: .5rem;
+		border-radius: 50%;
+		display: inline-block;
+		width: .6rem;
+		height: .6rem;
+		line-height: .6rem;
+		text-align: center;
+		color: #FFFFFF;
+		margin-right: .3rem;
+	}
+
+	.amountz_r_n {
+		color: #666;
+		font-size: .5rem;
+		text-align: center;
+		font-family: Helvetica Neue, Tahoma;
+	}
+
+	.amountz_r_jj {
+		position: relative;
+		z-index: 999;
+		background: #3190e8;
+		font-size: .5rem;
+		border-radius: 50%;
+		display: inline-block;
+		width: .6rem;
+		height: .6rem;
+		line-height: .6rem;
+		text-align: center;
+		color: #FFFFFF;
+		/* padding-left: .3rem; */
 	}
 
 	.ask {

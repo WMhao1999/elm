@@ -3,7 +3,7 @@
 		<div class="introduce">
 			<div class="introduce_top">
 				<div class="introduce_top_l">
-					<img src="//elm.cangdu.org/img/16b218200c241687.png" alt="">
+					<slot name="t6"></slot>
 				</div>
 				<div class="introduce_top_r">
 					<slot name="t1"></slot>
@@ -14,16 +14,16 @@
 			</div>
 			<div class="introduce_btn">
 				<div class="introduce_btn_l">
-					<i class="introduce_btn_l_i">减</i>
+					<slot name='t7'></slot>
 					<slot name="t4"></slot>
-
 				</div>
 				<div class="introduce_btn_r">
 					<slot name="t5"></slot>
-					<i class="iconfont">&#xe60f;</i>
+					<slot name='t8'></slot>
 				</div>
 			</div>
 		</div>
+		<slot name="ba"></slot>
 	</div>
 </template>
 
@@ -32,12 +32,13 @@
 
 <style>
 	.tit {
-		background-image: url("//elm.cangdu.org/img/16b218200c241687.png");
+		/* background-image: url("//elm.cangdu.org/img/16b218200c241687.png"); */
 		background-size: cover;
 	}
 
 	.introduce {
 		padding: .27rem;
+		min-height: 3.1rem;
 		background: rgba(119, 103, 137, .9);
 	}
 
