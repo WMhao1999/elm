@@ -1,16 +1,19 @@
 <template>
   <div id="myself">
-    <lh_header :title="'我的'"></lh_header>
-    <div class="ood">
-      <div class="Myself_head">
-        <router-link to="/login_in">
+    <div>
+      <lh_header :title="'我的'"></lh_header>
+      <div class="ood">
+        <div class="Myself_head" @click="router">
           <div class="Myself_img">
-            <img src alt class="iconfont icon-wode" style="font-size:1.72rem;" />
+            <img
+              style="width:2rem;border-radius: 50%;font-size:1.8rem"
+              :src="userList.username?'//elm.cangdu.org/img/default.jpg':''"
+              alt
+              class="iconfont icon-wode"
+            />
           </div>
-
           <div class="Myself_dl">
-            <p>登陆/注册</p>
-
+            <p>{{userList.username?userList.username:"登陆/注册"}}</p>
             <p class="iconfont icon-shouji">
               <span>暂无绑定手机号</span>
             </p>
@@ -18,43 +21,39 @@
           <div class="Myself_right">
             <span class="iconfont icon-arrowRight"></span>
           </div>
-        </router-link>
-      </div>
-
-      <div class="Myself_wode">
-        <div class="Myself_wode1">
-          <router-link to="/mymoney">
+        </div>
+        <div class="Myself_wode">
+          <div class="Myself_wode1">
             <p>
               0.00
               <span>元</span>
             </p>
             <p>我的余额</p>
-          </router-link>
-        </div>
-        <div class="Myself_wode2">
-          <router-link to="/mypre">
+          </div>
+          <div class="Myself_wode2">
             <p>
               0
               <span>个</span>
             </p>
             <p>我的优惠</p>
-          </router-link>
-        </div>
-        <div class="Myself_wode3">
-          <router-link to="/myjifen">
+          </div>
+          <div class="Myself_wode3">
             <p>
               0
               <span>分</span>
             </p>
             <p>我的积分</p>
-          </router-link>
+          </div>
+        </div>
+        <div class="list">
+          <wh_list v-for="i in w_list" :name="i.name" :icon="i.icon" :path="i.path" :key="i.name"></wh_list>
+        </div>
+        <div class="list">
+          <wh_list v-for="i in h_list" :name="i.name" :icon="i.icon" :path="i.path" :key="i.name"></wh_list>
         </div>
       </div>
-      <div class="list">
-        <wh_list v-for="i in w_list" :name="i.name" :icon="i.icon" :path="i.path" :key="i.name"></wh_list>
-      </div>
-      <div class="list">
-        <wh_list v-for="i in h_list" :name="i.name" :icon="i.icon" :path="i.path" :key="i.name"></wh_list>
+      <div>
+        
       </div>
     </div>
   </div>
@@ -70,6 +69,8 @@ export default {
   },
   data() {
     return {
+      type: true,
+      userList: "",
       w_list: [
         {
           name: "我的订单",
@@ -111,6 +112,26 @@ export default {
         }
       ]
     };
+  },
+  mounted() {
+    this.user();
+  },
+  methods: {
+    user() {
+      this.axios.get("https://elm.cangdu.org/v1/user").then(res => {
+        if (res.status == 200) {
+          this.userList = res.data;
+          this.type = false;
+        }
+      });
+    },
+    router() {
+      if (this.userList.username) {
+        this.$router.push({ path: "/user" });
+      } else {
+        this.$router.push({ path: "/login_in" });
+      }
+    }
   }
 };
 </script>
@@ -169,6 +190,8 @@ export default {
   display: flex;
   text-align: center;
   padding: 0.54rem 0;
+  background: #ffffff;
+  margin-bottom: 0.4rem;
 }
 
 .Myself_wode1 {

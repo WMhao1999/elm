@@ -6,11 +6,26 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
 		City: '',
-		stroyList:[]
+		userid: '',
+		stroyList: [],
+		StroyShopArr: []
 	},
 	mutations: {
 		GetCity(state, all) {
 			state.City = all
+		},
+		GetStroyShop(state, items) {
+			var type = true
+			state.StroyShopArr.map((item) => {
+				if (items == item) {
+					type = false
+				} else {
+					type = true
+				}
+			})
+			if (type) {
+				state.StroyShopArr.unshift(items)
+			}
 		},
 		GetStroy(state, items) {
 			var type = true
@@ -24,6 +39,9 @@ export default new Vuex.Store({
 			if (type) {
 				state.stroyList.unshift(items)
 			}
+		},
+		user_id(state, userid) {
+			state.userid = userid
 		}
 	},
 	actions: {},

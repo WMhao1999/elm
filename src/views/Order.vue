@@ -41,6 +41,34 @@
 </template>
 
 <script>
+	export default {
+		data(){
+			return{
+				itemData:[
+					{
+						name:'外卖',
+						path:'/order/',
+						icon:'iconfont icon-changyonglogo40'
+					},
+					{
+						name:'搜索',
+						path:'/order/search',
+						icon:'iconfont icon-Safari'
+					},
+					{
+						name:'订单',
+						path:'/order/form',
+						icon:'iconfont icon-weibiaoti-'
+					},
+					{
+						name:'我的',
+						path:'/order/myself',
+						icon:'iconfont icon-wode'
+					}
+				]
+			}
+		}
+	}
 </script>
 
 <style scoped>
@@ -66,11 +94,11 @@ body {
   background: #fff;
 }
 
-.foot > div {
-  flex: 1;
-  float: left;
-  text-align: center;
-}
+	.foot>div {
+		flex: 1;
+		float: left;
+		text-align: center;
+	}
 
 .foot > div div {
   width: 0.8rem;
