@@ -2,9 +2,12 @@
   <div id="home">
     <lh_header :title="'首页'" :path_r="'/'">
       <div slot="left">elm</div>
+
       <div slot="right">
-        <span>登录</span>
-        <span>注册</span>
+        <router-link to="/login_in">
+          <span>登录</span>
+          <span>注册</span>
+        </router-link>
       </div>
     </lh_header>
     <div class="h_ding">

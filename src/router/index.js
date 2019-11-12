@@ -77,10 +77,68 @@ const routes = [{
 	component: () => import('../views/download.vue')
 },
 {
+	path: "/user",//账户信息
+	name: 'user',
+	component: () => import('../views/user.vue')
+},
+{
+	path: "/modifyuser",//修改用户名
+	name: 'modifyuser',
+	component: () => import('../views/modifyuser.vue')
+},
+{
+	path: "/Address",//编辑地址
+	name: 'Address',
+	component: () => import('../views/Address.vue'),
+}, {
+	path: "/Address/add",//新增地址
+	name: 'Address/add',
+	component: () => import('../views/add.vue')
+},
+{
+	path: "/Address/add/addDetail",//搜索地址
+	name: 'Address/add/addDetail',
+	component: () => import('../views/addDetail.vue')
+}, {
 	path: "/sort",//排序 筛选
 	name: 'sort',
 	component: () => import('../views/sort.vue')
 },
+{
+	path: "/mymoney",//我的余额
+	name: 'mymoney',
+	component: () => import('../views/mymoney.vue')
+},
+{
+	path: "/myjifen",//我的积分
+	name: 'myjifen',
+	component: () => import('../views/myjifen.vue')
+},
+{
+	path: "/mypre",//我的优惠
+	name: 'mypre',
+	component: () => import('../views/mypre.vue')
+},
+{
+	path: "/duihuan",//兑换红包
+	name: 'duihuan',
+	component: () => import('../views/duihuan.vue')
+},
+{
+	path: "/tuijian",//推荐有奖
+	name: 'tuijian',
+	component: () => import('../views/tuijian.vue')
+},
+{
+	path: "/online",//线上支付
+	name: 'online',
+	component: () => import('../views/onlinepay.vue')
+},
+{
+	path: "/details",//订单详情
+	name: 'details',
+	component: () => import('../views/details.vue')
+}
 ]
 
 const router = new VueRouter({

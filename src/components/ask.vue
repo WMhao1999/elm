@@ -57,7 +57,7 @@
 		methods: {
 			btn() {
 				this.i_num++
-				console.log(this.num)
+				// console.log(this.num)
 				this.$store.commit('GetShopitem', this.num)
 			},
 			btm() {

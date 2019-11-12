@@ -66,6 +66,9 @@ export default new Vuex.Store({
 			if (type) {
 				state.stroyList.unshift(items)
 			}
+		},
+		user_id(state, userid) {
+			state.userid = userid
 		}
 	},
 	actions: {},

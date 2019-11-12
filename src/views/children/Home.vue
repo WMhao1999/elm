@@ -56,12 +56,14 @@
 		},
 		methods: {
 			get_home() {
+				this.$loading(true)
 				this.axios
 					.get(
 						"https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762"
 					)
 					.then(date => {
 						this.home_list = date.data;
+						this.$loading(false)
 					});
 			}
 		},
