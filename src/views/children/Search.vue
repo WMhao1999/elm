@@ -12,8 +12,8 @@
 					<seaList :seaData="i"></seaList>
 				</div>
 			</div>
-			<div v-if="!isshow" style="text-align: center; line-height: 3rem;">
-				搜索餐馆数据失败
+			<div v-if="!isshow" style="text-align: center; line-height: 1.5rem;background: #ffffff;">
+				很抱歉！无搜索结果
 			</div>
 		</div>
 		<div class="stroy" v-if="!type">

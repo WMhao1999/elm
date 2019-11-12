@@ -54,8 +54,9 @@
 				this.isshow = false
 			},
 			login_out() {
-				console.log('退出登录')
+				var a = '嘿嘿嘿'
 				this.isshow = false
+				this.confrimCallback(a)
 			},
 			getPrice(a, b) {
 				this.index = b
