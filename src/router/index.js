@@ -161,11 +161,11 @@ const routes = [{
 	name: 'Members',
 	component: () => import('../views/Members.vue')
 },
-// {
-// 	path: "/Exchange",//兑换会员
-// 	name: 'Exchange',
-// 	component: () => import('../views/exchange.vue')
-// },
+{
+	path: "/exchange",//兑换会员
+	name: 'exchange',
+	component: () => import('../views/exchange.vue')
+},
 {
 	path: "/invoice",//购买记录
 	name: 'invoice',

@@ -65,6 +65,7 @@ export default {
         )
         .then(date => {
           this.home_list = date.data;
+          this.$loading(false)
         });
     }
   },
