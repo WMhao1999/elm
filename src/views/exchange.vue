@@ -3,7 +3,7 @@
     <div>
       <lh_header title="兑换会员"></lh_header>
       <p class="nav_tit">
-        成功兑换后将关联到当前账户 :
+        成功兑换后将关联到当前账户:
         <b>1001</b>
       </p>
       <div class="ipt_box">
