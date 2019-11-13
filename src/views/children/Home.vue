@@ -56,7 +56,6 @@
 		},
 		methods: {
 			get_home() {
-				this.$loading(true,false)
 				this.axios
 					.get(
 						"https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762"
@@ -68,6 +67,7 @@
 			}
 		},
 		created() {
+			this.$loading(true,false)
 			this.get_home();
 			this.$store.state.City = JSON.parse(localStorage.City)
 		}
