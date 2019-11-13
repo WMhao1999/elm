@@ -70,10 +70,10 @@ const routes = [{
 	path: "/serve",//服务中心
 	name: 'serve',
 	component: () => import('../views/serve.vue'),
-	children:[
+	children: [
 		{
-			path:'ser',
-			name:'ser',
+			path: 'ser',
+			name: 'ser',
 			component: () => import('../views/ser.vue'),
 		}
 	]
@@ -181,6 +181,11 @@ const routes = [{
 	path: "/details",//订单详情
 	name: 'details',
 	component: () => import('../views/details.vue')
+},
+{
+	path: "/Selectaddress",//选择地址
+	name: 'Selectaddress',
+	component: () => import('../views/Selectaddress.vue')
 }
 ]
 

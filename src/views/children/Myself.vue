@@ -7,13 +7,13 @@
           <div class="Myself_img">
             <img
               style="width:2rem;border-radius: 50%;font-size:1.8rem"
-              :src="userList.username?'//elm.cangdu.org/img/default.jpg':''"
+              :src="path?userList.avatar:''"
               alt
               class="iconfont icon-wode"
             />
           </div>
           <div class="Myself_dl">
-            <p>{{userList.username?userList.username:"登陆/注册"}}</p>
+            <p>{{path?userList.username:"登陆/注册"}}</p>
             <p class="iconfont icon-shouji">
               <span>暂无绑定手机号</span>
             </p>
@@ -63,9 +63,7 @@
           <wh_list v-for="i in h_list" :name="i.name" :icon="i.icon" :path="i.path" :key="i.name"></wh_list>
         </div>
       </div>
-      <div>
-        
-      </div>
+      <div></div>
     </div>
   </div>
 </template>
@@ -80,6 +78,7 @@ export default {
   },
   data() {
     return {
+      path: false,
       type: true,
       userList: "",
       w_list: [
@@ -129,19 +128,29 @@ export default {
   },
   methods: {
     user() {
-      this.axios.get("https://elm.cangdu.org/v1/user").then(res => {
-        if (res.status == 200) {
-          this.userList = res.data;
-          this.type = false;
-        }
-      });
+      this.axios
+        .get("https://elm.cangdu.org/v1/user?user_id=43998")
+        .then(res => {
+          if (res.status == 200) {
+            console.log(res.data);
+            this.userList = res.data;
+            this.type = false;
+            this.userList.avatar = `https://elm.cangdu.org/img/${this.userList.avatar}`;
+          }
+        });
     },
     router() {
-      if (this.userList.username) {
+      if (this.path) {
         this.$router.push({ path: "/user" });
       } else {
         this.$router.push({ path: "/login_in" });
       }
+    }
+  },
+  created() {
+    console.log(localStorage.userid);
+    if (localStorage.userid) {
+      this.path = true;
     }
   }
 };

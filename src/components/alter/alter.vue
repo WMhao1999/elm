@@ -3,41 +3,39 @@
     <div class="alter_main">
       <div class="main_up">
         <!-- warn loginout-->
-        <div v-if="type == 'warn' || type == 'loginout'">
+        <div v-if="type=='warn'||type=='loginout'">
           <div class="alter_icon">!</div>
-          <p style="padding:0 0.4rem">{{ msg }}</p>
+          <p>{{msg}}</p>
         </div>
         <!-- shopcar -->
-        <div v-if="type == 'shopcar'">
+        <div v-if="type=='shopcar'">
           <div class="shoptit">
-            {{ msg.tit }}
+            {{msg.tit}}
             <span class="close" @click="confrim"></span>
           </div>
           <div class="shopmain">
             <p>规格</p>
             <div
               class="shopitem"
-              v-for="(i, $index) in msg.kind"
-              :class="index == $index ? 'active' : ''"
-              @click="getPrice(i, $index)"
-            >
-              {{ i.specs_name }}
-            </div>
+              v-for="(i,$index) in msg.kind"
+              :class="index==$index?'active':''"
+              @click="getPrice(i,$index)"
+            >{{i.specs_name}}</div>
           </div>
         </div>
       </div>
       <div class="main_down">
         <!-- warn -->
-        <div @click="confrim" v-if="type == 'warn'" class="warn">确定</div>
+        <div @click="confrim" v-if="type=='warn'" class="warn">确定</div>
         <!-- loginout -->
-        <div class="loginout" v-if="type == 'loginout'">
+        <div class="loginout" v-if="type=='loginout'">
           <div class="loginTrue" @click="confrim">再等等</div>
           <div class="loginFalse" @click="login_out">退出登录</div>
         </div>
-        <div class="pushCar" v-if="type == 'shopcar'">
+        <div class="pushCar" v-if="type=='shopcar'">
           <div class="pushCar_price">
             <span style="font-size: 0.24rem; color:#dd5c09;">￥</span>
-            {{ price }}
+            {{price}}
             <div class="pushCar_r">加入购物车</div>
           </div>
         </div>
@@ -55,20 +53,20 @@ export default {
       isshow: true,
       confrimCallback: null,
       index: -1,
-      price: 0
+      price: 0,
+      status: 0
     };
+  },
+  created() {
+    localStorage.show = "";
   },
   methods: {
     confrim() {
       this.isshow = false;
-      if (this.msg == "当前环境无法支付，请打开官方APP进行付款") {
-        location.href = "#/order/form";
-      }
     },
     login_out() {
-      console.log("退出登录");
-      this.confrimCallback("退出登录");
       this.isshow = false;
+      this.confrimCallback("退出登录");
     },
     getPrice(a, b) {
       this.index = b;
@@ -76,6 +74,7 @@ export default {
     },
     pushCar() {
       this.isshow = false;
+      console.log(this.price);
     }
   }
 };
@@ -85,7 +84,6 @@ export default {
 #alter {
   position: fixed;
   top: 0;
-
   left: 0;
   right: 0;
   bottom: 0;
@@ -104,17 +102,14 @@ export default {
   overflow: hidden;
   animation: run 0.4s;
 }
-
 @-webkit-keyframes run {
   30% {
-    margin-left: -30px;
+    width: 7.9rem;
   }
-
   60% {
-    margin-left: 30px;
+    width: 8.8rem;
   }
 }
-
 .main_up {
   min-height: 4rem;
   text-align: center;
