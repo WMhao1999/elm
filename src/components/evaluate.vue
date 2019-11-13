@@ -2,17 +2,28 @@
 	<div>
 		<div class="eval">
 			<div class="eval_l">
-				<img src="//elm.cangdu.org/img/default.jpg">
+				<slot name="p1"></slot>
 			</div>
 			<div class="eval_r">
-				<p class="eval_r_t"><i>4*******b</i><em>2017-02-10</em></p>
-				<p class="eval_r_c">按时送达</p>
+				<p class="eval_r_t">
+					<i>
+						<slot name="p2"></slot>
+					</i>
+					<em>
+						<slot name="p3"></slot>
+					</em>
+				</p>
+				<p class="eval_r_c">
+					<slot name="p4"></slot>
+				</p>
 				<div class='eval_rimg'>
-					<img src="https://fuss10.elemecdn.com/d/c8/64033625905f0a15a2d181d53a425jpeg.jpeg" alt=""><img src="https://fuss10.elemecdn.com/0/74/e0e203f613deff4e456c31e4177d1jpeg.jpeg"
-					 alt="">
+					<div>
+						<slot name="p5"></slot>
+						<div>
+							<slot name="p6"></slot>
+						</div>
+					</div>
 				</div>
-				<span>超级至尊比萨-铁盘</span>
-				<span>韩式浓情风味鸡（标准份）</span>
 			</div>
 		</div>
 
@@ -36,6 +47,21 @@
 		overflow: hidden;
 	}
 
+	.eval_rimg p {
+		font-size: .35rem;
+		color: #999;
+		width: 1rem;
+		display: inline-block;
+		padding: .1rem;
+		border: .025rem solid #ebebeb;
+		border-radius: .1rem;
+		margin-right: .2rem;
+		margin-bottom: 4px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
 	.eval .eval_l img {
 		width: 1.05rem;
 		height: 1.05rem;
@@ -49,7 +75,8 @@
 	.eval_r img {
 		width: 2rem;
 		height: 2rem;
-		float: left;
+		/* float: left; */
+		display: inline-block;
 		margin-left: .1rem;
 	}
 
@@ -59,15 +86,17 @@
 
 	.eval_r .eval_r_t i {
 		color: #666;
-		margin-bottom: .4rem;
+		margin-bottom: .1rem;
 		font-size: .45rem;
+		padding-top: .25rem;
+		display: inline-block;
 	}
 
 	.eval_r .eval_r_t em {
 		font-size: .4rem;
 		color: #999;
 		float: right;
-		padding-top: .5rem;
+		/* padding-top: .5rem; */
 	}
 
 	.eval_r_c {

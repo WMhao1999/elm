@@ -27,59 +27,60 @@
 
 
 <script>
-import lh_header from "./../components/lh-header.vue";
-import cityList from "./../components/cityList.vue";
-export default {
-  components: {
-    lh_header,
-    cityList
-  },
-  data() {
-    return {
-      re: "",
-      name: "",
-      value: "",
-      data: "",
-      hi: [],
-      type: false
-    };
-  },
-  methods: {
-    btn() {
-      //搜索
-      if (this.value == "") return;
-      this.axios
-        .get(
-          `http://elm.cangdu.org/v1/pois?type=search&city_id=${this.$route.params.cityid}&keyword=${this.value}`
-        )
-        .then(res => {
-          this.data = res.data;
-          this.value = "";
-          this.$refs.fou.focus();
-          this.type = true;
-        });
-    },
-    listClick(a) {
-      this.$store.commit("GetStroy", a);
-      this.type = false;
-    },
-    deall() {
-      this.$store.state.stroyList = [];
-    },
-    stroyClick(a) {
-      this.value = a.name;
-    }
-  },
-  watch: {
-    "$store.state.stroyList"(a) {
-      localStorage.stroyList = JSON.stringify(a);
-    }
-  },
-  created() {
-    if (localStorage.stroyList)
-      this.$store.state.stroyList = JSON.parse(localStorage.stroyList);
-  }
-};
+	import lh_header from "./../components/lh-header.vue";
+	import cityList from "./../components/cityList.vue"
+	export default {
+		components: {
+			lh_header,
+			cityList
+		},
+		data() {
+			return {
+				re: "",
+				name: "",
+				value: "",
+				data: "",
+				hi: [],
+				type: false
+			};
+		},
+		methods: {
+			btn() {
+				//搜索
+				this.$loading(true)
+				if (this.value == "") return;
+				this.axios
+					.get(
+						`http://elm.cangdu.org/v1/pois?type=search&city_id=${this.$route.params.cityid}&keyword=${this.value}`
+					)
+					.then(res => {
+						this.data = res.data;
+						this.value = "";
+						this.$refs.fou.focus();
+						this.type = true
+						this.$loading(false)
+					});
+			},
+			listClick(a) {
+				this.$store.commit('GetStroy', a)
+				this.type = false
+			},
+			deall() {
+				this.$store.state.stroyList = []
+			},
+			stroyClick(a) {
+				this.value = a.name
+			}
+		},
+		watch: {
+			'$store.state.stroyList'(a) {
+				localStorage.stroyList = JSON.stringify(a)
+			}
+		},
+		created() {
+			if(localStorage.stroyList) this.$store.state.stroyList = JSON.parse(localStorage.stroyList)
+		}
+	};
 </script>
 <style scoped>
 .find {

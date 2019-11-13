@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Alert from './alter.vue'
+import Alert from './alert.vue'
 
 var alertInstance = Vue.extend(Alert)
 export default function (types, options, callback) {
@@ -11,11 +11,9 @@ export default function (types, options, callback) {
 				confrimCallback: callback
 			}
 		}
-	}, function () {
-		callback
+	}, function (res) {
+		console.log(1)
 	})
 	var el = instance.$mount().$el
 	document.body.appendChild(el)
 }
-
-
