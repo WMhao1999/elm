@@ -1,9 +1,16 @@
 <template>
   <div id="order">
     <lh_header :title="$store.state.City.name" :path_r="'/'">
-      <div slot="right">
-        <span>登录</span>
-        <span>注册</span>
+      <div slot="right" style="color:#fff">
+        <router-link
+          style="text-align: right;width:100%; display: inline-block;color:#fff"
+          v-if="path"
+          to="/order/myself"
+        >我的</router-link>
+        <router-link v-if="!path" to="/login_in">
+          <span>登录</span>
+          <span>注册</span>
+        </router-link>
       </div>
     </lh_header>
     <div style="background: #f5f5f5;">
@@ -34,7 +41,8 @@ export default {
   },
   data() {
     return {
-      home_list: []
+      home_list: [],
+      path: false
     };
   },
   methods: {
@@ -49,6 +57,9 @@ export default {
     }
   },
   created() {
+    if (localStorage.userid) {
+      this.path = true;
+    }
     this.get_home();
     this.$store.state.City = JSON.parse(localStorage.City);
   }

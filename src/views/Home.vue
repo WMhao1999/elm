@@ -1,12 +1,20 @@
 <template>
   <div id="home">
     <lh_header :title="'首页'" :path_r="'/'">
-      <div slot="left">elm</div>
-
+      <div slot="left" style="color:#fff">elm</div>
       <div slot="right">
-        <router-link to="/login_in">
-          <span>登录</span>
-          <span>注册</span>
+        <router-link
+          style="text-align: right;width:100%; display: inline-block;color:#fff"
+          v-if="!path"
+          to="/order/myself"
+        >我的</router-link>
+        <router-link
+          v-if="path"
+          to="/login_in"
+          style="text-align: right;width:100%; display: inline-block;color:#fff"
+        >
+          <span style="color:#fff">登录 |&nbsp;</span>
+          <span style="color:#fff">注册</span>
         </router-link>
       </div>
     </lh_header>
@@ -67,17 +75,23 @@ export default {
     return {
       ding: "",
       re: "",
-      cheng: ""
+      cheng: "",
+      path: true
     };
   },
   mounted() {
     this.dang(), this.rem(), this.quan();
   },
+  created() {
+    if (localStorage.userid) {
+      this.path = false;
+    }
+    console.log(this.$store.state.userid);
+  },
   methods: {
     dang() {
       //当前位置
       this.$http.get("http://elm.cangdu.org/v1/cities?type=guess").then(res => {
-        // console.log(res);
         this.ding = res.data;
       });
     },

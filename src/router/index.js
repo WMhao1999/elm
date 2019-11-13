@@ -104,6 +104,11 @@ const routes = [{
 	name: 'sort',
 	component: () => import('../views/sort.vue')
 },
+{
+	path: "/Selectaddress",//排序 筛选
+	name: 'Selectaddress',
+	component: () => import('../views/Selectaddress.vue')
+},
 ]
 
 const router = new VueRouter({

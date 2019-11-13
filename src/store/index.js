@@ -6,9 +6,11 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
 		City: '',
-		userid: '',
+		userid: {},
+		seadd: {},
 		stroyList: [],
-		StroyShopArr: []
+		StroyShopArr: [],
+		s: ''
 	},
 	mutations: {
 		GetCity(state, all) {
@@ -42,6 +44,9 @@ export default new Vuex.Store({
 		},
 		user_id(state, userid) {
 			state.userid = userid
+		},
+		cadd(state, seadd) {
+			state.seadd = seadd
 		}
 	},
 	actions: {},

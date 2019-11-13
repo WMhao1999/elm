@@ -53,17 +53,20 @@ export default {
       isshow: true,
       confrimCallback: null,
       index: -1,
-      price: 0
+      price: 0,
+      status: 0
     };
+  },
+  created() {
+    localStorage.show = "";
   },
   methods: {
     confrim() {
       this.isshow = false;
     },
     login_out() {
-      console.log("退出登录");
-
       this.isshow = false;
+      this.confrimCallback("退出登录");
     },
     getPrice(a, b) {
       this.index = b;
