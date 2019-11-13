@@ -5,14 +5,18 @@
       <div class="swiper-wrapper">
         <div class="swiper-slide">
           <div class="isp_i" v-for="i in slide_one" :key="i.id">
-            <img class="img" :src="'https://fuss10.elemecdn.com'+i.image_url" />
-            <p>{{i.title}}</p>
+            <router-link :to="'/sort?title='+i.title +'&restaurant_category_id='+i.id">
+              <img class="img" :src="'https://fuss10.elemecdn.com'+i.image_url" />
+              <p>{{i.title}}</p>
+            </router-link>
           </div>
         </div>
         <div class="swiper-slide">
           <div class="isp_i" v-for="i in slide_two" :key="i.id">
-            <img class="img" :src="'https://fuss10.elemecdn.com'+i.image_url" />
-            <p>{{i.title}}</p>
+            <router-link :to="'/sort?title='+i.title +'&restaurant_category_id='+i.id">
+              <img class="img" :src="'https://fuss10.elemecdn.com'+i.image_url" />
+              <p>{{i.title}}</p>
+            </router-link>
           </div>
         </div>
       </div>
