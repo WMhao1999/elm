@@ -14,7 +14,7 @@
         <div class="user">
           <h2>用户名</h2>
           <div>
-            <p>{{user.username}}</p>
+            <p>{{ user.username }}</p>
             <span>></span>
           </div>
         </div>
@@ -103,13 +103,14 @@ export default {
     openfalse() {
       this.$alert("loginout", "是否退出登录？", function(res) {
         if (res == "退出登录") {
-          var hrefs = location.href.split("/");
-          hrefs.splice(hrefs.length - 1, 1, "order/myself");
-          location.href = hrefs.join("/");
           this.axios.get(`https://elm.cangdu.org/v2/signout`).then(res => {
             console.log(res);
-            window.localStorage.removeItem("userid");
-            this.$store.commit("user_id", "");
+            localStorage.removeItem("userid");
+            console.log(location.userid);
+            // this.$store.commit("user_id", "");
+            var hrefs = location.href.split("/");
+            hrefs.splice(hrefs.length - 1, 1, "order/myself");
+            location.href = hrefs.join("/");
           });
         }
       });

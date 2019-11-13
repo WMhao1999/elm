@@ -70,10 +70,10 @@ const routes = [{
 	path: "/serve",//服务中心
 	name: 'serve',
 	component: () => import('../views/serve.vue'),
-	children:[
+	children: [
 		{
-			path:'ser',
-			name:'ser',
+			path: 'ser',
+			name: 'ser',
 			component: () => import('../views/ser.vue'),
 		}
 	]
@@ -161,11 +161,11 @@ const routes = [{
 	name: 'Members',
 	component: () => import('../views/Members.vue')
 },
-{
-	path: "/Exchange",//兑换会员
-	name: 'Exchange',
-	component: () => import('../views/exchange.vue')
-},
+// {
+// 	path: "/Exchange",//兑换会员
+// 	name: 'Exchange',
+// 	component: () => import('../views/exchange.vue')
+// },
 {
 	path: "/invoice",//购买记录
 	name: 'invoice',
