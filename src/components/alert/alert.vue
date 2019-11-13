@@ -60,9 +60,7 @@ export default {
     confrim() {
       this.isshow = false;
       if (this.msg == "当前环境无法支付，请打开官方APP进行付款") {
-        var lohref = location.href.split('/')
-        lohref.splice(lohref.length-1,1,'order/form')
-        location.href = lohref.join('/')
+        location.href = '#/order/form'
       }
     },
     login_out() {
