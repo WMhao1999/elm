@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="sp_item">
-      <div class="sp_it_l">
+    <div class="sp_item" v-if="item">
+      <div class="sp_it_l" v-if="item.image_path">
         <img :src="'//elm.cangdu.org/img/'+item.image_path" alt />
       </div>
       <div class="sp_it_r">
@@ -10,7 +10,7 @@
             <i>品牌</i>
             <p>{{item.name}}</p>
           </div>
-          <div class="it_r_t_piao">
+          <div class="it_r_t_piao" v-if="item.supports">
             <span v-for="(i,$i) in item.supports" :key="$i">{{i.icon_name}}</span>
           </div>
         </div>
@@ -27,7 +27,7 @@
             </p>
             <p>月售{{item.recent_order_num}}单</p>
           </div>
-          <div class="it_r_c_r">
+          <div class="it_r_c_r" v-if="item.delivery_mode">
             <span>{{item.delivery_mode.text}}</span>
             <em>准时达</em>
           </div>

@@ -2,12 +2,12 @@
 	<div id="loading">
 		<div id="loading_1" v-if="isShow">
 			<div class="load">
-				<img src="../../assets/timg.gif" alt="">
+				<img src="../../assets/timg.gif">
 			</div>
 		</div>
 		<div id="loading_2" v-if="!isShow">
 			<div class="load">
-				<img src="../../assets/timg.gif" alt="">
+				<img src="../../assets/timg.gif">
 			</div>
 		</div>
 	</div>
