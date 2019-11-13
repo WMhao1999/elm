@@ -186,7 +186,13 @@ const routes = [{
 	path: "/Selectaddress",//选择地址
 	name: 'Selectaddress',
 	component: () => import('../views/Selectaddress.vue')
+},
+{
+	path: "/confirmOrder",//确认订单
+	name: 'confirmOrder',
+	component: () => import('../views/confirmOrder.vue')
 }
+
 ]
 
 const router = new VueRouter({
