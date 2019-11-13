@@ -39,7 +39,7 @@ export default {
   },
   mounted() {
     this.dz();
-    location.path = "";
+    localStorage.path = "";
   },
   methods: {
     dz() {

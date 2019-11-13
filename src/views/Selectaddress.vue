@@ -2,7 +2,7 @@
   <div>
     <lh_header :title="'选择地址'"></lh_header>
     <div v-if="data" style="margin-top:0.4rem">
-      <div class="dz" v-for="i in data" :key="i.id" @click="xuanz">
+      <div class="dz" v-for="i in data" :key="i.id" @click="xuanz(i)">
         <p class="name">{{i.name}}</p>
         <p class="dizi">{{i.address}}</p>
       </div>
@@ -28,9 +28,7 @@ export default {
   created() {
     this.dz();
   },
-  mounted() {
-    location.path = true;
-  },
+  mounted() {},
   methods: {
     dz() {
       this.axios
@@ -38,9 +36,10 @@ export default {
         .then(res => {
           console.log(res.data);
           this.data = res.data;
+          localStorage.path = true;
         });
     },
-    xuanz() {
+    xuanz(i) {
       //跳转到确认订单页面
       // this.$router.push({path:''})
     }

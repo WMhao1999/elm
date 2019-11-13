@@ -40,7 +40,7 @@ export default {
         });
     },
     fn(i) {
-      this.$store.commit("cadd", i);
+      this.$store.commit("seadd", i);
       this.$router.push({ path: "/Address/add" });
     }
   }

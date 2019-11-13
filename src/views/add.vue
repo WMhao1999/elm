@@ -89,7 +89,9 @@ import lh_header from "./../components/lh-header.vue";
 export default {
   components: { lh_header },
   mounted() {
-    this.xx = this.$store.state.seadd.name;
+    if (this.$store.state.name) {
+      this.xx = this.$store.state.name.name;
+    }
   },
   data() {
     return {
@@ -111,7 +113,7 @@ export default {
     };
   },
   created() {
-    if (location.path == true) {
+    if (localStorage.path) {
       this.no = false;
     }
   },
