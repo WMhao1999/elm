@@ -57,10 +57,12 @@ export default {
         )
         .then(date => {
           this.home_list = date.data;
+          this.$loading(false)
         });
     }
   },
   created() {
+    this.$loading(true,false)
     this.get_home();
     this.$store.state.City = JSON.parse(localStorage.City);
   }

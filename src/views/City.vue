@@ -47,7 +47,6 @@
 		methods: {
 			btn() {
 				//搜索
-				this.$loading(true)
 				if (this.value == "") return;
 				this.axios
 					.get(
@@ -58,7 +57,6 @@
 						this.value = "";
 						this.$refs.fou.focus();
 						this.type = true
-						this.$loading(false)
 					});
 			},
 			listClick(a) {

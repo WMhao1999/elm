@@ -162,8 +162,8 @@ const routes = [{
 	component: () => import('../views/Members.vue')
 },
 {
-	path: "/Exchange",//兑换会员
-	name: 'Exchange',
+	path: "/exchange",//兑换会员
+	name: 'exchange',
 	component: () => import('../views/exchange.vue')
 },
 {
