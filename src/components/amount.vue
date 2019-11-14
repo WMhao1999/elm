@@ -1,6 +1,7 @@
 <template>
-	<div>
+	<div style="padding-top: .2rem;">
 		<div class="amountz">
+			<div></div>
 			<div class="amountz_l">
 				<span class="amountz_l_i">
 					<slot name="js1"></slot>
@@ -19,18 +20,58 @@
 				<span>
 					<slot name="js5"></slot>
 				</span>
-				<span class="amountz_r_jj">
+				<span v-show="!date.specifications[0]" class="amountz_r_jj">
 					<slot name="js6"></slot>
 				</span>
+
+				<div v-show="date.specifications[0]" class="p_size" @click="pushShopCar">
+					<span v-if="date.specifications[0]" class="size">选{{date.specifications[0].name}}</span>
+				</div>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+	export default {
+		props: ["date"],
+		data(){
+			return{
+				nowDate:{},
+				status:0
+			}
+		},
+		methods:{
+			pushShopCar(){
+				this.$alert('shopcar',this.date,(res)=>{
+					this.nowDate = res
+					this.status++
+				})
+			}
+		},
+		watch:{
+			'status'(){
+				this.$store.commit('GetShopitem',this.nowDate)
+			}
+		}
+	}
 </script>
 
 <style>
+	.p_size {
+		text-align: right;
+	}
+
+	.size {
+		display: inline-block;
+		font-size: .35rem;
+		color: #fff;
+		padding: .1rem .2rem;
+		background-color: #3190e8;
+		border-radius: .2rem;
+		border: 1px solid #3190e8;
+	}
+
 	.amountz {
 		overflow: hidden;
 		padding-left: 1.65rem;

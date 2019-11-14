@@ -17,7 +17,7 @@
       <z_carousel></z_carousel>
       <div class="sp_fj">
         <i class="iconfont icon-tubiaolunkuo-" style="font-size:.4rem"></i>
-        <span @click="fn()">附近商家</span>
+        <span>附近商家</span>
       </div>
       <div v-if="home_list">
         <div v-for="(i,$index) in home_list" :key="$index">
@@ -58,11 +58,6 @@ export default {
     };
   },
   methods: {
-    fn() {
-      this.$alert("success", "密码重置成功", res => {
-        console.log(res);
-      });
-    },
     get_home() {
       this.$loading(true, false);
       this.axios
