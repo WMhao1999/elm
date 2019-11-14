@@ -17,6 +17,14 @@ export default {
           (document.documentElement.clientWidth / 1080) * 100 + "px";
       };
     };
+  },
+  watch: {
+    "$route.path"(a) {
+      var load = document.querySelector("#loading");
+      if (load) {
+        this.$loading(false);
+      }
+    }
   }
 };
 </script>
