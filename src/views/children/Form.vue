@@ -12,6 +12,12 @@ export default {
   components: {
     lh_header,
     order
+  },
+  created(){
+	  this.$loading(true,true)
+	  setTimeout(()=>{
+		  this.$loading(false)
+	  },2000)
   }
 };
 </script> 

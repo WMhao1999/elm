@@ -60,7 +60,7 @@ export default {
     confrim() {
       this.isshow = false;
       if (this.msg == "当前环境无法支付，请打开官方APP进行付款") {
-        location.href = '#/order/form'
+        location.href = '/order/form'
       }
     },
     login_out() {
@@ -82,7 +82,6 @@ export default {
 	#alter {
 		position: fixed;
 		top: 0;
-		
 		left: 0;
 		right: 0;
 		bottom: 0;
@@ -220,9 +219,10 @@ export default {
 		line-height: 1.16rem;
 		text-align: center;
 		color: #ffffff;
-		font-weight: bold;
+		font-weight: 600;
 		background: #48db66;
 		font-size: 0.54rem;
+		font-family: 华文仿宋;
 	}
 
 	/* 登出 */
@@ -254,6 +254,7 @@ export default {
 	.main_up p {
 		font-size: 0.5rem;
 		font-weight: 600;
+		font-family: 华文仿宋;
 	}
 
 	.alter_icon {
