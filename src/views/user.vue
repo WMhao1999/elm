@@ -104,13 +104,8 @@ export default {
       this.$alert("loginout", "是否退出登录？", function(res) {
         if (res == "退出登录") {
           this.axios.get(`https://elm.cangdu.org/v2/signout`).then(res => {
-            console.log(res);
             localStorage.removeItem("userid");
-            console.log(location.userid);
-            // this.$store.commit("user_id", "");
-            var hrefs = location.href.split("/");
-            hrefs.splice(hrefs.length - 1, 1, "order/myself");
-            location.href = hrefs.join("/");
+            location.href = "/order/myself";
           });
         }
       });
