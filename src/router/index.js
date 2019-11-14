@@ -196,7 +196,12 @@ const routes = [{
 	path: "/qiye",//视频监督安全公式
 	name: 'qiye',
 	component: () => import('../views/qiye.vue')
-},
+}, {
+	path: "/confirmOrder",//确认订单
+	name: 'confirmOrder',
+	component: () => import('../views/confirmOrder.vue')
+}
+
 ]
 
 const router = new VueRouter({

@@ -170,13 +170,11 @@ export default {
     },
     btn() {
       this.type3 = !this.type3;
-      console.log(this.type3);
       if (this.type3 == true) {
         this.sex = 1;
       } else {
         this.sex = 2;
       }
-      console.log(this.sex);
     }
   }
 };

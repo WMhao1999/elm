@@ -15,7 +15,9 @@
 			</div>
 		</div>
 		<div class='pos'>
+      <!-- 传参 忽改 ------------------------------------------------------------->
 			<z_introduce :id='$route.params.g_id'>
+        <!-- 看清楚 ----------------------------------------------------------------->
 				<h3 slot="t1">{{tt_tit.name}}</h3>
 				<p slot="t2" v-if="tt_tit.piecewise_agent_fee">商家配送／分钟送达／{{tt_tit.piecewise_agent_fee.tips}}</p>
 				<p slot="t3">{{tt_tit.promotion_info}}</p>
@@ -152,118 +154,158 @@
 </template>
 
 <script>
-	import Vue from 'vue'
-	import {
-		InfiniteScroll
-	} from 'mint-ui';
-	Vue.use(InfiniteScroll);
-	import z_amount from "../components/amount.vue";
-	import z_evaluate from "../components/evaluate.vue";
-	import z_xingxing from "../components/xingxing.vue";
-	import z_ask from "../components/ask.vue";
-	import z_introduce from "../components/introduce.vue";
-	import z_carousel from "../components/carousel.vue";
-	import z_businesses from "../components/businesses.vue";
-	import lh_header from "../components/lh-header.vue";
-	export default {
-		components: {
-			lh_header,
-			z_businesses,
-			z_carousel,
-			z_introduce,
-			z_ask,
-			z_xingxing,
-			z_evaluate,
-			z_amount
-		},
-		data() {
-			return {
-				in_dex: 1,
-				type_i: 0,
-				i_arr: '',
-				arr_in: '',
-				arr_type: '',
-				id: this.$route.params.g_id,
-				tt_tit: '',
-				type_b: false,
-				a_type_z: false,
-				tit_type: false,
-				i_num: 0,
-				offset: 10,
-				listarr: [],
-				v_type: false,
-				loading: false,
-				allLoaded: false,
-			}
-		},
-		created() {
-			this.axios.get('https://elm.cangdu.org/shopping/restaurant/' + this.id).then((data) => {
-				// console.log(data.data)
-				this.tt_tit = data.data
-			})
-			this.axios.get('https://elm.cangdu.org/shopping/v2/menu?restaurant_id=' + this.id).then((data) => {
-				// console.log(data.data)
-				this.i_arr = data.data
-			})
-			this.axios.get('https://elm.cangdu.org/ugc/v2/restaurants/' + this.id + '/ratings?offset=0&limit=10').then((data) => {
-				// console.log(data.data)
-				this.arr_in = data.data
-			})
-			this.axios.get('https://elm.cangdu.org/ugc/v2/restaurants/' + this.id + '/ratings/tags').then((data) => {
-				// console.log(data.data)
-				this.arr_type = data.data
-			})
-		},
-		methods: {
-			custormAnchor(anchorName) {
-				// 找到锚点
-				let anchorElement = document.getElementById(anchorName);
-				// 如果对应id的锚点存在，就跳转到锚点
-				if (anchorElement) {
-					anchorElement.scrollIntoView();
-				}
-			},
-			loadMore() {
-				console.log(1)
-				alert(1)
-				this.v_type = true
-				this.loading = true;
-				this.axios.get(
-					`https://elm.cangdu.org/ugc/v2/restaurants/${this.id}/ratings?offset=${this.offset+=10}&limit=10`
-				).then(data => {
-					// this.offset = this.offset + 10
-					// console.log(data)
-					setTimeout(() => {
-						this.listarr = data.data;
-						this.arr_in = [...this.arr_in, ...this.listarr]
-						this.allLoaded = true; // 若数据已全部获取完毕
-						this.loading = false;
-						this.v_type = false
-					}, 2000);
-				})
-			},
-			btn() {
-				this.i_num++
-				this.$store.commit('GetShopitem', this.num)
-			},
-			btm() {
-				if (this.i_num > 0) {
-					this.i_num--
-				} else {
-					this.i_num = 0
-				}
-				this.$store.commit('GetShopitemdown', this.num)
-			},
-			clear_z() {
-				this.$store.state.Shopitem = []
-			}
-		},
-	}
+import Vue from "vue";
+import { InfiniteScroll } from "mint-ui";
+Vue.use(InfiniteScroll);
+import z_amount from "../components/amount.vue";
+import z_evaluate from "../components/evaluate.vue";
+import z_xingxing from "../components/xingxing.vue";
+import z_ask from "../components/ask.vue";
+import z_introduce from "../components/introduce.vue";
+import z_carousel from "../components/carousel.vue";
+import z_businesses from "../components/businesses.vue";
+import lh_header from "../components/lh-header.vue";
+export default {
+  components: {
+    lh_header,
+    z_businesses,
+    z_carousel,
+    z_introduce,
+    z_ask,
+    z_xingxing,
+    z_evaluate,
+    z_amount
+  },
+  data() {
+    return {
+      in_dex: 1,
+      type_i: 0,
+      i_arr: "",
+      arr_in: "",
+      arr_type: "",
+      id: this.$route.params.g_id,
+      tt_tit: "",
+      type_b: false,
+      a_type_z: false,
+      tit_type: false,
+      i_num: 0,
+      offset: 10,
+      listarr: [],
+      v_type: false,
+      loading: false,
+      allLoaded: false,
+      scroll: []
+    };
+  },
+  created() {
+    this.axios
+      .get("https://elm.cangdu.org/shopping/v2/menu?restaurant_id=" + this.id)
+      .then(data => {
+        // console.log(data.data)
+        this.i_arr = data.data;
+        setTimeout(() => {
+          var items = document.querySelectorAll("#itemSort");
+          for (var i = 0; i < items.length; i++) {
+            this.scroll.push(items[i].offsetTop);
+          }
+        }, 10);
+      });
+    this.axios
+      .get("https://elm.cangdu.org/shopping/restaurant/" + this.id)
+      .then(data => {
+        // console.log(data.data)
+        this.tt_tit = data.data;
+      });
+    this.axios
+      .get(
+        "https://elm.cangdu.org/ugc/v2/restaurants/" +
+          this.id +
+          "/ratings?offset=0&limit=10"
+      )
+      .then(data => {
+        // console.log(data.data)
+        this.arr_in = data.data;
+      });
+    this.axios
+      .get(
+        "https://elm.cangdu.org/ugc/v2/restaurants/" + this.id + "/ratings/tags"
+      )
+      .then(data => {
+        // console.log(data.data)
+        this.arr_type = data.data;
+      });
+  },
+  methods: {
+    run(a) {
+      var head = document.querySelector(".pos").offsetHeight;
+      console.log(head);
+      console.log(a.touches[0].clientX);
+    },
+    jumpTo(a) {
+      console.log(this.scroll[a]);
+      this.type_i = a;
+      var scroll = document.querySelector("#commCt_r");
+      scroll.style.top = `-${this.scroll[a]}px`;
+    },
+    custormAnchor(anchorName) {
+      // 找到锚点
+      let anchorElement = document.getElementById(anchorName);
+      // 如果对应id的锚点存在，就跳转到锚点
+      if (anchorElement) {
+        anchorElement.scrollIntoView();
+      }
+    },
+    loadMore() {
+      console.log(1);
+      alert(1);
+      this.v_type = true;
+      this.loading = true;
+      this.axios
+        .get(
+          `https://elm.cangdu.org/ugc/v2/restaurants/${
+            this.id
+          }/ratings?offset=${(this.offset += 10)}&limit=10`
+        )
+        .then(data => {
+          // this.offset = this.offset + 10
+          // console.log(data)
+          setTimeout(() => {
+            this.listarr = data.data;
+            this.arr_in = [...this.arr_in, ...this.listarr];
+            this.allLoaded = true; // 若数据已全部获取完毕
+            this.loading = false;
+            this.v_type = false;
+          }, 2000);
+        });
+    },
+    btn() {
+      this.i_num++;
+      this.$store.commit("GetShopitem", this.num);
+    },
+    btm() {
+      if (this.i_num > 0) {
+        this.i_num--;
+      } else {
+        this.i_num = 0;
+      }
+      this.$store.commit("GetShopitemdown", this.num);
+    },
+    clear_z() {
+      this.$store.state.Shopitem = [];
+    }
+  }
+};
 </script>
 
 <style>
-html {
-  /* overflow: hidden; */
+.wzw_flex {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.wzw_hd {
+  height: 3.6rem;
 }
 
 .clear_price {
@@ -296,9 +338,9 @@ html {
 .guc_js {
   overflow: hidden;
   background: #000000;
-  position: absolute;
+  /* position: absolute; */
   bottom: 0;
-  z-index: 99999999999;
+  /* z-index: 99999999999; */
   width: 100%;
 }
 
@@ -429,140 +471,141 @@ html {
 }
 
 #spcart .rel {
+  flex: 1;
+  overflow: hidden;
   /* position: absolute;
 		z-index: 9;
 		top: 5.05rem;
 		width: 100%; */
-	}
+}
 
-	#spcart .l_bd {
-		background: rgba(0, 0, 0, 0);
-	}
+#spcart .l_bd {
+  background: rgba(0, 0, 0, 0);
+}
 
-	.pj_con {
-		padding: .34rem;
-		background: #FFFFFF;
-	}
+.pj_con {
+  padding: 0.34rem;
+  background: #ffffff;
+}
 
-	.pj_con_i {
-		color: #6d7885;
-		padding: .2rem;
-		background-color: #ebf5ff;
-		border-radius: .2rem;
-		border: 1px;
-		margin: 0 .4rem .2rem 0;
-		display: inline-block;
-	}
+.pj_con_i {
+  color: #6d7885;
+  padding: 0.2rem;
+  background-color: #ebf5ff;
+  border-radius: 0.2rem;
+  border: 1px;
+  margin: 0 0.4rem 0.2rem 0;
+  display: inline-block;
+}
 
-	.pj_con_i span {
-		font-size: .4rem;
-	}
+.pj_con_i span {
+  font-size: 0.4rem;
+}
 
-	.pj_con_i p {
-		font-size: .4rem;
-		display: inline-block;
-	}
+.pj_con_i p {
+  font-size: 0.4rem;
+  display: inline-block;
+}
 
-	.pj_t {
-		overflow: hidden;
-		padding: .6rem 1.34rem;
-		background: #FFFFFF;
-		margin-bottom: .3rem;
-	}
+.pj_t {
+  overflow: hidden;
+  padding: 0.6rem 1.34rem;
+  background: #ffffff;
+  margin-bottom: 0.3rem;
+}
 
-	.pj_t_l {
-		float: left;
-	}
+.pj_t_l {
+  float: left;
+}
 
-	.pj_t_l h4 {
-		font-size: .62rem;
-		color: #f60;
-		text-align: center;
-	}
+.pj_t_l h4 {
+  font-size: 0.62rem;
+  color: #f60;
+  text-align: center;
+}
 
-	.pj_t_l p {
-		font-size: .42rem;
-		color: #666;
-		margin-bottom: .1rem;
-		text-align: center;
-	}
+.pj_t_l p {
+  font-size: 0.42rem;
+  color: #666;
+  margin-bottom: 0.1rem;
+  text-align: center;
+}
 
-	.pj_t_l span {
-		font-size: .26rem;
-		color: #999;
-	}
+.pj_t_l span {
+  font-size: 0.26rem;
+  color: #999;
+}
 
+.pj_t_r {
+  /* float: left; */
+  padding-left: 3.5rem;
+}
 
-	.pj_t_r {
-		/* float: left; */
-		padding-left: 3.5rem;
-	}
+.pj_t_r div {
+  line-height: 0.6rem;
+  display: inline-block;
+}
 
-	.pj_t_r div {
-		line-height: .6rem;
-		display: inline-block;
-	}
+.pj_t_r div span {
+  color: #666;
+  margin-right: 0.4rem;
+  font-size: 0.4rem;
+}
 
-	.pj_t_r div span {
-		color: #666;
-		margin-right: .4rem;
-		font-size: .4rem;
-	}
+.pj_t_r div em {
+  width: 3rem;
+  font-size: 0.3rem;
+  color: #f60;
+}
 
-	.pj_t_r div em {
-		width: 3rem;
-		font-size: .3rem;
-		color: #f60;
-	}
+.pj_t_r div i {
+  font-size: 0.3rem;
+  color: #999;
+}
 
-	.pj_t_r div i {
-		font-size: .3rem;
-		color: #999;
-	}
+.tt_tit {
+  overflow: hidden;
+}
 
-	.tt_tit {
-		overflow: hidden;
-	}
+.tt_tit p {
+  display: inline-block;
+  font-size: 0.45rem;
+  color: #666;
+  font-weight: 700;
+  line-height: 1.36rem;
+  padding: 0 0.2rem;
+}
 
-	.tt_tit p {
-		display: inline-block;
-		font-size: .45rem;
-		color: #666;
-		font-weight: 700;
-		line-height: 1.36rem;
-		padding: 0 .2rem;
-	}
+.tt_tit span {
+  font-size: 0.35rem;
+  color: #999;
+  width: 30%;
+  overflow: hidden;
+  line-height: 1.36rem;
+}
 
-	.tt_tit span {
-		font-size: .35rem;
-		color: #999;
-		width: 30%;
-		overflow: hidden;
-		line-height: 1.36rem;
-	}
+.tt_tit i {
+  line-height: 1.36rem;
+  float: right;
+  padding-right: 0.5rem;
+  display: inline-block;
+}
 
-	.tt_tit i {
-		line-height: 1.36rem;
-		float: right;
-		padding-right: .5rem;
-		display: inline-block;
-	}
+.pos {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999999999;
+  width: 100%;
+  overflow: hidden;
+}
 
-	.pos {
-		position: fixed;
-		top: 0;
-		left: 0;
-		z-index: 99999999999;
-		width: 100%;
-		overflow: hidden;
-	}
-
-	.commodity {
-		overflow: hidden;
-		background: #FFFFFF;
-		border-bottom: 1px solid #CCCCCC;
-		width: 100%;
-		/* position: fixed;
+.commodity {
+  overflow: hidden;
+  background: #ffffff;
+  border-bottom: 1px solid #cccccc;
+  width: 100%;
+  /* position: fixed;
 		top: 3.65rem;
 		z-index: 2; */
 }
@@ -598,12 +641,12 @@ html {
 
 .sp_fj span {
   color: #999;
-  font: 0.4rem/.4rem Microsoft YaHei;
+  font: 0.4rem/0.4rem Microsoft YaHei;
 }
 
 .commCt {
   overflow: hidden;
-  padding-top: 3.6rem;
+  /* padding-top: 3.6rem; */
   background: #f5f5f5;
 }
 
@@ -633,10 +676,10 @@ html {
 }
 
 .commCt_r {
-  width: 77%;
-  float: right;
-  overflow-y: scroll;
-  height: 17.4rem;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  transition: all 1s;
 }
 
 #spcart .introduce_btn_l_i {

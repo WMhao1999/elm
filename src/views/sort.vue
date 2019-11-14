@@ -213,7 +213,6 @@ export default {
   watch: {
     "$store.state.sort_data": {
       handler(a) {
-        console.log(a);
         this.axios
           .get("https://elm.cangdu.org/shopping/restaurants", {
             params: {
@@ -275,6 +274,7 @@ export default {
       this.home_list = null;
     },
     get_home() {
+      this.$loading(true, false);
       this.axios
         .get(
           "https://elm.cangdu.org/shopping/restaurants?latitude=" +
@@ -284,6 +284,7 @@ export default {
         )
         .then(data => {
           this.home_list = data.data;
+          this.$loading(false);
         });
     },
     get_pyte() {

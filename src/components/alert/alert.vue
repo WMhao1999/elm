@@ -2,43 +2,47 @@
   <div id="alter" v-if="isshow">
     <div class="alter_main">
       <div class="main_up">
-        <!-- warn loginout-->
-        <div v-if="type == 'warn' || type == 'loginout'">
-          <div class="alter_icon">!</div>
+        <!-- success -->
+        <div v-if="type == 'success'">
+          <div class="alter_icon">√</div>
           <p style="padding:0 0.4rem">{{ msg }}</p>
         </div>
+        <!-- warn loginout-->
+        <div v-if="type=='warn'||type=='loginout'">
+          <div class="alter_icon">!</div>
+          <p style="padding:0 0.4rem">{{msg}}</p>
+        </div>
         <!-- shopcar -->
-        <div v-if="type == 'shopcar'">
+        <div v-if="type=='shopcar'">
           <div class="shoptit">
-            {{ msg.tit }}
+            {{msg.name}}
             <span class="close" @click="confrim"></span>
           </div>
           <div class="shopmain">
             <p>规格</p>
             <div
               class="shopitem"
-              v-for="(i, $index) in msg.kind"
-              :class="index == $index ? 'active' : ''"
-              @click="getPrice(i, $index)"
-            >
-              {{ i.specs_name }}
-            </div>
+              v-for="(i,$index) in msg.specfoods"
+              :class="index==$index?'active':''"
+              @click="getPrice(i,$index)"
+              :key="$index"
+            >{{i.specs[0].value}}</div>
           </div>
         </div>
       </div>
       <div class="main_down">
         <!-- warn -->
-        <div @click="confrim" v-if="type == 'warn'" class="warn">确定</div>
+        <div @click="confrim" v-if="type == 'warn'||type=='success'" class="warn">确定</div>
         <!-- loginout -->
-        <div class="loginout" v-if="type == 'loginout'">
+        <div class="loginout" v-if="type=='loginout'">
           <div class="loginTrue" @click="confrim">再等等</div>
           <div class="loginFalse" @click="login_out">退出登录</div>
         </div>
-        <div class="pushCar" v-if="type == 'shopcar'">
+        <div class="pushCar" v-if="type=='shopcar'">
           <div class="pushCar_price">
             <span style="font-size: 0.24rem; color:#dd5c09;">￥</span>
-            {{ price }}
-            <div class="pushCar_r">加入购物车</div>
+            {{price}}
+            <div class="pushCar_r" @click="pushCar">加入购物车</div>
           </div>
         </div>
       </div>
@@ -62,11 +66,13 @@ export default {
     confrim() {
       this.isshow = false;
       if (this.msg == "当前环境无法支付，请打开官方APP进行付款") {
-        location.href = "#/order/form";
+        location.href = "/order/form";
+      }
+      if (this.type == "success") {
+        this.confrimCallback("密码重置成功");
       }
     },
     login_out() {
-      console.log("退出登录");
       this.confrimCallback("退出登录");
       this.isshow = false;
     },
@@ -75,7 +81,12 @@ export default {
       this.price = a.price;
     },
     pushCar() {
-      this.isshow = false;
+      if (this.index == -1) {
+        alert("请选择规格");
+      } else {
+        this.isshow = false;
+        this.confrimCallback(this.msg);
+      }
     }
   }
 };
@@ -85,7 +96,6 @@ export default {
 #alter {
   position: fixed;
   top: 0;
-
   left: 0;
   right: 0;
   bottom: 0;
@@ -223,9 +233,10 @@ export default {
   line-height: 1.16rem;
   text-align: center;
   color: #ffffff;
-  font-weight: bold;
+  font-weight: 600;
   background: #48db66;
   font-size: 0.54rem;
+  font-family: 华文仿宋;
 }
 
 /* 登出 */
@@ -257,6 +268,7 @@ export default {
 .main_up p {
   font-size: 0.5rem;
   font-weight: 600;
+  font-family: 华文仿宋;
 }
 
 .alter_icon {
