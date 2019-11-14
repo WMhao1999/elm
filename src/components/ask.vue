@@ -1,42 +1,42 @@
 <template>
 	<div>
 		<div class="ask">
-			<div class="ask_l">
-				<slot name="m1"></slot>
-			</div>
-			<div class="ask_r">
-				<h4>
-					<slot name="m2"></slot>
-				</h4>
-				<p>
-					<slot name="m3"></slot>
-				</p>
+				<div class="ask_l">
+					<slot name="m1"></slot>
+				</div>
+				<div class="ask_r">
+					<h4>
+						<slot name="m2"></slot>
+					</h4>
+					<p>
+						<slot name="m3"></slot>
+					</p>
 
-				<p>
-					<span>
-						<slot name="m4"></slot>
+					<p>
+						<span>
+							<slot name="m4"></slot>
+						</span>
+						<em>
+							<slot name="m5"></slot>
+						</em>
+					</p>
+					<p class="i_t">
+						<slot name="m6"></slot>
+					</p>
+				</div>
+				<z_amount :date='num'>
+					<span class="amountz_l_i" slot="js1">¥</span>
+					<span v-if="num.specfoods" slot="js2">
+						<span class="amountz_l_num">{{num.specfoods[0].price}}</span>
 					</span>
-					<em>
-						<slot name="m5"></slot>
-					</em>
+					<span class="amountz_l_t" slot="js3">起</span>
+					<span class="amountz_r_j" @click="btm()" v-show="i_num>0" slot="js4">-</span>
+					<span class="amountz_r_n" v-show="i_num>0" slot="js5">{{i_num}}</span>
+					<span class="amountz_r_jj" @click="btn()" slot="js6">+</span>
+				</z_amount>
+				<p class="text">
+					<slot name="m7"></slot>
 				</p>
-				<p class="i_t">
-					<slot name="m6"></slot>
-				</p>
-			</div>
-			<z_amount :date='num'>
-				<span class="amountz_l_i" slot="js1">¥</span>
-				<span v-if="num.specfoods" slot="js2">
-					<span class="amountz_l_num" >{{num.specfoods[0].price}}</span>
-				</span>
-				<span class="amountz_l_t" slot="js3">起</span>
-				<span class="amountz_r_j" @click="btm()" v-show="i_num>0" slot="js4">-</span>
-				<span class="amountz_r_n" v-show="i_num>0" slot="js5">{{i_num}}</span>
-				<span class="amountz_r_jj" @click="btn()" slot="js6">+</span>
-			</z_amount>
-			<p class="text">
-				<slot name="m7"></slot>
-			</p>
 		</div>
 	</div>
 </template>
@@ -57,7 +57,7 @@
 		},
 		props: ["num"],
 		created() {
-			console.log(this.num)
+			// console.log(this.num)
 		},
 		methods: {
 			btn() {

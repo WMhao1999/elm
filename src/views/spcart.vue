@@ -39,7 +39,6 @@
 					</div>
 				</div>
 			</div>
-			<!-- <div class="wzw_hd"></div> -->
 			<div class="rel">
 				<div class="commCt">
 					<div v-show="in_dex==1">
@@ -65,14 +64,21 @@
 												</span>
 											</i>
 										</div>
+										<!-- `//${uid}/wzw_spxq:${i}` -->
+
 										<z_ask v-for="(b,$index) in i.foods" :num='b' :key='$index'>
 											<img slot='m1' :src="'//elm.cangdu.org/img/'+b.image_path">
-											<h4 slot='m2'>{{b.name}}</h4>
+											<h4 slot='m2'>
+												<router-link :to="{name:'wzw_spxq',params:{name:b,id:uid}}">
+													{{b.name}}
+												</router-link>
+											</h4>
 											<p slot="m3">{{b.description}}</p>
 											<em slot="m5">{{b.tips}}</em>
 											<span slot="m6" v-if="b.activity">{{b.activity.image_text}}</span>
 											<p slot="m7">新品</p>
 										</z_ask>
+
 									</div>
 								</div>
 							</div>
@@ -157,6 +163,8 @@
 				</div>
 			</div>
 		</div>
+
+		<router-view class='psoo'></router-view>
 	</div>
 </template>
 
@@ -203,7 +211,8 @@
 				v_type: false,
 				loading: false,
 				allLoaded: false,
-				scroll: []
+				scroll: [],
+				uid: ''
 			}
 		},
 		created() {
@@ -229,12 +238,14 @@
 				// console.log(data.data)
 				this.arr_type = data.data
 			})
+			this.uid = this.$route.params.g_id
+			console.log(this.$route.params.g_id)
 		},
 		methods: {
-			run(a){
+			run(a) {
 				var head = document.querySelector('.pos').offsetHeight
 				console.log(head)
-				console.log(a.touches[0].clientX )
+				console.log(a.touches[0].clientX)
 			},
 			jumpTo(a) {
 				console.log(this.scroll[a])
@@ -289,6 +300,13 @@
 </script>
 
 <style>
+	.psoo {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 9999999;
+	}
+
 	.wzw_flex {
 		display: flex;
 		flex-direction: column;
@@ -331,7 +349,7 @@
 		background: #000000;
 		/* position: absolute; */
 		bottom: 0;
-		/* z-index: 99999999999; */
+		z-index: 99999999999;
 		width: 100%;
 	}
 
@@ -356,6 +374,8 @@
 	.guc_js_l {
 		float: left;
 		padding-left: 3rem;
+		position: relative;
+		z-index: 9999;
 	}
 
 	.guc_js p {
@@ -588,7 +608,7 @@
 		position: fixed;
 		top: 0;
 		left: 0;
-		z-index: 99999999999;
+		z-index: 9999999;
 		width: 100%;
 		overflow: hidden;
 	}
