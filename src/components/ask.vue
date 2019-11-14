@@ -24,9 +24,11 @@
 					<slot name="m6"></slot>
 				</p>
 			</div>
-			<z_amount>
+			<z_amount :date='num'>
 				<span class="amountz_l_i" slot="js1">¥</span>
-				<span class="amountz_l_num" slot="js2">{{num.specfoods[0].price}}</span>
+				<span v-if="num.specfoods" slot="js2">
+					<span class="amountz_l_num" >{{num.specfoods[0].price}}</span>
+				</span>
 				<span class="amountz_l_t" slot="js3">起</span>
 				<span class="amountz_r_j" @click="btm()" v-show="i_num>0" slot="js4">-</span>
 				<span class="amountz_r_n" v-show="i_num>0" slot="js5">{{i_num}}</span>
@@ -54,6 +56,9 @@
 			}
 		},
 		props: ["num"],
+		created() {
+			console.log(this.num)
+		},
 		methods: {
 			btn() {
 				this.i_num++
@@ -74,15 +79,15 @@
 			// console.log(this.z_num)
 		},
 		mounted() {
-			this.i_obj = {
-				sl: this.i_num, //数量
-				dj: this.num.specfoods[0].price, //单价
-				name: this.num.name, //商品名
-				ch: 0, //餐具费
-				yf: this.num.float_delivery_fee, //配送费
-				item_zjg: this.z_num, //单个总价格
-				z_jg: 0, //总价格
-			}
+			// this.i_obj = {
+			// 	sl: this.i_num, //数量
+			// 	dj: this.num.specfoods[0].price, //单价
+			// 	name: this.num.name, //商品名
+			// 	ch: 0, //餐具费
+			// 	yf: this.num.float_delivery_fee, //配送费
+			// 	item_zjg: this.z_num, //单个总价格
+			// 	z_jg: 0, //总价格
+			// }
 		}
 	}
 </script>

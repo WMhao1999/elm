@@ -8,24 +8,25 @@
           <p style="padding:0 0.4rem">{{ msg }}</p>
         </div>
         <!-- warn loginout-->
-        <div v-if="type == 'warn' || type == 'loginout'">
+        <div v-if="type=='warn'||type=='loginout'">
           <div class="alter_icon">!</div>
-          <p style="padding:0 0.4rem">{{ msg }}</p>
+          <p style="padding:0 0.4rem">{{msg}}</p>
         </div>
         <!-- shopcar -->
-        <div v-if="type == 'shopcar'">
+        <div v-if="type=='shopcar'">
           <div class="shoptit">
-            {{ msg.tit }}
+            {{msg.name}}
             <span class="close" @click="confrim"></span>
           </div>
           <div class="shopmain">
             <p>规格</p>
             <div
               class="shopitem"
-              v-for="(i, $index) in msg.kind"
-              :class="index == $index ? 'active' : ''"
-              @click="getPrice(i, $index)"
-            >{{ i.specs_name }}</div>
+              v-for="(i,$index) in msg.specfoods"
+              :class="index==$index?'active':''"
+              @click="getPrice(i,$index)"
+              :key="$index"
+            >{{i.specs[0].value}}</div>
           </div>
         </div>
       </div>
@@ -33,15 +34,15 @@
         <!-- warn -->
         <div @click="confrim" v-if="type == 'warn'||type=='success'" class="warn">确定</div>
         <!-- loginout -->
-        <div class="loginout" v-if="type == 'loginout'">
+        <div class="loginout" v-if="type=='loginout'">
           <div class="loginTrue" @click="confrim">再等等</div>
           <div class="loginFalse" @click="login_out">退出登录</div>
         </div>
-        <div class="pushCar" v-if="type == 'shopcar'">
+        <div class="pushCar" v-if="type=='shopcar'">
           <div class="pushCar_price">
             <span style="font-size: 0.24rem; color:#dd5c09;">￥</span>
-            {{ price }}
-            <div class="pushCar_r">加入购物车</div>
+            {{price}}
+            <div class="pushCar_r" @click="pushCar">加入购物车</div>
           </div>
         </div>
       </div>
@@ -73,7 +74,6 @@ export default {
     },
     login_out() {
       console.log("退出登录");
-      this.confrimCallback("退出登录");
       this.isshow = false;
     },
     getPrice(a, b) {
@@ -81,7 +81,12 @@ export default {
       this.price = a.price;
     },
     pushCar() {
-      this.isshow = false;
+      if (this.index == -1) {
+        alert("请选择规格");
+      } else {
+        this.isshow = false;
+        this.confrimCallback(this.msg);
+      }
     }
   }
 };
