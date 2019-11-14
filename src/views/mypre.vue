@@ -16,7 +16,8 @@
             <svg class="icon" aria-hidden="true" style="font-size:0.40rem;padding:0 0.16rem">
               <use xlink:href="#icon-wenhao" />
             </svg>
-            <span class="tit_sm">红包说明</span>
+            <router-link to="/hhb"><span class="tit_sm">红包说明</span></router-link>
+           
           </div>
         </div>
 
@@ -80,10 +81,13 @@
           <P>限品类：快餐便当、特色菜系、小吃夜宵、甜品饮品、异国料理</P>
         </div>
         <div class="foot">
-          <span>查看历史红包</span>
+          <router-link to="/lishi">
+              <span>查看历史红包</span>
           <svg class="icon" aria-hidden="true" style="padding-left:0.3rem">
             <use xlink:href="#icon-youjiantou-copy" />
           </svg>
+          </router-link>
+        
         </div>
         <div class="jump">
           <div class="jump_1">

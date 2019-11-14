@@ -9,6 +9,8 @@ export default new Vuex.Store({
 		City: [],
 		stroyList: [],
 		StroyShopArr: [],
+		serveTit: '',
+		serveCon: '',
 		sort_data: {
 			offset: 0,
 			limit: 20,
@@ -19,7 +21,8 @@ export default new Vuex.Store({
 			a: 0
 		},
 		Shopitem: [],
-		NowItem: {}
+		NowItem: {},
+		name: ''
 	},
 	mutations: {
 		GetCity(state, all) {
@@ -78,6 +81,15 @@ export default new Vuex.Store({
 		},
 		user_id(state, userid) {
 			state.userid = userid
+		},
+		serve(state, i) {
+			state.serveTit = i
+		},
+		serves(state, i) {
+			state.serveCon = i
+		},
+		seadd(state, i) {
+			state.name = i
 		}
 	},
 	actions: {},

@@ -18,12 +18,155 @@
     <div>
       <p class="pone">热门问题</p>
       <div class="ptwo-box">
-        <div class="ptwo-item" v-for="(i,$index) in list" :key="$index">
-          <span>{{i}}</span>
-          <span class="ptwo-navTo iconfont icon-arrowRight"></span>
-        </div>
+        <router-link to="/serve/ser">
+          <div class="ptwo-item" @click="fn(arr.supervipCaption,arr.supervipContent)">
+            <span>{{arr.supervipCaption}}</span>
+            <span class="ptwo-navTo iconfont icon-arrowRight"></span>
+          </div>
+        </router-link>
+
+        <router-link to="/serve/ser">
+          <div class="ptwo-item" @click="fn(arr.signCaption,arr.signContent)">
+            <span>{{arr.signCaption}}</span>
+            <span class="ptwo-navTo iconfont icon-arrowRight"></span>
+          </div>
+        </router-link>
+
+        <router-link to="/serve/ser">
+          <div class="ptwo-item" @click="fn(arr.rankCaption,arr.rankContent)">
+            <span>{{arr.rankCaption}}</span>
+            <span class="ptwo-navTo iconfont icon-arrowRight"></span>
+          </div>
+        </router-link>
+
+        <router-link to="/serve/ser">
+          <div class="ptwo-item" @click="fn(arr.pointtextCaption,arr.pointtextContent)">
+            <span>{{arr.pointtextCaption}}</span>
+            <span class="ptwo-navTo iconfont icon-arrowRight"></span>
+          </div>
+        </router-link>
+
+        <router-link to="/serve/ser">
+          <div class="ptwo-item" @click="fn(arr.phototutorialCaption,arr.phototutorialContent)">
+            <span>{{arr.phototutorialCaption}}</span>
+            <span class="ptwo-navTo iconfont icon-arrowRight"></span>
+          </div>
+        </router-link>
+
+        <router-link to="/serve/ser">
+          <div class="ptwo-item" @click="fn(arr.paymentCaption,arr.paymentContent)">
+            <span>{{arr.paymentCaption}}</span>
+            <span class="ptwo-navTo iconfont icon-arrowRight"></span>
+          </div>
+        </router-link>
+
+        <router-link to="/serve/ser">
+          <div class="ptwo-item" @click="fn(arr.otherCaption,arr.otherContent)">
+            <span>{{arr.otherCaption}}</span>
+            <span class="ptwo-navTo iconfont icon-arrowRight"></span>
+          </div>
+        </router-link>
+
+        <router-link to="/serve/ser">
+          <div class="ptwo-item" @click="fn(arr.ontimeCaption,arr.ontimeContent)">
+            <span>{{arr.ontimeCaption}}</span>
+            <span class="ptwo-navTo iconfont icon-arrowRight"></span>
+          </div>
+        </router-link>
+
+        <router-link to="/serve/ser">
+          <div class="ptwo-item" @click="fn(arr.memberPartCutCaption,arr.memberTimesContent)">
+            <span>{{arr.memberPartCutCaption}}</span>
+            <span class="ptwo-navTo iconfont icon-arrowRight"></span>
+          </div>
+        </router-link>
+
+        <router-link to="/serve/ser">
+          <div class="ptwo-item" @click="fn(arr.memberCaption,arr.memberContent)">
+            <span>{{arr.memberCaption}}</span>
+            <span class="ptwo-navTo iconfont icon-arrowRight"></span>
+          </div>
+        </router-link>
+
+        <router-link to="/serve/ser">
+          <div class="ptwo-item" @click="fn(arr.hongbaoCaption,arr.hongbaoContent)">
+            <span>{{arr.hongbaoCaption}}</span>
+            <span class="ptwo-navTo iconfont icon-arrowRight"></span>
+          </div>
+        </router-link>
+
+        <router-link to="/serve/ser">
+          <div class="ptwo-item" @click="fn(arr.freshmanCaption,arr.freshmanContent)">
+            <span>{{arr.freshmanCaption}}</span>
+            <span class="ptwo-navTo iconfont icon-arrowRight"></span>
+          </div>
+        </router-link>
+
+        <router-link to="/serve/ser">
+          <div class="ptwo-item" @click="fn(arr.forgotCaption,arr.forgotContent)">
+            <span>{{arr.forgotCaption}}</span>
+            <span class="ptwo-navTo iconfont icon-arrowRight"></span>
+          </div>
+        </router-link>
+
+        <router-link to="/serve/ser">
+          <div class="ptwo-item" @click="fn(arr.discountCaption,arr.discountContent)">
+            <span>{{arr.discountCaption}}</span>
+            <span class="ptwo-navTo iconfont icon-arrowRight"></span>
+          </div>
+        </router-link>
+
+        <router-link to="/serve/ser">
+          <div class="ptwo-item" @click="fn(arr.disclaimerCaption,arr.disclaimerContent)">
+            <span>{{arr.disclaimerCaption}}</span>
+            <span class="ptwo-navTo iconfont icon-arrowRight"></span>
+          </div>
+        </router-link>
+
+        <router-link to="/serve/ser">
+          <div class="ptwo-item" @click="fn(arr.couponCaption,arr.couponContent)">
+            <span>{{arr.couponCaption}}</span>
+            <span class="ptwo-navTo iconfont icon-arrowRight"></span>
+          </div>
+        </router-link>
+
+        <router-link to="/serve/ser">
+          <div class="ptwo-item" @click="fn(arr.businessCaption,arr.businessContent)">
+            <span>{{arr.businessCaption}}</span>
+            <span class="ptwo-navTo iconfont icon-arrowRight"></span>
+          </div>
+        </router-link>
+
+        <router-link to="/serve/ser">
+          <div class="ptwo-item" @click="fn(arr.balanceCaption,arr.balanceContent)">
+            <span>{{arr.balanceCaption}}</span>
+            <span class="ptwo-navTo iconfont icon-arrowRight"></span>
+          </div>
+        </router-link>
+
+        <router-link to="/serve/ser">
+          <div class="ptwo-item" @click="fn(arr.awesomeRestaurantCaption,arr.couponContent)">
+            <span>{{arr.awesomeRestaurantCaption}}</span>
+            <span class="ptwo-navTo iconfont icon-arrowRight"></span>
+          </div>
+        </router-link>
+
+        <router-link to="/serve/ser">
+          <div class="ptwo-item" @click="fn(arr.anonymousBuyCaption,arr.anonymousBuyContent)">
+            <span>{{arr.anonymousBuyCaption}}</span>
+            <span class="ptwo-navTo iconfont icon-arrowRight"></span>
+          </div>
+        </router-link>
+
+        <router-link to="/serve/ser">
+          <div class="ptwo-item" @click="fn(arr.activityCaption,arr.activityContent)">
+            <span>{{arr.activityCaption}}</span>
+            <span class="ptwo-navTo iconfont icon-arrowRight"></span>
+          </div>
+        </router-link>
       </div>
     </div>
+    <router-view></router-view>
   </div>
 </template>
 <script>
@@ -34,6 +177,19 @@ export default {
   },
   data() {
     return {
+      arr: ""
+    };
+  },
+  methods: {
+    fn(a, b) {
+      this.$store.commit("serve", a);
+      this.$store.commit("serves", b);
+    }
+  },
+  created() {
+    this.axios.get("http://elm.cangdu.org/v3/profile/explain").then(data => {
+      this.arr = data.data;
+    });
       list: [
         "超级会员权益说明",
         "签到规则",
@@ -57,9 +213,8 @@ export default {
         "匿名购买",
         "活动问题"
       ]
-    };
+    }
   }
-};
 </script>
 
 <style scoped>

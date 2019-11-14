@@ -69,7 +69,14 @@ const routes = [{
 {
 	path: "/serve",//服务中心
 	name: 'serve',
-	component: () => import('../views/serve.vue')
+	component: () => import('../views/serve.vue'),
+	children: [
+		{
+			path: 'ser',
+			name: 'ser',
+			component: () => import('../views/ser.vue'),
+		}
+	]
 },
 {
 	path: "/download",//下载中心
@@ -130,6 +137,42 @@ const routes = [{
 	component: () => import('../views/tuijian.vue')
 },
 {
+	path: "/balance",//余额说明
+	name: 'balance',
+	component: () => import('../views/balance.vue')
+},
+{
+	path: "/pdd",//积分说明
+	name: 'pdd',
+	component: () => import('../views/pdd.vue')
+},
+{
+	path: "/hhb",//红包说明
+	name: 'hhb',
+	component: () => import('../views/hhb.vue')
+},
+{
+	path: "/lishi",//历史红包
+	name: 'lishi',
+	component: () => import('../views/lishi.vue')
+},
+{
+	path: "/Members",//会员说明
+	name: 'Members',
+	component: () => import('../views/Members.vue')
+},
+{
+	path: "/exchange",//兑换会员
+	name: 'exchange',
+	component: () => import('../views/exchange.vue')
+},
+{
+	path: "/invoice",//购买记录
+	name: 'invoice',
+	component: () => import('../views/invoice.vue')
+},
+
+{
 	path: "/online",//线上支付
 	name: 'online',
 	component: () => import('../views/onlinepay.vue')
@@ -138,7 +181,18 @@ const routes = [{
 	path: "/details",//订单详情
 	name: 'details',
 	component: () => import('../views/details.vue')
+},
+{
+	path: "/Selectaddress",//选择地址
+	name: 'Selectaddress',
+	component: () => import('../views/Selectaddress.vue')
+},
+{
+	path: "/confirmOrder",//确认订单
+	name: 'confirmOrder',
+	component: () => import('../views/confirmOrder.vue')
 }
+
 ]
 
 const router = new VueRouter({

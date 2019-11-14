@@ -11,7 +11,7 @@ export default function (types, options, callback) {
 				confrimCallback: callback
 			}
 		}
-	},function(res){
+	}, function (res) {
 		console.log(1)
 	})
 	var el = instance.$mount().$el

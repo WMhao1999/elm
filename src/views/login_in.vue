@@ -28,14 +28,10 @@
         <span>重置密码?</span>
       </router-link>
     </div>
-    <!-- <tc v-if="type" @type="btn">
-      <p slot="cz">{{message}}</p>
-    </tc>-->
   </div>
 </template>
 
 <script>
-// import tc from "../components/alert";
 import lh_header from "./../components/lh-header.vue";
 export default {
   components: {
@@ -50,8 +46,7 @@ export default {
       pass: "",
       user: "",
       captcha_code: "",
-      message: "",
-      type: false
+      message: ""
     };
   },
   watch: {
@@ -85,11 +80,11 @@ export default {
           if (res.data.message) {
             this.$alert("warn", res.data.message);
             this.message = res.data.message;
-            this.type = true;
           } else {
+            window.localStorage.setItem("userid", res.data.id);
+            // localStorage.userid = res.data.id;
             this.$store.commit("user_id", res.data.id);
-            console.log(this.$store.state.userid);
-            this.$router.push({ path: "/order" });
+            this.$router.push({ path: "/" });
           }
         });
     },
