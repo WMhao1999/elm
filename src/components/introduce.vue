@@ -10,7 +10,9 @@
 					<slot name="t2"></slot>
 					<slot name="t3"></slot>
 				</div>
-				<i class="iconfont ic">&#xe60f;</i>
+				
+					<router-link :to="'/sjxq/'+id"><i class="ic"><slot name="t9"></slot></i></router-link>
+				
 			</div>
 			<div class="introduce_btn">
 				<div class="introduce_btn_l">
@@ -28,6 +30,10 @@
 </template>
 
 <script>
+export default{
+	props:['id']
+}
+
 </script>
 
 <style>

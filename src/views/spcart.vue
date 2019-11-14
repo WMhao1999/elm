@@ -15,7 +15,7 @@
 			</div>
 		</div>
 		<div class='pos'>
-			<z_introduce>
+			<z_introduce :id='$route.params.g_id'>
 				<h3 slot="t1">{{tt_tit.name}}</h3>
 				<p slot="t2" v-if="tt_tit.piecewise_agent_fee">商家配送／分钟送达／{{tt_tit.piecewise_agent_fee.tips}}</p>
 				<p slot="t3">{{tt_tit.promotion_info}}</p>
@@ -24,8 +24,12 @@
 				<span v-for="(i,$index) in  tt_tit.activities" v-if="$index<=0" slot="t5">{{tt_tit.activities.length}}个活动</span>
 				<i class="introduce_btn_l_i" v-for="(i,$index) in tt_tit.activities" v-if="$index<=0" slot='t7'>{{tt_tit.activities[0].icon_name}}</i>
 				<i @click="type_b=true" v-for="(i,$index) in tt_tit.activities" v-if="$index<=0" slot='t8' class="iconfont">&#xe60f;</i>
+				
+				<i slot="t9" class="iconfont" style="color:#fff">&#xe60f;</i>
+				
 			</z_introduce>
-			<img class="ba_img" :src="'//elm.cangdu.org/img/'+tt_tit.image_path" slot="ba">
+
+			<img class="ba_img" :src="'//elm.cangdu.org/img/'+tt_tit.image_path" slot="ba">	
 			<div class="commodity">
 				<div @click="in_dex=1">
 					<span :class="in_dex==1?'bl':''">商品</span>
