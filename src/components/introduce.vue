@@ -1,4 +1,5 @@
 <template>
+	<div class="tit">
 		<div class="introduce">
 			<div class="introduce_top">
 				<div class="introduce_top_l">
@@ -24,7 +25,7 @@
 				</div>
 			</div>
 		</div>
-		<slot name="ba"></slot>
+		<slot name="t9"></slot>
 	</div>
 </template>
 
@@ -35,6 +36,37 @@ export default{
 
 </script>
 
+<style>
+.tit {
+  /* background-image: url("//elm.cangdu.org/img/16b218200c241687.png"); */
+  background-size: cover;
+}
+
+.introduce {
+  padding: 0.27rem;
+  min-height: 3.1rem;
+  background: rgba(119, 103, 137, 0.9);
+}
+
+.introduce_top {
+  overflow: hidden;
+  position: relative;
+}
+
+.introduce_top .ic {
+  position: absolute;
+  right: 0rem;
+  top: 1.1rem;
+  color: #ffffff;
+  font-size: 0.6rem;
+}
+
+.introduce_top_l {
+  float: left;
+}
+
+.introduce_top_l img {
+  width: 1.96rem;
   height: 1.96rem;
 }
 

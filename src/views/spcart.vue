@@ -1,156 +1,238 @@
 <template>
-	<div id="spcart">
-		<lh_header :title="$store.state.CityName"></lh_header>
-		<div class="zhezhao" v-show="type_b">
-			<h2>{{tt_tit.name}}</h2>
-			<span>优惠信息</span>
-			<p><i class="introduce_btn_l_i" v-for="(i,$index) in tt_tit.activities" v-if="$index>=0" slot='t7'>{{tt_tit.activities[0].icon_name}}</i><em
-				 slot="t4" v-for="i in  tt_tit.activities" :key="i.id">{{tt_tit.activities[0].description}}（APP专享）</em></p>
-			<div>
-				<span>商家公告</span>
-				<p>{{tt_tit.promotion_info}}</p>
-			</div>
-			<div @click="type_b=false" style="border-radius: 50%;border: 1px solid #FFFFFF;width: 1.5rem;height: 1.5rem;text-align: center;line-height: 1.5rem;margin: 0 auto;margin-top: 7rem;">
-				<i style="color: #FFFFFF;font-size: .8rem;" class="iconfont">&#xe71d;</i>
-			</div>
-		</div>
-		<div class='pos'>
-      <!-- 传参 忽改 ------------------------------------------------------------->
+  <div id="spcart">
+    <div class="zhezhao" v-show="type_b">
+      <h2>{{tt_tit.name}}</h2>
+      <span>优惠信息</span>
+      <p>
+        <i
+          class="introduce_btn_l_i"
+          v-for="(i,$index) in tt_tit.activities"
+          v-if="$index>=0"
+          slot="t7"
+        >{{tt_tit.activities[0].icon_name}}</i>
+        <em
+          slot="t4"
+          v-for="i in  tt_tit.activities"
+          :key="i.id"
+        >{{tt_tit.activities[0].description}}（APP专享）</em>
+      </p>
+      <div>
+        <span>商家公告</span>
+        <p>{{tt_tit.promotion_info}}</p>
+      </div>
+      <div
+        @click="type_b=false"
+        style="border-radius: 50%;border: 1px solid #FFFFFF;width: 1.5rem;height: 1.5rem;text-align: center;line-height: 1.5rem;margin: 0 auto;margin-top: 7rem;"
+      >
+        <i style="color: #FFFFFF;font-size: .8rem;" class="iconfont">&#xe71d;</i>
+      </div>
+    </div>
+    <div class="wzw_flex">
+      <div style="min-height: 5rem;">
+        <lh_header :title="$store.state.CityName"></lh_header>
+        <div class="pos">
+          <!-- 传参 忽改 ------------------------------------------------------------->
 			<z_introduce :id='$route.params.g_id'>
         <!-- 看清楚 ----------------------------------------------------------------->
-				<h3 slot="t1">{{tt_tit.name}}</h3>
-				<p slot="t2" v-if="tt_tit.piecewise_agent_fee">商家配送／分钟送达／{{tt_tit.piecewise_agent_fee.tips}}</p>
-				<p slot="t3">{{tt_tit.promotion_info}}</p>
-				<img :src="'//elm.cangdu.org/img/'+tt_tit.image_path" slot='t6'>
-				<span slot="t4" v-for="(i,$index) in  tt_tit.activities" v-if="$index<=0" :key="i.id">{{tt_tit.activities[0].description}}（APP专享）</span>
-				<span v-for="(i,$index) in  tt_tit.activities" v-if="$index<=0" slot="t5">{{tt_tit.activities.length}}个活动</span>
-				<i class="introduce_btn_l_i" v-for="(i,$index) in tt_tit.activities" v-if="$index<=0" slot='t7'>{{tt_tit.activities[0].icon_name}}</i>
-				<i @click="type_b=true" v-for="(i,$index) in tt_tit.activities" v-if="$index<=0" slot='t8' class="iconfont">&#xe60f;</i>
-				
-				<i slot="t9" class="iconfont" style="color:#fff">&#xe60f;</i>
-				
-			</z_introduce>
+       
+            <h3 slot="t1">{{tt_tit.name}}</h3>
+            <p
+              slot="t2"
+              v-if="tt_tit.piecewise_agent_fee"
+            >商家配送／分钟送达／{{tt_tit.piecewise_agent_fee.tips}}</p>
+            <p slot="t3">{{tt_tit.promotion_info}}</p>
+            <img :src="'//elm.cangdu.org/img/'+tt_tit.image_path" slot="t6" />
+            <span
+              slot="t4"
+              v-for="(i,$index) in  tt_tit.activities"
+              v-if="$index<=0"
+              :key="i.id"
+            >{{tt_tit.activities[0].description}}（APP专享）</span>
+            <span
+              v-for="(i,$index) in  tt_tit.activities"
+              v-if="$index<=0"
+              slot="t5"
+            >{{tt_tit.activities.length}}个活动</span>
+            <i
+              class="introduce_btn_l_i"
+              v-for="(i,$index) in tt_tit.activities"
+              v-if="$index<=0"
+              slot="t7"
+            >{{tt_tit.activities[0].icon_name}}</i>
+            <i
+              @click="type_b=true"
+              v-for="(i,$index) in tt_tit.activities"
+              v-if="$index<=0"
+              slot="t8"
+              class="iconfont"
+            >&#xe60f;</i>
+          </z_introduce>
+          <img class="ba_img" :src="'//elm.cangdu.org/img/'+tt_tit.image_path" slot="ba" />
+          <div class="commodity">
+            <div @click="in_dex=1">
+              <span :class="in_dex==1?'bl':''">商品</span>
+            </div>
+            <div @click="in_dex=2">
+              <span :class="in_dex==2?'bl':''">评价</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="wzw_hd"></div> -->
+      <div class="rel">
+        <div class="commCt">
+          <div v-show="in_dex==1">
+            <div class="commCt_l">
+              <div>
+                <p
+                  v-for="(i,$index) in i_arr"
+                  @click="jumpTo($index)"
+                  :key="$index"
+                  :class="type_i==$index?'cl':''"
+                >
+                  <!-- <a @click.prevent="custormAnchor($index)"><span>{{i.name}}</span></a> -->
+                  <span>{{i.name}}</span>
+                </p>
+              </div>
+            </div>
+            <div
+              style="position: relative; overflow-y: auto;width: 77%;float: right;height: 17.4rem;"
+            >
+              <div class="commCt_r" id="commCt_r" @touchmove="run($event)" ref="main_r">
+                <div v-for="(i,$index) in i_arr" id="itemSort">
+                  <div :id="$index">
+                    <div class="tt_tit">
+                      <p>{{i.name}}</p>
+                      <span>{{i.description}}</span>
+                      <i @click="tit_type=!tit_type" style="position: relative;">
+                        ...
+                        <span
+                          v-show="tit_type"
+                          style="position: absolute;z-index: 99999999999;top: .5rem;left: -3.5rem;width: 5rem;display: inline-block;"
+                        >
+                          <span>{{i.name}}</span>
+                          <span>{{i.description}}</span>
+                        </span>
+                      </i>
+                    </div>
+                    <z_ask v-for="(b,$index) in i.foods" :num="b" :key="$index">
+                      <img slot="m1" :src="'//elm.cangdu.org/img/'+b.image_path" />
+                      <h4 slot="m2">{{b.name}}</h4>
+                      <p slot="m3">{{b.description}}</p>
+                      <em slot="m5">{{b.tips}}</em>
+                      <span slot="m6" v-if="b.activity">{{b.activity.image_text}}</span>
+                      <p slot="m7">新品</p>
+                    </z_ask>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div v-if="in_dex==2">
+            <div class="pj_t">
+              <div class="pj_t_l">
+                <h4>{{tt_tit.rating}}</h4>
+                <p>综合评价</p>
+                <span>高于周边商家76.9%</span>
+              </div>
+              <div class="pj_t_r">
+                <div>
+                  <span>服务态度</span>
+                  <z_xingxing></z_xingxing>
+                </div>
+                <div>
+                  <span>菜品评价</span>
+                  <z_xingxing></z_xingxing>
+                </div>
+                <div>
+                  <span>送达时间</span>
+                  <i>分钟</i>
+                </div>
+              </div>
+            </div>
+            <div class="pj_con">
+              <div v-for="(i,$index) in arr_type" :key="$index" class="pj_con_i">
+                <span>{{i.name}}</span>
+                <p>({{i.count}})</p>
+              </div>
+            </div>
+            <div
+              v-infinite-scroll="loadMore"
+              infinite-scroll-disabled="loading"
+              infinite-scroll-distance="100"
+            >
+              <z_evaluate v-for="(i,$index) in arr_in" :key="$index">
+                <img slot="p1" :src="'https://fuss10.elemecdn.com/'+i.avatar" />
+                <i slot="p2">{{i.username}}</i>
+                <em slot="p3">{{i.rated_at}}</em>
+                <p slot="p4">{{i.time_spent_desc}}</p>
+                <img
+                  v-for="(b,$index) in i.item_ratings"
+                  :key="$index"
+                  slot="p5"
+                  :src="'https://fuss10.elemecdn.com/'+b.image_hash"
+                />
+                <p v-for="(b,$index) in i.item_ratings" :key="$index" slot="p6">{{b.food_name}}</p>
+              </z_evaluate>
+            </div>
+          </div>
+        </div>
+      </div>
 
-			<img class="ba_img" :src="'//elm.cangdu.org/img/'+tt_tit.image_path" slot="ba">	
-			<div class="commodity">
-				<div @click="in_dex=1">
-					<span :class="in_dex==1?'bl':''">商品</span>
-				</div>
-				<div @click="in_dex=2">
-					<span :class="in_dex==2?'bl':''">评价</span>
-				</div>
-			</div>
-		</div>
-		<div class="rel">
-			<div class="commCt">
-				<div v-show="in_dex==1">
-					<div class="commCt_l">
-						<div>
-							<p v-for="(i,$index) in i_arr" @click="type_i=$index" :key='$index' :class="type_i==$index?'cl':''">
-								<a href='javascript:;' @click.prevent="custormAnchor($index)"><span>{{i.name}}</span></a>
-							</p>
-						</div>
-					</div>
-					<div class="commCt_r" id="commCt_r" ref='it'>
-						<div v-for="(i,$index) in i_arr">
-							<div :id='$index'>
-								<div class="tt_tit">
-									<p>{{i.name}}</p>
-									<span>{{i.description}}</span>
-									<i @click="tit_type=!tit_type" style="position: relative;">...
-										<span v-show="tit_type" style="position: absolute;z-index: 99999999999;top: .5rem;left: -3.5rem;width: 5rem;display: inline-block;">
-											<span>{{i.name}}</span>
-											<span>{{i.description}}</span>
-										</span>
-									</i>
-								</div>
-								<z_ask v-for="(b,$index) in i.foods" :num='b' :key='$index'>
-									<img slot='m1' :src="'//elm.cangdu.org/img/'+b.image_path">
-									<h4 slot='m2'>{{b.name}}</h4>
-									<p slot="m3">{{b.description}}</p>
-									<em slot="m5">{{b.tips}}</em>
-									<span slot="m6" v-if="b.activity">{{b.activity.image_text}}</span>
-									<p slot="m7">新品</p>
-								</z_ask>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div v-if="in_dex==2">
-					<div class="pj_t">
-						<div class="pj_t_l">
-							<h4>{{tt_tit.rating}}</h4>
-							<p>综合评价</p>
-							<span>高于周边商家76.9%</span>
-						</div>
-						<div class="pj_t_r">
-							<div><span>服务态度</span>
-								<z_xingxing></z_xingxing>
-							</div>
-							<div><span>菜品评价</span>
-								<z_xingxing></z_xingxing>
-							</div>
-							<div><span>送达时间</span><i>分钟</i></div>
-						</div>
-					</div>
-					<div class="pj_con">
-						<div v-for="(i,$index) in arr_type" :key='$index' class="pj_con_i">
-							<span>{{i.name}}</span>
-							<p>({{i.count}})</p>
-						</div>
-					</div>
-					<div v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="100">
-						<z_evaluate v-for='(i,$index) in arr_in' :key='$index'>
-							<img slot="p1" :src="'https://fuss10.elemecdn.com/'+i.avatar">
-							<i slot="p2">{{i.username}}</i>
-							<em slot="p3">{{i.rated_at}}</em>
-							<p slot="p4">{{i.time_spent_desc}}</p>
-							<img v-for="(b,$index) in i.item_ratings" :key='$index' slot="p5" :src="'https://fuss10.elemecdn.com/'+b.image_hash">
-							<p v-for="(b,$index) in i.item_ratings" :key='$index' slot="p6">{{b.food_name}}</p>
-						</z_evaluate>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="guc_js" v-show="in_dex==1">
-			<div class="guc_js_l">
-				<p><i>￥</i>{{$store.getters.returnPrice}}</p>
-				<span v-if="tt_tit.piecewise_agent_fee">{{tt_tit.piecewise_agent_fee.tips}}</span>
-			</div>
-			<div class="guc_js_r">
-				<em :style="$store.getters.returnPrice?'background:green;':'background: #2C3E50;'">去结算</em>
-			</div>
-		</div>
-		<div v-show="in_dex==1" @click="a_type_z=!a_type_z" :style="$store.getters.returnPrice?'background: blue;':'background: #000000;'"
-		 class="js_ic">
-			<em></em>
-			<i class="iconfont">&#xe613;</i>
-		</div>
-		<div v-show="a_type_z">
-			<div class="clear_price">
-				<span>购物车</span>
-				<em @click="clear_z"><i class="iconfont">&#xe616;</i>清空</em>
-			</div>
-			<div style="position: absolute;bottom:0rem;width: 100%;background: #FFFFFF;box-sizing: 100;height: 190px;background: #FFFFFF;z-index: 999999999;overflow: hidden;">
-				<div v-for="i in $store.state.Shopitem">
-					<div style="line-height: 1rem;background: #FFFFFF;overflow: hidden;">
-						<span style="font-size: .5rem;color: #666;font-weight: 700;
-						padding-left: .8rem;float: left;padding-right: .5rem;width: 2rem;">{{i.name}}</span>
-						<!-- <span style="font-size: .5rem;color: #f60;font-family: Helvetica Neue,Tahoma;font-weight: 700;">{{i.specfoods[0].price}}</span> -->
-						<z_ask :num="i" style='padding: 0px !important;margin-top: -.6rem;width: 100%;'>
-							<z_amount>
-								<span class="amountz_l_i" slot="js1">¥</span>
-								<span class="amountz_l_num" slot="js2">{{i.specfoods[0].price}}</span>
-								<span class="amountz_r_j" @click="btm()" v-show="i_num>0" slot="js4">-</span>
-								<span class="amountz_r_n" v-show="i_num>0" slot="js5">{{i_num}}</span>
-								<span class="amountz_r_jj" @click="btn()" slot="js6">+</span>
-							</z_amount>
-						</z_ask>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+      <div class="guc_js" v-show="in_dex==1">
+        <div class="guc_js_l">
+          <p>
+            <i>￥</i>
+            {{$store.getters.returnPrice}}
+          </p>
+          <span v-if="tt_tit.piecewise_agent_fee">{{tt_tit.piecewise_agent_fee.tips}}</span>
+        </div>
+        <div class="guc_js_r">
+          <em :style="$store.getters.returnPrice?'background:green;':'background: #2C3E50;'">去结算</em>
+        </div>
+      </div>
+    </div>
+
+    <div
+      v-show="in_dex==1"
+      @click="a_type_z=!a_type_z"
+      :style="$store.getters.returnPrice?'background: blue;':'background: #000000;'"
+      class="js_ic"
+    >
+      <em></em>
+      <i class="iconfont">&#xe613;</i>
+    </div>
+    <div v-show="a_type_z">
+      <div class="clear_price">
+        <span>购物车</span>
+        <em @click="clear_z">
+          <i class="iconfont">&#xe616;</i>清空
+        </em>
+      </div>
+      <div
+        style="position: absolute;bottom:0rem;width: 100%;background: #FFFFFF;box-sizing: 100;height: 190px;background: #FFFFFF;z-index: 999999999;overflow: hidden;"
+      >
+        <div v-for="i in $store.state.Shopitem">
+          <div style="line-height: 1rem;background: #FFFFFF;overflow: hidden;">
+            <span
+              style="font-size: .5rem;color: #666;font-weight: 700;
+						padding-left: .8rem;float: left;padding-right: .5rem;width: 2rem;"
+            >{{i.name}}</span>
+            <!-- <span style="font-size: .5rem;color: #f60;font-family: Helvetica Neue,Tahoma;font-weight: 700;">{{i.specfoods[0].price}}</span> -->
+            <z_ask :num="i" style="padding: 0px !important;margin-top: -.6rem;width: 100%;">
+              <z_amount>
+                <span class="amountz_l_i" slot="js1">¥</span>
+                <span class="amountz_l_num" slot="js2">{{i.specfoods[0].price}}</span>
+                <span class="amountz_r_j" @click="btm()" v-show="i_num>0" slot="js4">-</span>
+                <span class="amountz_r_n" v-show="i_num>0" slot="js5">{{i_num}}</span>
+                <span class="amountz_r_jj" @click="btn()" slot="js6">+</span>
+              </z_amount>
+            </z_ask>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
