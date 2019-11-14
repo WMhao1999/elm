@@ -40,8 +40,9 @@ export default {
         });
     },
     xuanz(i) {
-      //跳转到确认订单页面
-      // this.$router.push({path:''})
+      // 跳转到确认订单页面;
+      this.$store.commit("dizhi", i);
+      this.$router.push({ path: "/confirmOrder" });
     }
   }
 };

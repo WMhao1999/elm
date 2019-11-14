@@ -20,7 +20,17 @@
       </lh_header>
       <router-link to="/Selectaddress">
         <div class="dz">
-          <div class="shou">请添加一个收货地址</div>
+          <div class="shou" v-if="!dizhi">请添加一个收货地址</div>
+          <div v-if="dizhi">
+            <div>
+              <span style="font-weight: bold;font-size: 0.45rem;margin-right:0.2rem">{{dizhi.name}}</span>
+              <span style="font-size:0.45rem;margin-right:0.2rem">{{dizhi.sex==1?'先生':'女士'}}</span>
+              <span style="font-size:0.45rem">{{dizhi.phone}}</span>
+            </div>
+            <div>
+              <span style="line-height:2">备注：{{dizhi.tag}}</span>
+            </div>
+          </div>
           <div class="jian">></div>
         </div>
       </router-link>
@@ -35,7 +45,7 @@
         </div>
       </div>
       <div class="zhifu">
-        <div class="hea">
+        <div class="hea" @click="zhifu=true">
           <span>支付方式</span>
           <div class="zai">
             <span>
@@ -123,6 +133,22 @@
       <p class="dzf">待支付￥690</p>
       <p class="queren">确认下单</p>
     </div>
+    <div class="show" v-show="zhifu">
+      <div class="top" @click="zhifu=false"></div>
+      <div class="fangshi">
+        <header>支付方式</header>
+        <div>
+          <div class="li" style="color:#ccc">
+            <span>货到付款(商家不支持到付款)</span>
+            <span class="sex"></span>
+          </div>
+          <div class="li">
+            <span style="color:#333">在线支付</span>
+            <span class="sex" style="background-color:greenyellow"></span>
+          </div>
+        </div>
+      </div>
+    </div>
     <!--  -->
   </div>
 </template>
@@ -135,7 +161,9 @@ export default {
   data() {
     return {
       path: true,
-      data: ""
+      data: "",
+      zhifu: false,
+      dizhi: ""
     };
   },
   created() {
@@ -143,6 +171,10 @@ export default {
       this.path = false;
     }
     this.dz();
+    if (this.$store.state.Address.name) {
+      this.dizhi = this.$store.state.Address;
+      console.log(this.$store.state.Address);
+    }
   },
   methods: {
     dz() {
@@ -157,6 +189,61 @@ export default {
 };
 </script>
 <style scoped>
+header {
+  font-size: 0.5rem;
+  background-color: #fafafa;
+  color: #333;
+  text-align: center;
+  line-height: 1.5rem;
+}
+.li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.7rem;
+  line-height: 1.5rem;
+  align-items: center;
+}
+.li span {
+  font-size: 0.5rem;
+  color: #ccc;
+}
+.sex {
+  width: 0.52rem;
+  height: 0.52rem;
+  border-radius: 50%;
+  background-color: #ccc;
+  position: relative;
+}
+.sex::after {
+  content: "\00a0";
+  display: inline-block;
+  border: 2px solid #fff;
+  border-top-width: 0;
+  border-right-width: 0;
+  width: 0.28rem;
+  height: 0.2rem;
+  transform: rotate(-50deg);
+  position: absolute;
+  top: 0.08rem;
+  left: 0.07rem;
+}
+.show {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 203;
+}
+.fangshi {
+  background: #fff;
+  width: 100%;
+  height: 40%;
+}
+.top {
+  height: 60%;
+}
 .dzf {
   background-color: #3c3c3c;
   flex: 5;

@@ -2,6 +2,11 @@
   <div id="alter" v-if="isshow">
     <div class="alter_main">
       <div class="main_up">
+        <!-- success -->
+        <div v-if="type == 'success'">
+          <div class="alter_icon">√</div>
+          <p style="padding:0 0.4rem">{{ msg }}</p>
+        </div>
         <!-- warn loginout-->
         <div v-if="type == 'warn' || type == 'loginout'">
           <div class="alter_icon">!</div>
@@ -20,15 +25,13 @@
               v-for="(i, $index) in msg.kind"
               :class="index == $index ? 'active' : ''"
               @click="getPrice(i, $index)"
-            >
-              {{ i.specs_name }}
-            </div>
+            >{{ i.specs_name }}</div>
           </div>
         </div>
       </div>
       <div class="main_down">
         <!-- warn -->
-        <div @click="confrim" v-if="type == 'warn'" class="warn">确定</div>
+        <div @click="confrim" v-if="type == 'warn'||type=='success'" class="warn">确定</div>
         <!-- loginout -->
         <div class="loginout" v-if="type == 'loginout'">
           <div class="loginTrue" @click="confrim">再等等</div>
@@ -64,6 +67,9 @@ export default {
       if (this.msg == "当前环境无法支付，请打开官方APP进行付款") {
         location.href = "#/order/form";
       }
+      if (this.type == "success") {
+        this.confrimCallback("密码重置成功");
+      }
     },
     login_out() {
       console.log("退出登录");
@@ -85,7 +91,6 @@ export default {
 #alter {
   position: fixed;
   top: 0;
-
   left: 0;
   right: 0;
   bottom: 0;
