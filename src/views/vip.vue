@@ -13,10 +13,12 @@
       <div class="con-1">
         <p>会员特权</p>
         <div class="con-2">
-          <span>
-            会员说明
-            <span class="iconfont icon-arrowRight"></span>
-          </span>
+          <router-link to="/Members">
+            <span>
+              会员说明
+              <span class="iconfont icon-arrowRight"></span>
+            </span>
+          </router-link>
         </div>
       </div>
 
@@ -68,10 +70,12 @@
       <div class="con-1">
         <p>兑换会员</p>
         <div class="con-2">
-          <span>
-            使用卡号卡密
-            <span class="iconfont icon-arrowRight"></span>
-          </span>
+          <router-link to="/Exchange">
+            <span>
+              使用卡号卡密
+              <span class="iconfont icon-arrowRight"></span>
+            </span>
+          </router-link>
         </div>
       </div>
     </div>
@@ -80,10 +84,12 @@
       <div class="con-1">
         <p>购买记录</p>
         <div class="con-2">
-          <span>
+          <router-link to="/invoice"> 
+            <span>
             开发票
             <span class="iconfont icon-arrowRight"></span>
-          </span>
+          </span></router-link>
+         
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@
     <lh_header :title="'修改用户名'"></lh_header>
     <div class="mouser">
       <div class="srk">
-        <input type="text" maxlength="24" minlength="5" ref="act" @click="ac" />
+        <input type="text" maxlength="24" minlength="5" ref="act" @click="ac" v-model="username" />
       </div>
       <div :class="type?'tc':'ts'">{{type?"用户名只能修改一次(5-24字符之间)":"用户名长度在5到24位之间"}}</div>
       <div class="tc"></div>
@@ -21,7 +21,8 @@ export default {
   },
   data() {
     return {
-      type: true
+      type: true,
+      username: ""
     };
   },
   created() {},
@@ -30,7 +31,9 @@ export default {
       this.type = false;
       this.$refs.act.style.border = "1px solid red";
     },
-    
+    xname() {
+      // this.axios
+    }
   }
 };
 </script>

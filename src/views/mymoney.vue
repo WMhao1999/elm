@@ -10,7 +10,8 @@
             <svg class="icon" aria-hidden="true">
               <use xlink:href="#icon-wenhao" />
             </svg>
-            <span>余额说明</span>
+            <router-link to="/balance"> <span>余额说明</span></router-link>
+           
           </div>
         </div>
 
@@ -112,6 +113,7 @@ export default {
 .font-st {
   font-size: 0.45rem;
   color: #b7b9b8;
+  padding: 0.4rem;
 }
 .jz {
   text-align: center;
