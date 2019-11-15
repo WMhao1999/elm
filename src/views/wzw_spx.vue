@@ -1,21 +1,21 @@
 <template>
-	<div style="background: #FFFFFF;width: 100%;height: 100%;">
+	<div id="aboutShop" ref="con">
 		<div>
-			<lh_header :title="this.ding.name.name">
+			<lh_header :title="ding_n.name">
 				<div slot="left">
-					<router-link :to="{name:'spcart',params:{}}">
+					<router-link :to="{path:'/spcart/'+$route.params.id,params:{}}">
 						<i style="color:#fff" class="iconfont">&#xe642;</i>
 					</router-link>
 				</div>
 			</lh_header>
 		</div>
 		<div class="wzw_con">
-			<img :src="'//elm.cangdu.org/img/'+ding.name.image_path" alt="">
-			<p>{{ding.name.description}}</p>
-			<em>{{ding.name.name}}</em>
+			<img :src="'//elm.cangdu.org/img/'+ding_n.image_path" alt="">
+			<p>{{ding_n.description}}</p>
+			<em>{{ding_n.name}}</em>
 			<p>评分<span><z_xingxing style='display: inline-block;'></z_xingxing></span></p>
-			<p>月售<span class="ospa">售價{{ding.name.specfoods[0].price}}起</span></p>
-			<p>{{ding.name.tips}}</p>
+			<p>月售<span class="ospa">售價{{ding_n.specfoods[0].price}}起</span></p>
+			<p>{{ding_n.tips}}</p>
 		</div>
 	</div>
 </template>
@@ -31,16 +31,33 @@
 		data() {
 			return {
 				ding: "",
+				ding_n:null
 			};
 		},
 		created() {
-			this.ding=this.$route.params
-			console.log(this.ding)
+			if(this.$route.params.name){
+				this.ding_n=JSON.parse(this.$route.params.name)
+				console.log(this.ding_n)
+			}
+			
+			setTimeout(()=>{
+				this.$refs.con.style.left = 0
+				this.$refs.con.style.right = 0
+			},10)
 		},
 	};
 </script>
 
 <style>
+	#aboutShop {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 100%;
+		right: 100%;
+		background: #fff;
+		transition: all 0.3s;
+	}
 	.wzw_con img {
 		width: 100%;
 	}

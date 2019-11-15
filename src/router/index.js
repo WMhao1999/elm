@@ -50,11 +50,10 @@ const routes = [{
 		path: "/spcart/:g_id", //购物车
 		name: 'spcart',
 		component: () => import('../views/spcart.vue'),
-		children: [{
-			path: "wzw_spxq:date", //商品详情
-			name: 'wzw_spxq',
-			component: () => import('../views/wzw_spxq.vue')
-		}]
+	}, {
+		path: "/wzw_spx/:name/:id", //商品详情/:name/:id
+		name: 'wzw_spx',
+		component: () => import('../views/wzw_spx.vue')
 	},
 	{
 		path: "/anorder", //确认订单
@@ -191,10 +190,19 @@ const routes = [{
 		component: () => import('../views/Selectaddress.vue')
 	},
 	{
+		path: "/sjxq/:whk_id", //商家详情
+		name: 'sjxq',
+		component: () => import('../views/sjxq.vue')
+	},
+	{
+		path: "/qiye", //视频监督安全公式
+		name: 'qiye',
+		component: () => import('../views/qiye.vue')
+	}, {
 		path: "/confirmOrder", //确认订单
 		name: 'confirmOrder',
 		component: () => import('../views/confirmOrder.vue')
-	},
+	}
 
 ]
 

@@ -28,7 +28,7 @@
 	#loading_1{
 		position: fixed;
 		left: 0;
-		top: 0;
+		top: 1.4rem;
 		right: 0;
 		bottom: 0;
 		z-index: 999;

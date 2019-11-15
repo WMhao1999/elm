@@ -22,7 +22,8 @@ export default new Vuex.Store({
 		},
 		Shopitem: [],
 		NowItem: {},
-		name: ''
+		name: '',
+		Address: {}
 	},
 	mutations: {
 		GetCity(state, all) {
@@ -90,6 +91,9 @@ export default new Vuex.Store({
 		},
 		seadd(state, i) {
 			state.name = i
+		},
+		dizhi(state, i) {
+			state.Address = i
 		}
 	},
 	actions: {},

@@ -26,19 +26,14 @@
       </div>
     </div>
     <div class="btn" @click="que">确认修改</div>
-    <tc v-if="type" @type="btn">
-      <p slot="cz">{{success}}</p>
-    </tc>
   </div>
 </template>
 
 <script>
-import tc from "../components/alert1.vue";
 import lh_header from "./../components/lh-header.vue";
 export default {
   components: {
-    lh_header,
-    tc
+    lh_header
   },
   data() {
     return {
@@ -73,10 +68,30 @@ export default {
           captcha_code: this.captcha_code
         })
         .then(res => {
-          console.log(res);
-          if (res.data.success) {
+          if (res.data.success == "密码修改成功") {
             this.success = res.data.success;
             this.type = true;
+            this.username = "";
+            this.oldpassWord = "";
+            this.newpassword = "";
+            this.confirmpassword = "";
+            this.captcha_code = "";
+            this.$alert("success", "密码修改成功", function(res) {
+              if (res == "密码重置成功") {
+                if (localStorage.userid) {
+                  var hrefs = location.href.split("/");
+                  hrefs.splice(hrefs.length - 1, 1, "order/myself");
+                  location.href = hrefs.join("/");
+                } else {
+                  var hrefs = location.href.split("/");
+                  hrefs.splice(hrefs.length - 1, 1, "login_in");
+                  location.href = hrefs.join("/");
+                }
+              }
+            });
+          } else {
+            this.$alert("warn", res.data.message);
+            this.imgurl();
           }
         });
     },

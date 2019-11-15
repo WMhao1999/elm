@@ -1,6 +1,10 @@
 <template>
   <div id="order">
     <lh_header :title="$store.state.City.name" :path_r="'/'">
+		<router-link to="/order/Search" slot="left" >
+				<i style="color: #FFFFFF;font-size: .1rem;" class="iconfont">搜索</i>
+		</router-link>
+		
       <div slot="right" style="color:#fff">
         <router-link
           style="text-align: right;width:100%; display: inline-block;color:#fff"
@@ -59,13 +63,14 @@ export default {
   },
   methods: {
     get_home() {
+      this.$loading(true, false);
       this.axios
         .get(
           "https://elm.cangdu.org/shopping/restaurants?latitude=31.22967&longitude=121.4762"
         )
         .then(date => {
           this.home_list = date.data;
-          this.$loading(false)
+          this.$loading(false);
         });
     }
   },

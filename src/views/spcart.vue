@@ -16,9 +16,14 @@
 		</div>
 		<div class="wzw_flex">
 			<div style="min-height: 5rem;">
-				<lh_header :title="$store.state.CityName"></lh_header>
+				<lh_header :title="$store.state.CityName">
+						<router-link to="/order" slot="left" >
+								<i style="color: #FFFFFF;font-size: .8rem;" class="iconfont">&#xe642;</i>
+						</router-link>
+					
+				</lh_header>
 				<div class='pos'>
-					<z_introduce>
+			<z_introduce :id='$route.params.g_id'>
 						<h3 slot="t1">{{tt_tit.name}}</h3>
 						<p slot="t2" v-if="tt_tit.piecewise_agent_fee">商家配送／分钟送达／{{tt_tit.piecewise_agent_fee.tips}}</p>
 						<p slot="t3">{{tt_tit.promotion_info}}</p>
@@ -27,6 +32,7 @@
 						<span v-for="(i,$index) in  tt_tit.activities" v-if="$index<=0" slot="t5">{{tt_tit.activities.length}}个活动</span>
 						<i class="introduce_btn_l_i" v-for="(i,$index) in tt_tit.activities" v-if="$index<=0" slot='t7'>{{tt_tit.activities[0].icon_name}}</i>
 						<i @click="type_b=true" v-for="(i,$index) in tt_tit.activities" v-if="$index<=0" slot='t8' class="iconfont">&#xe60f;</i>
+            <i class="iconfont" slot=t9>&#xe60f;</i>
 					</z_introduce>
 					<img class="ba_img" :src="'//elm.cangdu.org/img/'+tt_tit.image_path" slot="ba">
 					<div class="commodity">
@@ -58,7 +64,7 @@
 											<p>{{i.name}}</p>
 											<span>{{i.description}}</span>
 											<i @click="tit_type=!tit_type" style="position: relative;">...
-												<span v-show="tit_type" style="position: absolute;z-index: 99999999999;top: .5rem;left: -3.5rem;width: 5rem;display: inline-block;">
+												<span v-show="tit_type" style="position: absolute;z-index: 99;top: .5rem;left: -3.5rem;width: 5rem;display: inline-block;">
 													<span>{{i.name}}</span>
 													<span>{{i.description}}</span>
 												</span>
@@ -69,7 +75,8 @@
 										<z_ask v-for="(b,$index) in i.foods" :num='b' :key='$index'>
 											<img slot='m1' :src="'//elm.cangdu.org/img/'+b.image_path">
 											<h4 slot='m2'>
-												<router-link :to="{name:'wzw_spxq',params:{name:b,id:uid}}">
+												<router-link :to="'/wzw_spx/'+JSON.stringify(b)+'/'+uid">
+													<!--' /'+JSON.stringify(b)+'/'+uid -->
 													{{b.name}}
 												</router-link>
 											</h4>
@@ -129,7 +136,13 @@
 					<span v-if="tt_tit.piecewise_agent_fee">{{tt_tit.piecewise_agent_fee.tips}}</span>
 				</div>
 				<div class="guc_js_r">
-					<em :style="$store.getters.returnPrice?'background:green;':'background: #2C3E50;'">去结算</em>
+					<router-link to="/confirmOrder">
+						
+					
+					<em :style="$store.getters.returnPrice?'background:green;':'background: #2C3E50;'"
+					
+					>去结算</em>
+					</router-link>
 				</div>
 			</div>
 		</div>
@@ -144,8 +157,9 @@
 				<span>购物车</span>
 				<em @click="clear_z"><i class="iconfont">&#xe616;</i>清空</em>
 			</div>
-			<div style="position: absolute;bottom:0rem;width: 100%;background: #FFFFFF;box-sizing: 100;height: 190px;background: #FFFFFF;z-index: 999999999;overflow: hidden;">
+			<div style="position: absolute;bottom:0rem;width: 100%;background: #FFFFFF;box-sizing: 100;height: 190px;background: #FFFFFF;z-index: 999;overflow-y: auto;">
 				<div v-for="i in $store.state.Shopitem">
+					{{$store.state.Shopitem}}
 					<div style="line-height: 1rem;background: #FFFFFF;overflow: hidden;">
 						<span style="font-size: .5rem;color: #666;font-weight: 700;
 						padding-left: .8rem;float: left;padding-right: .5rem;width: 2rem;">{{i.name}}</span>
@@ -212,7 +226,9 @@
 				loading: false,
 				allLoaded: false,
 				scroll: [],
-				uid: ''
+				uid: '',
+				location:"",
+				
 			}
 		},
 		created() {
@@ -229,6 +245,8 @@
 			this.axios.get('https://elm.cangdu.org/shopping/restaurant/' + this.id).then((data) => {
 				// console.log(data.data)
 				this.tt_tit = data.data
+				this.location=this.tt_tit.location;
+				console.log(this.location)
 			})
 			this.axios.get('https://elm.cangdu.org/ugc/v2/restaurants/' + this.id + '/ratings?offset=0&limit=10').then((data) => {
 				// console.log(data.data)
@@ -242,6 +260,16 @@
 			console.log(this.$route.params.g_id)
 		},
 		methods: {
+			gojie(){
+				this.axios.post('https://elm.cangdu.org/v1/carts/checkout',{
+					restaurant_id:Number(this.uid),
+					geohash:this.location[0]+","+this.location[1],
+					entities:this.json
+				}).then(data=>{
+					console.log(data)
+				})
+			},
+			
 			run(a) {
 				var head = document.querySelector('.pos').offsetHeight
 				console.log(head)
@@ -621,86 +649,91 @@
 		/* position: fixed;
 		top: 3.65rem;
 		z-index: 2; */
-	}
+}
 
-	.commodity div {
-		width: 50%;
-		float: left;
-		text-align: center;
-		line-height: .7rem;
-		padding: .3rem 0;
-	}
+.commodity div {
+  width: 50%;
+  float: left;
+  text-align: center;
+  line-height: 0.7rem;
+  padding: 0.3rem 0;
+}
 
-	.commodity div span {
-		font-size: .45rem;
-		padding: .15rem 0;
-	}
+.commodity div span {
+  font-size: 0.45rem;
+  padding: 0.15rem 0;
+}
 
-	.bl {
-		color: #3190e8;
-		border-bottom: 2px solid #3190e8;
-	}
+.bl {
+  color: #3190e8;
+  border-bottom: 2px solid #3190e8;
+}
 
-	.sp_fj {
-		background: #FFFFFF;
-		padding-left: .25rem;
-	}
+.sp_fj {
+  background: #ffffff;
+  padding-left: 0.25rem;
+}
 
-	.sp_fj i {
-		fill: #999;
-		font-size: .6rem;
-		padding-top: .2rem;
-	}
+.sp_fj i {
+  fill: #999;
+  font-size: 0.6rem;
+  padding-top: 0.2rem;
+}
 
-	.sp_fj span {
-		color: #999;
-		font: .4rem/.4rem Microsoft YaHei;
-	}
+.sp_fj span {
+  color: #999;
+  font: 0.4rem/0.4rem Microsoft YaHei;
+}
 
-	.commCt {
-		overflow: hidden;
-		/* padding-top: 3.6rem; */
-		background: #f5f5f5;
-	}
+.commCt {
+  overflow: hidden;
+  /* padding-top: 3.6rem; */
+  background: #f5f5f5;
+}
 
-	.commCt_l {
-		/* padding-top: .95rem; */
-		float: left;
-		width: 23%;
-		overflow-y: scroll;
-		height: 17.4rem;
-	}
+.commCt_l {
+  /* padding-top: .95rem; */
+  float: left;
+  width: 23%;
+  overflow-y: scroll;
+  height: 17.4rem;
+}
 
-	.commCt_l p {
-		padding: .7rem .3rem;
-		border-bottom: .025rem solid #ededed;
-		box-sizing: border-box;
-		border-left: .15rem solid #f8f8f8;
-		position: relative;
+.commCt_l p {
+  padding: 0.7rem 0.3rem;
+  border-bottom: 0.025rem solid #ededed;
+  box-sizing: border-box;
+  border-left: 0.15rem solid #f8f8f8;
+  position: relative;
+}
 
-	}
+.commCt_l p span {
+  font-size: 0.4rem;
+}
 
-	.commCt_l p span {
-		font-size: .4rem;
-	}
+.commCt_l .cl {
+  border-left: 0.15rem solid #3190e8;
+  background-color: #fff;
+}
 
-	.commCt_l .cl {
-		border-left: .15rem solid #3190e8;
-		background-color: #fff;
-	}
+.commCt_r {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  transition: all 1s;
+}
 
-	.commCt_r {
-		width: 100%;
-		position: absolute;
-		top: 0;
-		transition: all 1s;
-	}
-
-	#spcart .introduce_btn_l_i {
-		display: inline-block;
-		padding: 0 .05rem;
-		background-color: rgb(240, 115, 115);
-		border-color: rgb(240, 115, 115);
-		margin-right: .1rem;
-	}
+#spcart .introduce_btn_l_i {
+  display: inline-block;
+  padding: 0 0.05rem;
+  background-color: rgb(240, 115, 115);
+  border-color: rgb(240, 115, 115);
+  margin-right: 0.1rem;
+}
+#spcart #l_header{
+  z-index:9999999999999;
+}
+#spcart .l_bd{
+  background:rgba(0,0,0,0) !important;
+}
 </style>
